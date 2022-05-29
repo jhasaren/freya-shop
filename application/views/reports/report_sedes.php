@@ -160,8 +160,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     
                                     <!--Sedes Egresos-->
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="x_panel" aria-expanded="false">
-                                            <div class="x_title">
+                                        <div class="x_panel collapse">
+                                            <div class="x_title collapse">
                                                 <h2>Egresos de la Tienda</h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
