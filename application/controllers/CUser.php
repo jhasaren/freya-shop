@@ -64,7 +64,16 @@ class CUser extends CI_Controller {
             if ($this->MRecurso->validaRecurso(7)){
             
                 /*Consulta Modelo para obtener listado de Usuarios creados*/
-                $listUsers = $this->MUser->list_users();
+                /*Lista para administradores del sistema*/
+                if ($this->session->userdata('perfil') == 'SUPERADMIN'){
+                    $listUsers = $this->MUser->list_users();
+                }
+
+                /*Lista para empleados del sistema*/
+                if ($this->session->userdata('perfil') == 'EMPLEADO'){
+                    $listUsers = $this->MUser->list_users_empl();
+                }
+                
                 /*Consulta Modelo para obtener listado de Roles creados*/
                 $listRoles = $this->MUser->list_roles();
                 /*Consulta Modelo para obtener listado de Sedes creadas*/

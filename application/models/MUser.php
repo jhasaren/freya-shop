@@ -20,7 +20,7 @@ class MUser extends CI_Model {
     
     /**************************************************************************
      * Nombre del Metodo: list_users
-     * Descripcion: Obtiene todos los usuarios creados
+     * Descripcion: Obtiene todos los usuarios creados (administrador)
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/03/2017, Ultima modificacion: 
      **************************************************************************/
@@ -49,6 +49,56 @@ class MUser extends CI_Model {
                                     JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
                                     LEFT JOIN usuario_tipo_proveedor tp ON tp.idUsuario = a.idUsuario
                                     LEFT JOIN tipo_proveedor tpr ON tpr.idTipoProveedor = tp.idTipoProveedor");
+
+            $this->cache->memcached->save('mListusers', $query->result_array(), 28800); /*8 horas en Memoria*/
+            $this->cache->memcached->save('memcached5', 'real', 30);
+            
+            if ($query->num_rows() == 0) {
+
+                return false;
+
+            } else {
+
+                return $query->result_array();
+
+            }
+        }
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: list_users_empl
+     * Descripcion: Obtiene todos los usuarios creados (empleados), no lista usuarios administradores
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function list_users_empl() {
+        
+        $dataCache = $this->cache->memcached->get('mListusers');
+        
+        if ($dataCache){
+            
+            $this->cache->memcached->save('memcached5', 'cache', 30);
+            return $dataCache;
+            
+        } else {
+        
+            /*Recupera los usuarios creados*/
+            $query = $this->db->query("SELECT
+                                    a.idUsuario,
+                                    concat(a.nombre,' ',a.apellido) as nombre_usuario,
+                                    t.descTipoUsuario,
+                                    a.idTipoUsuario,
+                                    a.numCelular,
+                                    a.activo,
+                                    tpr.descTipoProveedor
+                                    FROM
+                                    app_usuarios a
+                                    JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
+                                    LEFT JOIN usuario_tipo_proveedor tp ON tp.idUsuario = a.idUsuario
+                                    LEFT JOIN tipo_proveedor tpr ON tpr.idTipoProveedor = tp.idTipoProveedor
+                                    LEFT JOIN usuario_acceso us ON us.idUsuario = a.idUsuario
+                                    WHERE
+                                    us.idRol <> 1");
 
             $this->cache->memcached->save('mListusers', $query->result_array(), 28800); /*8 horas en Memoria*/
             $this->cache->memcached->save('memcached5', 'real', 30);
