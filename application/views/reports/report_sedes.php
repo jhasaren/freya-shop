@@ -257,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="x_content collapse">
+                                            <div class="x_content">
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
