@@ -1,16 +1,14 @@
-# Freya-Trucks
+# Freya-Shop
 Autor(es):
 John Alexander Sanchez R / Leidy J. Mendoza Yara
 
-Freya Trucks es un software para la gestión de Restaurantes, se caracteriza por ser ágil y rápido para el registro de ventas, garantiza control y organización para el negocio. Accesibilidad y seguridad.
+Freya Shop es un software para la gestión de tiendas de articulos, se caracteriza por ser ágil y rápido para el registro de ventas, garantiza control y organización para el negocio. Accesibilidad y seguridad.
 
 # Funcionalidades:
 
 -Registro de Ventas
 
--Gestion de Platos Fuertes
-
--Gestión de Productos e Ingredientes
+-Gestion Articulos
 
 -Control de Inventario
 
@@ -26,9 +24,7 @@ Freya Trucks es un software para la gestión de Restaurantes, se caracteriza por
 
 -Control de Accesos
 
--Multidispositivo
-
--Modo de operación Online y Offline
+-Modo de operación Online
 
 -Impresión de Tickets
 
