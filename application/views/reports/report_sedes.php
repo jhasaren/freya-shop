@@ -187,7 +187,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="x_content">
+                                            <div class="x_content collapse">
                                                 <table id="datatable" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
@@ -246,18 +246,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>Detalle de Recibos Pagados</h2>
-                                                <br /><br />
-                                                <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Liquidado:</B> valor con descuento a servicios |
-                                                <B>Ingreso en Caja:</B> Liquidado + Propina <br />
-                                                <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="x_content">
+                                            <div class="x_content collapse">
+                                                <br /><br />
+                                                <B>Venta:</B> valor antes de aplicar descuento y propina |
+                                                <B>Liquidado:</B> valor con descuento a servicios |
+                                                <B>Ingreso en Caja:</B> Liquidado + Propina <br />
+                                                <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
