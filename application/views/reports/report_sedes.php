@@ -253,11 +253,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="x_content collapse">
-                                                <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
                                                 <B>Liquidado:</B> valor con descuento a servicios |
                                                 <B>Ingreso en Caja:</B> Liquidado + Propina <br />
-                                                <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo
+                                                <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo<br />
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
