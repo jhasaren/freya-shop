@@ -234,6 +234,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </form>
                         <?php } ?>
                         <!--END: SMS Cuenta Cobro-->
+
+                        <!--Impresion Ticket Online-->
+                        <?php if ($this->config->item('print_mode_ticket') == 0) { ?>
+                            <input id="btnprint" class="btn btn-success btn-lg" type="button" value="Imprimir Ticket" onclick="PrintElem('#myDiv')" />
+                        <?php } ?>
+                        <!--END: SMS Cuenta Cobro-->
                     </div>
                     <div class="col-md-2 col-sm-2 col-xs-12" style="text-align: left">
                         <!--Nueva Venta-->
@@ -285,7 +291,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         };*/
     }    
         
-    //Lanzamos la llamada al evento click
+    //Lanzamos la llamada al evento click (impresion automatica)
     /*$(document).ready(function () {
             console.log("Imprimir Ticket");
             $("#btnprint").click();

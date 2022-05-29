@@ -670,6 +670,16 @@ $config['sms_ccobro'] = 0;
 
 /*
 |--------------------------------------------------------------------------
+| Modo de Impresion de Ticket
+ * Permite controlar la funcionalidad
+ * 1-local, 0-online
+|--------------------------------------------------------------------------
+*/
+$config['print_mode_ticket'] = 0;
+
+
+/*
+|--------------------------------------------------------------------------
 | Consultar WS Catalogo App
  * Permite controlar la funcionalidad
  * 1-habilitar, 0-deshabilitar
@@ -686,6 +696,6 @@ $config['ws_cat_app'] = 0;
  *  pwd_client
 |--------------------------------------------------------------------------
 */
-$config['user_client'] = "00486983804";
-$config['pwd_client'] = "Jh4s4r3n2020";
-$config['key_client'] = "5c9eace3f9f526bcdb5dc0006df3ad2a214e5ca6";
+$config['user_client'] = "";
+$config['pwd_client'] = "";
+$config['key_client'] = "";
