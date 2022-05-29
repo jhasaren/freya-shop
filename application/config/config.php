@@ -530,7 +530,7 @@ $config['proxy_ips'] = '';
 | Nombre del Restaurante
 |--------------------------------------------------------------------------
 */
-$config['namebussines'] = "FREYA SHOP";
+$config['namebussines'] = "BODY POWER";
 
 /*
 |--------------------------------------------------------------------------
@@ -550,7 +550,7 @@ $config['namebussines'] = "FREYA SHOP";
 | ya que esta se encuentra sujeta al contrato comercial adquirido.
 |
 */
-$config['empleados'] = 2;
+$config['empleados'] = 10;
 
 /*
 |--------------------------------------------------------------------------
@@ -575,7 +575,7 @@ $config['porcen_consumo'] = 0;
 | permiso_elim_item -> (0-no, 1-si)
 |--------------------------------------------------------------------------
 */
-$config['permiso_elim_item'] = 1;
+$config['permiso_elim_item'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -665,7 +665,7 @@ $config['bday_cliente'] = 0;
  * 1-habilitar, 0-deshabilitar
 |--------------------------------------------------------------------------
 */
-$config['sms_ccobro'] = 1;
+$config['sms_ccobro'] = 0;
 
 
 /*
