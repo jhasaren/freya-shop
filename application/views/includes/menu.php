@@ -189,7 +189,7 @@
         <a data-toggle="tooltip" data-placement="top" title="Copyright Amadeus Soluciones" href="#">
             <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
         </a>
-        <a data-toggle="tooltip" data-placement="top" title="Version 1.0.0" href="#">
+        <a data-toggle="tooltip" data-placement="top" title="Version 1.5.0" href="#">
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
         </a>
         <a data-toggle="tooltip" data-placement="top" title="Salir" href="<?php echo base_url().'index.php/CPrincipal/logout'; ?>">

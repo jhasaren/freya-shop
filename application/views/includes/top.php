@@ -107,7 +107,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>Freya Shop</h3>v1.0.0 [10/09/2020]<br /><?php echo "CI-".CI_VERSION; ?>
+                    <h3>Freya Shop</h3>v1.5.0 [29/05/2022]<br /><?php echo "CI-".CI_VERSION; ?>
                 </div>
                 <div class="modal-body">
                     Software de Gestión para Tiendas de Articulos.
