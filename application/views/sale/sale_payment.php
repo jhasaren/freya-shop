@@ -237,7 +237,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <!--Impresion Ticket Online-->
                         <?php if ($this->config->item('print_mode_ticket') == 0) { ?>
-                            <input id="btnprint" class="btn btn-success btn-lg" type="button" value="Imprimir Ticket" onclick="PrintElem('#myDiv')" />
+                            <input id="btnprint" class="btn btn btn-warning btn-lg" type="button" value="Imprimir Ticket" onclick="PrintElem('#myDiv')" />
                         <?php } ?>
                         <!--END: SMS Cuenta Cobro-->
                     </div>
