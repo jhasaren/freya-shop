@@ -369,6 +369,21 @@ $(document).ready(function () {
         $("#typereg").val(type);
         $('#myModal-itemdel').modal('show');
     });
+    /*Modal - Configurar Item Descuento/Comision*/
+    $('.btn-itemconfig').click(function (e) {
+        e.preventDefault();
+        var idProducto = $(this).attr('data-rel');
+        var idUsuario = $(this).attr('data-rel2');
+        var idConfig = $(this).attr('data-rel3');
+        var valordesc = $(this).attr('data-rel4');
+        var commision = $(this).attr('data-rel5');
+        $("#idproducto").val(idProducto);
+        $("#idusuario").val(idUsuario);
+        $("#idconfig").val(idConfig);
+        $("#valordesc").val(valordesc);
+        $("#commision").val(commision);
+        $('#myModal-itemconfig').modal('show');
+    });
     /*Modal - Agregar Descuento Venta*/
     $('.btn-saledesc').click(function (e) {
         e.preventDefault();

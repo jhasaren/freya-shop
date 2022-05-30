@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td class="center"><?php echo $row_list['porcenComisionProd']." %"; ?></td>
                                                     <td class="center">
                                                     <?php 
-                                                    echo "<a class='btn-itemconfig' data-rel='".$row_list['idProducto']."' data-rel2='".$data_user->idUsuario."' data-rel3='".$row_list['idConfig']."' href='#'>Prueba</a>";
+                                                    echo "<a class='btn-itemconfig' data-rel='".$row_list['idProducto']."' data-rel2='".$data_user->idUsuario."' data-rel3='".$row_list['idConfig']."' data-rel4='".$row_list['valorDescProd']."' data-rel5='".$row_list['porcenComisionProd']."' href='#'>Prueba</a>";
                                                     ?>
                                                     </td>
                                                 </tr>
@@ -155,6 +155,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <!-- /page content -->
+
+        <!--Modal - Configurar item-->
+        <div class="modal fade" id="myModal-itemconfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-itemconfig" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CSale/deletedetailsale'; ?>" method="post">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h3>Configurar Descuento/Comision</h3>
+                        </div>
+                        <div class="modal-body">
+                            <label class="control-label" for="Interno">Seleccione Motivo</label>
+                            
+                            <br />
+                            <label class="control-label" for="pass">Valor Descuento</label>
+                            <input type="tel" class="form-control" id="valordesc" name="valordesc" placeholder="$" required="" autocomplete="off" pattern="\d*">
+                            <br />
+                            <label class="control-label" for="pass">Porcentaje Comisión</label>
+                            <input type="tel" class="form-control" id="commision" name="commision" placeholder="%" required="" autocomplete="off" pattern="\d*">
+                            <br />
+                            <input type="hidden" class="form-control" id="idproducto" name="idproducto">
+                            <input type="hidden" class="form-control" id="idusuario" name="idusuario">
+                            <input type="hidden" class="form-control" id="idconfig" name="idconfig">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <!-- footer content -->
         <?php 
