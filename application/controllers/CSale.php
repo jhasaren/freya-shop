@@ -1443,13 +1443,6 @@ class CSale extends CI_Controller {
                     $valorDetalle = $data[1];
                     $totalValor = $valorDetalle - $descuentoValor;
 
-                    log_message("debug", "*******************************************");
-                    log_message("debug", "Descuento ".$descuentoValor);
-                    log_message("debug", "ID ".$idDetalle);
-                    log_message("debug", "Valor ".$valorDetalle);
-                    log_message("debug", "Total ".$totalValor);
-                    log_message("debug", "*******************************************");
-
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){
 
                         /*Envia datos al modelo para el registro*/

@@ -1682,7 +1682,7 @@ class MSale extends CI_Model {
                             venta_detalle SET
                             valor = ".$valor."
                             WHERE
-                            idRegistroDetalle = ".idDetalle."
+                            idRegistroDetalle = ".$idDetalle."
                             ");
 
         } else {
