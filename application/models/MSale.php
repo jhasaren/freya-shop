@@ -349,13 +349,13 @@ class MSale extends CI_Model {
             log_message("debug", "Comision calculada manual: ".($comision));
             log_message("debug", "*******************************************");
 
-            if ($result->comision == $comision){
+            if ($result->comision !== $comision){ //Valida que el valor de comision sea el configurado
 
-                return true;
+                return false;
 
             } else {
 
-                return false;
+                return true;
 
             }
 
