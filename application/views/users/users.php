@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </a>
                                                         <?php } ?>
                                                         <?php if (($this->config->item('mod_commision') == 1) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
-                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/calendarempleado/'.$row_list['idUsuario']; ?>">
+                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/configcomisiondescuento/'.$row_list['idUsuario']; ?>">
                                                             <i class="glyphicon glyphicon-cog"></i>
                                                             Descuento/Comisión
                                                         </a>
