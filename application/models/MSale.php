@@ -302,12 +302,31 @@ class MSale extends CI_Model {
             
             if ($type == 2){ /*producto*/
                 
-                /*Producto de la venta*/
-                $query = $this->db->query("SELECT
-                                        idProducto
-                                        FROM productos
-                                        WHERE idProducto = ".$item."
-                                        AND valorProducto = '".$value."'");
+                /*Valida Modulo de Comision*/
+                if ($this->config->item('mod_commision') == 0) { //Modulo Comisiones Deshabilitado
+
+                    /*Producto de la venta*/
+                    $query = $this->db->query("SELECT
+                                            idProducto
+                                            FROM productos
+                                            WHERE idProducto = ".$item."
+                                            AND valorProducto = '".$value."'");
+
+                } else {
+
+                    if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
+                        
+                        /*Producto de la venta*/
+                        $query = $this->db->query("SELECT
+                                                p.idProducto
+                                                FROM productos p
+                                                LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto AND idCliente = '".$this->session->userdata('sclient')."')
+                                                WHERE p.idProducto = ".$item."
+                                                AND (p.valorProducto - cv.valorDescProd) = '".$value."'");
+
+                    }
+
+                }
                 
             }
             
