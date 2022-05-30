@@ -132,8 +132,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                                 <tr style="background-color: #2A3F54;">
                                                     <td class="center green"><?php echo "[".$row_list['idProducto']."] ".$row_list['descProducto']; ?></td>
-                                                    <td class="center blue"><?php echo $row_list['valorProducto']; ?></td>
-                                                    <td class="center red"><?php echo $row_list['valorDescProd']; ?></td>
+                                                    <td class="center blue"><?php echo number_format($row_list['valorProducto'],0,',','.'); ?></td>
+                                                    <td class="center red"><?php echo number_format($row_list['valorDescProd'],0,',','.'); ?></td>
                                                     <td class="center"><?php echo $row_list['porcenComisionProd']." %"; ?></td>
                                                     <td class="center">
                                                     <?php 

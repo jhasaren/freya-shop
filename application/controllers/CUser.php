@@ -625,16 +625,8 @@ class CUser extends CI_Controller {
                 $idConfig = $this->input->post('idconfig');
                 $valorDescuento = $this->input->post('valordesc');
                 $porcenComision = $this->input->post('commision');
-
-                log_message('DEBUG', '----------------------------------');
-                log_message('DEBUG', "idproducto->".$idProducto);
-                log_message('DEBUG', "idusuario->".$idUsuario);
-                log_message('DEBUG', "idconfig->".$idConfig);
-                log_message('DEBUG', "descuento".$valorDescuento);
-                log_message('DEBUG', "comision->".$porcenComision);
-                log_message('DEBUG', '----------------------------------');
                                         
-                /*Consulta Modelo para eliminar el id del detalle, y registrar motivo de eliminacion*/
+                /*Consulta Modelo para guardar la configuracion*/
                 $configRegistro = $this->MUser->save_config_user($idConfig,$idProducto,$idUsuario,$valorDescuento,$porcenComision);
                 
                 if ($configRegistro == TRUE){
