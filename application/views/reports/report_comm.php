@@ -75,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="input-group">
                                 <div></div>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportSedes'; ?>"><i class="glyphicon glyphicon-align-justify"></i> Reporte General</a>
+                                    <a class="btn btn-success" href="<?php echo base_url().'index.php/CReport/module/reportSedes'; ?>"><i class="glyphicon glyphicon-align-justify"></i> Reporte General</a>
                                 </span>
                             </div>
                         </div>
