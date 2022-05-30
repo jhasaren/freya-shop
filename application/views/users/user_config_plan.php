@@ -105,6 +105,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+                                <div class="form-group">
+                                    <label for="Nombre"><?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
+                                    <input type="hidden" value="<?php echo $data_user->idUsuario; ?>" name='idEmpleado' >
+                                </div>
                                 <!--Lista de productos-->
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <thead>
