@@ -289,7 +289,7 @@ class MSale extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 22/09/2018, Ultima modificacion: 
      **************************************************************************/
-    public function validate_select_sale($item,$value,$comision,$type) {
+    public function validate_select_sale($item,$value,$porcenComision,$type) {
         
         if ($type == 1){ /*servicio*/
             
@@ -344,38 +344,18 @@ class MSale extends CI_Model {
 
             $result = $query->row();
 
-            $a = settype($result->comision, "string");
-            $b = settype($comision, "string");
+            $a = $result->comision;
+            $b = $porcenComision;
 
             log_message("debug", "*******************************************");
             log_message("debug", "Result Comision: ".$a);
             log_message("debug", "Comision calculada manual: ".$b);
             log_message("debug", "*******************************************");
 
-            if(is_float(floatval($a))){
-                log_message("debug", "*******************************************");
-                log_message("debug", "a es FLOAT ");
-                log_message("debug", "*******************************************");
-            }else{
-                log_message("debug", "*******************************************");
-                log_message("debug", "a NO es FLOAT ");
-                log_message("debug", "*******************************************");
-            }
-
-            if(is_float(floatval($b))){
-                log_message("debug", "*******************************************");
-                log_message("debug", "b es FLOAT ");
-                log_message("debug", "*******************************************");
-            }else{
-                log_message("debug", "*******************************************");
-                log_message("debug", "b NO es FLOAT ");
-                log_message("debug", "*******************************************");
-            }
-
-            if ($a == $b){ //Valida que el valor de comision sea el configurado
+            if ((string)$a == (string)$b){ //Valida que el valor de comision sea el configurado
 
                 log_message("debug", "*******************************************");
-                log_message("debug", "Entra y devuelve FALSE ");
+                log_message("debug", "Entra y devuelve TRUE ");
                 log_message("debug", "*******************************************");
 
                 return true;
@@ -383,7 +363,7 @@ class MSale extends CI_Model {
             } else {
 
                 log_message("debug", "*******************************************");
-                log_message("debug", "Entra y devuelve TRUE ");
+                log_message("debug", "Entra y devuelve FALSE ");
                 log_message("debug", "*******************************************");
 
                 return false;
