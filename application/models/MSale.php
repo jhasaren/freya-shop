@@ -320,12 +320,12 @@ class MSale extends CI_Model {
                         
                         /*Producto de la venta*/
                         $query = $this->db->query("SELECT
-                                                p.idProducto
+                                                p.idProducto,
+                                                IFNULL(cv.porcenComisionProd,0) as comision
                                                 FROM productos p
                                                 LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto AND idCliente = '".$this->session->userdata('sclient')."')
                                                 WHERE p.idProducto = ".$item."
                                                 AND ((p.valorProducto - cv.valorDescProd) = '".$value."') OR (p.valorProducto = '".$value."')
-                                                AND (IFNULL(cv.porcenComisionProd,0) = '".($comision/100)."')
                                                 ");
                             
                     }
@@ -342,7 +342,22 @@ class MSale extends CI_Model {
 
         } else {
 
-            return true;
+            $result = $query->row();
+
+            log_message("debug", "*******************************************");
+            log_message("debug", "Result Comision: ".$result->comision);
+            log_message("debug", "Comision calculada manual: ".($comision/100));
+            log_message("debug", "*******************************************");
+
+            if ($result->comision == ($comision/100)){
+
+                return true;
+
+            } else {
+
+                return false;
+
+            }
 
         }
         
