@@ -132,7 +132,7 @@ class CSale extends CI_Controller {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 27/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function createsale($board,$flagBoard) {
+    public function createsale($board,$flagBoard,$client) {
         
         if ($this->session->userdata('validated')) {
             
@@ -165,7 +165,8 @@ class CSale extends CI_Controller {
                     
                     /*Registra el id de venta de la mesa como variable de sesion*/
                     $datos_session = array(
-                        'idSale' => $flagBoard
+                        'idSale' => $flagBoard,
+                        'sclient' => $client
                     );
                     $this->session->set_userdata($datos_session);
                     

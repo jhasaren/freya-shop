@@ -1987,6 +1987,7 @@ class MSale extends CI_Model {
                                 m.activo,
                                 t.descTipoMesa,
                                 m.idVenta,
+                                m.idUsuarioCliente,
                                 v.idEstadoRecibo,
                                 DATE_FORMAT(v.fechaLiquida, '%H:%i %p') as time
                                 FROM mesas m
@@ -2005,6 +2006,7 @@ class MSale extends CI_Model {
                                 m.activo,
                                 t.descTipoMesa,
                                 m.idVenta,
+                                m.idUsuarioCliente,
                                 v.idEstadoRecibo,
                                 DATE_FORMAT(v.fechaLiquida, '%H:%i %p') as time
                                 FROM mesas m
