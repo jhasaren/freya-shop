@@ -685,7 +685,7 @@ $config['print_mode_ticket'] = 0;
  * 1-habilitar, 0-deshabilitar
 |--------------------------------------------------------------------------
 */
-$config['mod_commision'] = 0;
+$config['mod_commision'] = 1;
 
 
 /*
