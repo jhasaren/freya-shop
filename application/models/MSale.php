@@ -348,11 +348,11 @@ class MSale extends CI_Model {
             $b = $porcenComision;
 
             log_message("debug", "*******************************************");
-            log_message("debug", "Result Comision: ".$a);
-            log_message("debug", "Comision calculada manual: ".$b);
+            log_message("debug", "Result Comision: ".strval($a));
+            log_message("debug", "Comision calculada manual: ".strval($b));
             log_message("debug", "*******************************************");
 
-            if ((string)$a == (string)$b){ //Valida que el valor de comision sea el configurado
+            if (strval($a) == strval($b)){ //Valida que el valor de comision sea el configurado
 
                 log_message("debug", "*******************************************");
                 log_message("debug", "Entra y devuelve TRUE ");
