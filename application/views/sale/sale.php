@@ -235,7 +235,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 Servicio/Descuento
                                                                 <div><?php echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
                                                             <?php } else { ?>
-                                                                Descuento
+                                                                <?php if ($this->config->item('mod_commision') == 1) { ?>
+                                                                    Descuento manual
+                                                                <?php } else { ?>
+                                                                    Descuento
+                                                                <?php } ?>
                                                                 <div><?php echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
                                                             <?php } ?>
                                                             
@@ -773,7 +777,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <form role="form" name="form_descuento" action="<?php echo base_url() . 'index.php/CSale/addporcentdesc'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Servicio/Descuento</h3>
+                            <h3>Descuento manual</h3>
                         </div>
                         <div class="modal-body">
                             <?php 
