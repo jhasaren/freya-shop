@@ -377,11 +377,13 @@ $(document).ready(function () {
         var idConfig = $(this).attr('data-rel3');
         var valordesc = $(this).attr('data-rel4');
         var commision = $(this).attr('data-rel5');
+        var descProducto = $(this).attr('data-rel6');
         $("#idproducto").val(idProducto);
         $("#idusuario").val(idUsuario);
         $("#idconfig").val(idConfig);
         $("#valordesc").val(valordesc);
         $("#commision").val(commision);
+        $("#descProducto").val(descProducto);
         $('#myModal-itemconfig').modal('show');
     });
     /*Modal - Agregar Descuento Venta*/
