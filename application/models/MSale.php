@@ -378,7 +378,7 @@ class MSale extends CI_Model {
                 log_message("debug", "Entra y devuelve FALSE ");
                 log_message("debug", "*******************************************");
 
-                return false;
+                return true;
 
             } else {
 
@@ -386,7 +386,7 @@ class MSale extends CI_Model {
                 log_message("debug", "Entra y devuelve TRUE ");
                 log_message("debug", "*******************************************");
 
-                return true;
+                return false;
 
             }
 
