@@ -243,20 +243,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
-    <script>
-        $(document).ready(function() {
-            var table = $('#datatable-buttons').DataTable( {
-                scrollY:        "300px",
-                scrollX:        true,
-                scrollCollapse: true,
-                paging:         false,
-                columnDefs: [
-                    { width: '20%', targets: 0 }
-                ],
-                fixedColumns: true
-            } );
-        } );
-    </script>    
+      
     
   </body>
 </html>
