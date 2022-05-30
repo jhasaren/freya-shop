@@ -158,8 +158,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Empleado</th>
                                                             <th>Cliente</th>
                                                             <th>Recibo</th>
-                                                            <th>Dscto Manual</th>
-                                                            <th>Total Factura</th>
+                                                            <th>DsctoManual</th>
+                                                            <th>TotalFactura</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
