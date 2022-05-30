@@ -224,7 +224,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>    
                                     </div>
-                                    <!--
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saledesc" href="#">
                                             <div class="bs-glyphicons">
@@ -232,17 +231,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <li>
                                                         <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
                                                         <span class="glyphicon-class" style="font-size: 14px;">
-                                                            <?php //if ($this->config->item('tipo_negocio') !== 3) { ?>
+                                                            <?php if ($this->config->item('tipo_negocio') !== 3) { ?>
                                                                 Servicio/Descuento
-                                                                <div><?php //echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
-                                                            <?php //} else { ?>
-                                                                <?php //if ($this->config->item('mod_commision') == 1) { ?>
+                                                                <div><?php echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
+                                                            <?php } else { ?>
+                                                                <?php if ($this->config->item('mod_commision') == 1) { ?>
                                                                     Descuento manual
-                                                                <?php //} else { ?>
+                                                                <?php } else { ?>
                                                                     Descuento
-                                                                <?php //} ?>
-                                                                <div><?php //echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
-                                                            <?php //} ?>
+                                                                <?php } ?>
+                                                                <div><?php echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
+                                                            <?php } ?>
                                                             
                                                         </span>
                                                     </li>
@@ -250,7 +249,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>
                                     </div>
-                                    -->
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saleempleado" href="#">
                                             <div class="bs-glyphicons">
@@ -814,6 +812,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="tel" class="form-control" id="procentaje" name="procentaje" placeholder="Descuento" value="<?php if ($porcenInList->porcenDescuento !== NULL){ echo $porcenInList->porcenDescuento*100; } else { echo 0; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
                                 <br />
                             <?php } else { ?>
+                                <div class="controls">
+                                    <select class="select2_single form-control" id="idproductoventa" name="idproductoventa" data-rel="chosen">
+                                        <?php
+                                        foreach ($productInList as $row_prod_inlist) {
+                                            ?>
+                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idProducto']; ?>" ><?php echo $row_prod_inlist['idProducto'] . ' | ' . $row_prod_inlist['descProducto']; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                                 <label class="control-label" for="Porcentaje">Descuento (%)</label>
                                 <input type="tel" class="form-control" id="porcen_servicio" name="porcen_servicio" placeholder="% Porcentaje" value="<?php if ($porcenInList->porcenServicio == 0){ echo $this->config->item('procen_servicio'); } else { echo $porcenInList->porcenServicio*100; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> >
                                 <br />
