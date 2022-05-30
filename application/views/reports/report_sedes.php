@@ -262,7 +262,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <thead>
                                                         <tr>
                                                             <th>Sede</th>
-                                                            <th>Nro. Recibossss</th>
+                                                            <th>Nro. Recibo</th>
                                                             <th>Fecha Pago</th>
                                                             <th>Venta</th>
                                                             <th>Descto.</th>
