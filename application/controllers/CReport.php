@@ -807,13 +807,13 @@ class CReport extends CI_Controller {
                         $info['paymentFechaDia'] = $paymentFechaDia;
                         $info['paymentAbonos'] = $paymentAbonos;
                         $info['gastosConsolidaSedes'] = $gastosTipoCat;
-                        $this->load->view('reports/report_sedes',$info);
+                        $this->load->view('reports/report_comm',$info);
 
                     } else {
 
                         $info['dataRow'] = 2;
-                        $info['message'] = "No fue posible obtener consolidado de recibos pagados en el periodo seleccionado.";
-                        $this->load->view('reports/report_sedes',$info);
+                        $info['message'] = "No fue posible obtener reporte de comisiones en el periodo seleccionado.";
+                        $this->load->view('reports/report_comm',$info);
 
                     }   
 
@@ -821,7 +821,7 @@ class CReport extends CI_Controller {
 
                     $info['dataRow'] = 2;
                     $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
-                    $this->load->view('reports/report_sedes',$info);
+                    $this->load->view('reports/report_comm',$info);
 
                 }
             
