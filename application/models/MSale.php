@@ -1676,7 +1676,7 @@ class MSale extends CI_Model {
                 
         $this->db->trans_start();
         
-        if ($this->config->item('tipo_negocio') == 3 && $this->config->item('mod_commision') == 2) {
+        if ($this->config->item('tipo_negocio') == 3 && $this->config->item('mod_commision') == 1) {
 
             $this->db->query("UPDATE
                             venta_detalle SET

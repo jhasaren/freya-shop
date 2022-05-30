@@ -1005,13 +1005,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     var servicios = [
         <?php 
-        foreach ($list_service as $row_service) {
-            if ($row_service['agotado'] < 1){
-                ?>
-                { value: '<?php echo $row_service['idServicio']." | ".$row_service['valorServicio']." | ".$row_service['descGrupoServicio']." | ".$row_service['descServicio']; ?>' },
-                <?php 
-            }
-        } 
+        if ($list_service != NULL){
+            foreach ($list_service as $row_service) {
+                if ($row_service['agotado'] < 1){
+                    ?>
+                    { value: '<?php echo $row_service['idServicio']." | ".$row_service['valorServicio']." | ".$row_service['descGrupoServicio']." | ".$row_service['descServicio']; ?>' },
+                    <?php 
+                }
+            } 
+        }
         ?>
     ];
     $('#idservice').autocomplete({
