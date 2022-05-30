@@ -294,6 +294,7 @@ class CPrincipal extends CI_Controller {
         $this->cache->memcached->delete('mListundmedida');
         $this->cache->memcached->delete('mListboards');
         $this->cache->memcached->delete('mListProductSale');
+        $this->cache->memcached->delete('mListProductSaleClient');
         $this->cache->memcached->delete('mListServiceSale');
         $this->cache->memcached->delete('mListproducts');
         $this->cache->memcached->delete('mListservices');
