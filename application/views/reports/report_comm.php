@@ -145,7 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="x_content">
-                                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                                <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
                                                     <thead>
                                                         <tr>
                                                             <th>Fecha</th>
@@ -245,12 +245,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
     <script>
         $(document).ready(function() {
-            var table = $('#example').DataTable( {
-                
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+            var table = $('#datatable-buttons').DataTable( {
+                scrollY:        "300px",
+                scrollX:        true,
+                scrollCollapse: true,
+                paging:         false,
+                columnDefs: [
+                    { width: '20%', targets: 0 }
+                ],
+                fixedColumns: true
             } );
         } );
     </script>    
