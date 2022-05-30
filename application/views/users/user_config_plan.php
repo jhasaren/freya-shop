@@ -29,6 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--<link href="<?php // echo base_url().'public/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'; ?>" rel="stylesheet">-->
     <!--<link href="<?php // echo base_url().'public/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css'; ?>" rel="stylesheet">-->
 
+    <!-- Datatables Buttons -->
+    <link href="<?php echo base_url().'public/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css'; ?>" rel="stylesheet">
+    <link href="<?php echo base_url().'public/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css'; ?>" rel="stylesheet">
+
     <!--Clockpicker-->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'public/gentelella/vendors/clockpicker/dist/bootstrap-clockpicker.min.css'; ?>">    
     
