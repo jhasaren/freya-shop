@@ -224,6 +224,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>    
                                     </div>
+                                    
+                                    <?php if ($this->config->item('mod_commision') == 1) { ?>
+                                    <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <a class="btn-saledescMan" href="#">
+                                            <div class="bs-glyphicons">
+                                                <ul class="bs-glyphicons-list">
+                                                    <li>
+                                                        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                                                        <span class="glyphicon-class" style="font-size: 14px;">
+                                                            Descuento manual
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php } else { ?>
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saledesc" href="#">
                                             <div class="bs-glyphicons">
@@ -235,11 +252,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 Servicio/Descuento
                                                                 <div><?php echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
                                                             <?php } else { ?>
-                                                                <?php if ($this->config->item('mod_commision') == 1) { ?>
-                                                                    Descuento manual
-                                                                <?php } else { ?>
-                                                                    Descuento
-                                                                <?php } ?>
+                                                                Descuento
                                                                 <div><?php echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
                                                             <?php } ?>
                                                             
@@ -248,7 +261,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </ul>
                                             </div>
                                         </a>
-                                    </div>
+                                    </div>    
+                                    <?php } ?>
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saleempleado" href="#">
                                             <div class="bs-glyphicons">
@@ -812,18 +826,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="tel" class="form-control" id="procentaje" name="procentaje" placeholder="Descuento" value="<?php if ($porcenInList->porcenDescuento !== NULL){ echo $porcenInList->porcenDescuento*100; } else { echo 0; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
                                 <br />
                             <?php } else { ?>
-                                <div class="controls">
-                                    <select class="select2_single form-control" id="idproductoventa" name="idproductoventa" data-rel="chosen">
-                                        <?php
-                                        foreach ($productInList as $row_prod_inlist) {
-                                            ?>
-                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idProducto']; ?>" ><?php echo $row_prod_inlist['idProducto'] . ' | ' . $row_prod_inlist['descProducto']; ?></option>
-                                            <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <br />
                                 <label class="control-label" for="Porcentaje">Descuento (%)</label>
                                 <input type="tel" class="form-control" id="porcen_servicio" name="porcen_servicio" placeholder="% Porcentaje" value="<?php if ($porcenInList->porcenServicio == 0){ echo $this->config->item('procen_servicio'); } else { echo $porcenInList->porcenServicio*100; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> >
                                 <br />
@@ -836,12 +838,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
-                            <?php if ($this->config->item('mod_commision') == 1) { ?>
-                                <?php if ($productInList != NULL){ ?>
-                                <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
-                                <?php } ?>
-                            <?php } else { ?>
-                                <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                            <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal - Descuento Manual - Comisiones-->
+        <div class="modal fade" id="myModal-descMan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-descMan" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <?php 
+                    /*12/08/2019: Se agrego parametro para permitir modificaciones al rol Empleado cuando recibo ya este liquidado*/
+                    if ($this->config->item('permiso_modif_recibo') == 0){
+                        if ($porcenInList->idEstadoRecibo == 2){ 
+                            $stateInput = "readonly";
+                        } else {
+                            $stateInput = "";
+                        }
+                    }
+                    ?>
+                    <form role="form" name="form_descuento_man" action="<?php echo base_url() . 'index.php/CSale/addporcentdesc'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h3>Descuento manual</h3>
+                        </div>
+                        <div class="modal-body">
+                            <?php 
+                            /*Si el recibo esta liquidado y el perfil no es superadmin, no permite el cambio*/
+                            /*
+                             * 12/08/2019: Se agrego parametro para permitir modificaciones al rol Empleado cuando recibo ya este liquidado
+                             */
+                            if ($this->config->item('permiso_modif_recibo') == 0){
+                                if (($porcenInList->idEstadoRecibo == 2) && $this->session->userdata('perfil') != 'SUPERADMIN') { 
+                                    $stateInput = "readonly";
+                                    $stateButton = "disabled";
+                                    ?>
+                                    <div class="alert alert-info">
+                                        No se puede modificar. El recibo ya se encuentra liquidado.
+                                    </div>
+                                    <?php 
+                                } else { 
+                                    $stateInput = ""; 
+                                }
+                            }
+                            ?>
+                            <input type="hidden" id="subtotal_venta" name="subtotal_venta" value="<?php echo $subtotal; ?>" >
+                            
+                            <div class="controls">
+                                <select class="select2_single form-control" id="idproductoventa" name="idproductoventa" data-rel="chosen">
+                                    <?php
+                                    foreach ($productInList as $row_prod_inlist) {
+                                        ?>
+                                        <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idProducto']; ?>" ><?php echo $row_prod_inlist['idProducto'] . ' | ' . $row_prod_inlist['descProducto']; ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <br />
+                            <label class="control-label" for="Porcentaje">Descuento (%)</label>
+                            <input type="tel" class="form-control" id="porcen_servicio" name="porcen_servicio" placeholder="% Porcentaje" value="<?php if ($porcenInList->porcenServicio == 0){ echo $this->config->item('procen_servicio'); } else { echo $porcenInList->porcenServicio*100; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> >
+                            <br />
+                            <label class="control-label" for="Porcentaje">Descuento ($)</label>
+                            <input type="tel" class="form-control" id="value_servicio" name="value_servicio" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
+
+                            <input type="hidden" class="form-control" id="procentaje" name="procentaje" placeholder="Descuento" value="<?php if ($porcenInList->porcenDescuento !== NULL){ echo $porcenInList->porcenDescuento*100; } else { echo 0; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
+                            <br />
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            <?php if ($productInList != NULL){ ?>
+                            <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
                             <?php } ?>
                         </div>
                     </form>

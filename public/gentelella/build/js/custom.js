@@ -385,6 +385,22 @@ $(document).ready(function () {
             document.getElementById("btn-click-desc").click();
         }
     });
+    /*Modal - Agregar Descuento Venta Manual - Comisiones*/
+    $('.btn-saledescMan').click(function (e) {
+        e.preventDefault();
+        
+        //to have your input focused every your modal open
+        $('#myModal-descMan').on("shown.bs.modal", function() {
+            $('#procentaje').focus();
+        });
+        
+        $('#myModal-descMan').modal('show');
+        
+        if (e.keyCode === 13) {
+            // Trigger the button element with a click
+            document.getElementById("btn-click-desc").click();
+        }
+    });
     /*Modal - Agregar Gasto*/
     $('.btn-gasto').click(function (e) {
         e.preventDefault();
