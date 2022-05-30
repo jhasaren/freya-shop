@@ -16,6 +16,7 @@ class MNotify extends CI_Model {
         
         parent::__construct(); /*por defecto*/
         $this->load->file('application/libraries/class.phpmailer.php'); /*Libreria para el envio de Email*/
+        $this->db->query("SET time_zone='-5:00'");
                 
     }
             
