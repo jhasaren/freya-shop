@@ -137,7 +137,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td class="center"><?php echo $row_list['porcenComisionProd']." %"; ?></td>
                                                     <td class="center">
                                                     <?php 
-                                                    echo "<a class='btn-itemconfig btn btn-danger btn-sm' data-rel='".$row_list['idProducto']."' data-rel2='".$data_user->idUsuario."' data-rel3='".$row_list['idConfig']."' data-rel4='".$row_list['valorDescProd']."' data-rel5='".$row_list['porcenComisionProd']."' data-rel6='".$row_list['descProducto']."' href='#'>Configurar</a>";
+                                                    echo "<a class='btn-itemconfig btn btn-warning btn-sm' data-rel='".$row_list['idProducto']."' data-rel2='".$data_user->idUsuario."' data-rel3='".$row_list['idConfig']."' data-rel4='".$row_list['valorDescProd']."' data-rel5='".$row_list['porcenComisionProd']."' data-rel6='".$row_list['descProducto']."' href='#'>Configurar</a>";
                                                     ?>
                                                     </td>
                                                 </tr>
