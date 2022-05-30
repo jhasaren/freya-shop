@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="input-group">
                                 <div></div>
                                 <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
-                                    <i class="glyphicon glyphicon-back"></i>
+                                    <i class="glyphicon glyphicon-log-out"></i>
                                     Salir
                                 </a>
                             </div>
