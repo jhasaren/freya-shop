@@ -233,7 +233,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <li>
                                                         <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
                                                         <span class="glyphicon-class" style="font-size: 14px;">
-                                                            Descuento manual
+                                                            Descuento/comisión manual
                                                         </span>
                                                     </li>
                                                 </ul>
@@ -376,7 +376,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Id</th>
                                                             <th>Nombre</th>
                                                             <th>Cant</th>
-                                                            <th>Precio Publico</th>
+                                                            <th>Precio Público</th>
                                                             <th>Precio Cliente</th>
                                                             <th>Comisión</th>
                                                             <th>Acción</th>
