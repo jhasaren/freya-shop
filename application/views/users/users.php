@@ -137,8 +137,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 ?>
                                                 <tr style="background-color: #2A3F54;">
                                                     <td class="center green"><?php echo $row_list['nombre_usuario']." [ID. ".$row_list['idUsuario']."]"; ?></td>
-                                                    <td class="center green"><?php echo $row_list['numCelular']; ?></td>
-                                                    <td class="center blue"><?php echo $row_list['descTipoUsuario']; ?></td>
+                                                    <td class="center blue"><?php echo $row_list['numCelular']; ?></td>
+                                                    <td class="center"><?php echo $row_list['descTipoUsuario']; ?></td>
                                                     <td class="center"><?php echo $row_list['descTipoProveedor']; ?></td>
                                                     <td class="center">
                                                         <?php if ($row_list['activo'] == 'S') { ?>
