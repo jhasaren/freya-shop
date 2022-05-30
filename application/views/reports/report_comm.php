@@ -170,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
                                                                     <td class="center"><?php echo $row_sede['fechaPideCuenta']; ?></td>
-                                                                    <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
+                                                                    <td class="center" style="width: 10px;"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
