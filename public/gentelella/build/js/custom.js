@@ -2050,7 +2050,7 @@ function init_daterangepicker_single_call() {
     });
     $('#single_cal3').daterangepicker({
         singleDatePicker: true,
-        singleClasses: "picker_3"
+        singleClasses: "picker_1"
     }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
     });
