@@ -151,7 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Fecha</th>
                                                             <th>Producto</th>
                                                             <th>Precio Público</th>
-                                                            <th>Cargo Adc</th>
+                                                            <th>Cargo Adicional</th>
                                                             <th>Cant</th>
                                                             <th>Precio Venta</th>
                                                             <th>Valor Comisión</th>
