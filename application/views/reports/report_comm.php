@@ -179,10 +179,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo (($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100)."%"; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
-                                                                    <td class="center hidden"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
-                                                                    <td class="center green hidden"><?php echo $row_sede['recibo']; ?></td>
-                                                                    <td class="center hidden"><small><?php echo number_format($row_sede['valorDescuento'],0,',','.'); ?></small></td>
-                                                                    <td class="center hidden"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
+                                                                    <td class="center hidden-xs"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
+                                                                    <td class="center green hidden-xs"><?php echo $row_sede['recibo']; ?></td>
+                                                                    <td class="center hidden-xs"><small><?php echo number_format($row_sede['valorDescuento'],0,',','.'); ?></small></td>
+                                                                    <td class="center hidden-xs"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
                                                             }
