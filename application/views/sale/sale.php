@@ -836,8 +836,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
-                            <?php if ($productInList != NULL){ ?>
-                            <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                            <?php if ($this->config->item('mod_commision') == 1) { ?>
+                                <?php if ($productInList != NULL){ ?>
+                                <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
                             <?php } ?>
                         </div>
                     </form>
