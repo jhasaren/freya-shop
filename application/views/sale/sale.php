@@ -859,7 +859,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                     }
                     ?>
-                    <form role="form" name="form_descuento_man" action="<?php echo base_url() . 'index.php/CSale/addporcentdesc'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
+                    <form role="form" name="form_descuento_man" action="<?php echo base_url() . 'index.php/CSale/addporcentdescman'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
                             <h3>Descuento manual</h3>
@@ -898,12 +898,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </select>
                             </div>
                             <br />
-                            <label class="control-label" for="Porcentaje">Descuento (%)</label>
-                            <input type="tel" class="form-control" id="porcen_servicio" name="porcen_servicio" placeholder="% Porcentaje" value="<?php if ($porcenInList->porcenServicio == 0){ echo $this->config->item('procen_servicio'); } else { echo $porcenInList->porcenServicio*100; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> >
-                            <br />
                             <label class="control-label" for="Porcentaje">Descuento ($)</label>
-                            <input type="tel" class="form-control" id="value_servicio" name="value_servicio" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
-
+                            <input type="tel" class="form-control" id="value_desct" name="value_desct" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
                             <input type="hidden" class="form-control" id="procentaje" name="procentaje" placeholder="Descuento" value="<?php if ($porcenInList->porcenDescuento !== NULL){ echo $porcenInList->porcenDescuento*100; } else { echo 0; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
                             <br />
                         </div>
