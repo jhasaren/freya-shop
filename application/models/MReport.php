@@ -278,6 +278,46 @@ class MReport extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: payment_salesproduct
+     * Descripcion: Detalle de ventas por producto (comisiones)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function payment_salesproduct($fechaIni,$fechaFin) {
+        
+        $query = $this->db->query("SELECT
+                                m.idVenta,
+                                m.fechaPideCuenta,
+                                m.nroRecibo,
+                                m.valorTotalVenta as valorVenta,
+                                m.valorLiquida,
+                                m.idSede,
+                                s.nombreSede,
+                                m.porcenServicio,
+                                (m.valorLiquida*m.porcenServicio) as popina_servicio,
+                                m.idEmpleadoAtiende,
+                                concat(u.nombre,' ',u.apellido) as empleado,
+                                m.impoconsumo
+                                FROM venta_maestro m
+                                JOIN sede s ON s.idSede = m.idSede
+                                LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
+                                WHERE
+                                m.idEstadoRecibo = 5
+                                AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
+        
+        if ($query->num_rows() == 0) {
+            
+            return false;
+            
+        } else {
+            
+            return $query->result_array();
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: gastos_sedes

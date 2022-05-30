@@ -779,14 +779,14 @@ class CReport extends CI_Controller {
                 log_message("DEBUG", "*********************************");
                 
                 /*Consulta Modelo detalle pagos por sede*/
-                $paymentDataSedes = $this->MReport->payment_sedes($fechaini,$fechafin);
+                $paymentDataSales = $this->MReport->payment_salesproduct($fechaini,$fechafin);
 
-                if ($paymentDataSedes == TRUE){
+                if ($paymentDataSales == TRUE){
 
                     $info['fechaIni'] = $fechaini;
                     $info['fechaFin'] = $fechafin;
                     $info['dataRow'] = 1;
-                    $info['paymentDataSedes'] = $paymentDataSedes;
+                    $info['paymentDataSedes'] = $paymentDataSales;
                     $this->load->view('reports/report_comm',$info);
 
                 } else {

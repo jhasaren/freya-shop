@@ -73,7 +73,20 @@ class CSale extends CI_Controller {
                 $listUserSale = $this->MSale->list_users_sale(); /*Consulta Modelo para obtener lista de usuarios*/
                 $listServiceSale = $this->MSale->list_service_sale(); /*Consulta Modelo para obtener lista de Servicios*/
                 $listEmpleadoSale = $this->MSale->list_empleado_sale(); /*Consulta Modelo para obtener lista de Empleados*/
-                $listProductSale = $this->MSale->list_product_sale(); /*Consulta Modelo para obtener lista de Productos*/
+
+                /*
+                Fecha: 29/05/2022 
+                Valida si modulo comisiones esta habilitado
+                Envia ID del Cliente en la Venta para obtener config de descuentos por producto
+                */
+                if ($this->config->item('mod_commision') == 0) { //Modulo Comisiones Deshabilitado
+                    $listProductSale = $this->MSale->list_product_sale(); /*Consulta Modelo para obtener lista de Productos*/
+                } else {
+                    if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
+                        $listProductSale = $this->MSale->list_product_sale_client($this->session->userdata('sclient')); /*Consulta Modelo para obtener lista de Productos*/
+                    }
+                }
+                
                 //$listProductInterno = $this->MSale->list_product_int(); /*Consulta Modelo para obtener lista de Productos de Consumo Interno*/
                 $receiptSale = $this->MPrincipal->rango_recibos(1);  /*Consulta el Modelo Cantidad de recibos disponibles*/
                 

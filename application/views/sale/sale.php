@@ -930,7 +930,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     var productos = [
         <?php foreach ($list_product as $row_product) { ?>
-            { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['codigoBarras']." | ".$row_product['descProducto']; ?>' },
+            { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['valorDescProd']." | ".$row_product['descProducto']; ?>' },
         <?php } ?>
         <?PHP //echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['descGrupoServicio']." | ".$row_product['descProducto'] ?>
     ];

@@ -540,6 +540,62 @@ class MSale extends CI_Model {
             }
         }
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: list_product_sale_client
+     * Descripcion: Obtiene los productos activos para registrar en
+     * la venta, teniendo en cuenta la configuracion de descuentos del cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function list_product_sale_client($idClient) {
+        
+        $dataCache = $this->cache->memcached->get('mListProductSaleClient');
+        $dataFilter = $this->cache->memcached->get('mSedeProduct');
+
+        if (($dataCache) && ($dataFilter == $this->session->userdata('sede'))){
+
+            $this->cache->memcached->save('memcached016', 'cache', 30);
+            return $dataCache;
+
+        } else {
+        
+            /*Recupera los productos creados teniendo en cuenta la config de descuentos*/
+            $query = $this->db->query("SELECT
+                                    p.idProducto,
+                                    p.descProducto,
+                                    p.valorProducto as valorNeto,
+                                    IFNULL(cv.valorDescProd, 0) as valorDescProd,
+                                    (p.valorProducto - IFNULL(cv.valorDescProd, 0)) as valorProducto,
+                                    p.distribucionProducto as valorEmpleado,
+                                    g.descGrupoServicio,
+                                    p.codigoBarras
+                                    FROM productos p
+                                    JOIN grupo_servicio g ON g.idGrupoServicio = p.idGrupoServicio
+                                    JOIN stock_productos s ON s.idProducto = p.idProducto
+                                    LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto and idCliente = '".$this->session->userdata('sclient')."')
+                                    WHERE
+                                    p.activo = 'S'
+                                    AND p.idTipoProducto = 2
+                                    AND p.idSede = ".$this->session->userdata('sede')."
+                                    AND s.disponibles <> 0
+                                    ORDER BY 2");
+            
+            $this->cache->memcached->save('mListProductSaleClient', $query->result_array(), 180); /*3 minutos en Memoria*/
+            $this->cache->memcached->save('mSedeProduct', $this->session->userdata('sede'), 28800);
+            $this->cache->memcached->save('memcached016', 'real', 30);
+
+            if ($query->num_rows() == 0) {
+
+                return false;
+
+            } else {
+
+                return $query->result_array();
+
+            }
+        }
+    }
     
     /**************************************************************************
      * Nombre del Metodo: list_product_int
