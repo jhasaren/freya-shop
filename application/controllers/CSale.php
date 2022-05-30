@@ -1115,9 +1115,9 @@ class CSale extends CI_Controller {
                     /*Captura Variables*/
                     $producto = $this->input->post('idproducto');
                     $varprod = explode('|', $producto);
-                    $idProducto = $varprod[0];
-                    $valueProducto = $varprod[1];
-                    $porcentEmpleado = $varprod[3];
+                    $idProducto = trim($varprod[0]);
+                    $valueProducto = trim($varprod[1]);
+                    $porcentEmpleado = trim($varprod[3]);
                     $cantidad = $this->input->post('cantidad');
                     $valueEmpleado = ($valueProducto*$cantidad)*$porcentEmpleado;
                     //$valueTotal = $valueProducto = $varprod[1]*$cantidad;
