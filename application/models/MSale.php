@@ -942,6 +942,10 @@ class MSale extends CI_Model {
                                         FROM venta_detalle 
                                         WHERE idRegistroDetalle = ".$idRegistro."
                                         and idVenta = ".$this->session->userdata('idSale')."");
+
+                        $this->db->query("DELETE
+                                        FROM log_venta_manual 
+                                        WHERE idRegistroDetalle = ".$idRegistro."");
                         $this->db->trans_complete();
                         $this->db->trans_off();
 
