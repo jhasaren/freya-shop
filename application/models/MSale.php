@@ -344,15 +344,35 @@ class MSale extends CI_Model {
 
             $result = $query->row();
 
+            $a = settype($result->comision, "float");
+            $b = settype($comision, "float");
+
             log_message("debug", "*******************************************");
-            log_message("debug", "Result Comision: ".$result->comision);
-            log_message("debug", "Comision calculada manual: ".($comision));
+            log_message("debug", "Result Comision: ".$a);
+            log_message("debug", "Comision calculada manual: ".$b);
             log_message("debug", "*******************************************");
 
-            $a = settype($result->comision, "double");
-            $b = settype($comision, "double");
+            if(is_float(floatval($a))){
+                log_message("debug", "*******************************************");
+                log_message("debug", "a es FLOAT ");
+                log_message("debug", "*******************************************");
+            }else{
+                log_message("debug", "*******************************************");
+                log_message("debug", "a NO es FLOAT ");
+                log_message("debug", "*******************************************");
+            }
 
-            if ($a <> $b){ //Valida que el valor de comision sea el configurado
+            if(is_float(floatval($b))){
+                log_message("debug", "*******************************************");
+                log_message("debug", "b es FLOAT ");
+                log_message("debug", "*******************************************");
+            }else{
+                log_message("debug", "*******************************************");
+                log_message("debug", "b NO es FLOAT ");
+                log_message("debug", "*******************************************");
+            }
+
+            if ($a !== $b){ //Valida que el valor de comision sea el configurado
 
                 log_message("debug", "*******************************************");
                 log_message("debug", "Entra y devuelve FALSE ");
