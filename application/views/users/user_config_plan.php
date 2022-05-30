@@ -74,7 +74,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="glyphicon glyphicon-cog"></i>
                                     Salir
                                 </a>
-                                </span>
+                            </div>
+                            <div class="input-group">
+                                <div></div>
+                                <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    Salir
+                                </a>
                             </div>
                         </div>
                     </div>
