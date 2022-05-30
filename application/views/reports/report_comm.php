@@ -148,6 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
+                                                            <th>Fecha</th>
                                                             <th>Producto</th>
                                                             <th>ValorActual</th>
                                                             <th>CargoAdc</th>
@@ -157,7 +158,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Empleado</th>
                                                             <th>Cliente</th>
                                                             <th>Recibo</th>
-                                                            <th>fechaPideCuenta</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -167,6 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
+                                                                    <td class="center"><?php echo $row_sede['fechaPideCuenta']; ?></td>
                                                                     <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
@@ -176,7 +177,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['recibo'].'<br />'.number_format($row_sede['valorDescuento'],0,',','.').' <br /> '.number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
-                                                                    <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
                                                                 </tr>
                                                                 <?php
                                                             }
