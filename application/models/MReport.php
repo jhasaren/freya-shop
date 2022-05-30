@@ -300,6 +300,9 @@ class MReport extends CI_Model {
                                 v.idEmpleado,
                                 concat('[',m.nroRecibo,'] ',t.descEstadoRecibo) as recibo,
                                 (m.valorTotalVenta-m.valorLiquida) as valorDescuento,
+                                (SELECT lg.idRegistroDetalle 
+                                FROM log_venta_manual lg
+                                WHERE lg.idRegistroDetalle = v.idRegistroDetalle) as ajuste_manual,
                                 m.valorLiquida,
                                 concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido) as nombre_cliente,
                                 m.fechaPideCuenta
