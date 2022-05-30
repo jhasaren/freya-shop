@@ -148,8 +148,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>idRegistroDetalle</th>
-                                                            <th>idProducto</th>
                                                             <th>descProducto</th>
                                                             <th>valorActual</th>
                                                             <th>cargoEspecial</th>
@@ -171,9 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
-                                                                    <td class="center"><small><?php echo $row_sede['idRegistroDetalle']; ?></small></td>
-                                                                    <td class="center green"><?php echo $row_sede['idProducto']; ?></td>
-                                                                    <td class="center"><small><?php echo $row_sede['descProducto']; ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'-'.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
