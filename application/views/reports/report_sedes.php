@@ -180,7 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Consolidado</h2>
+                                                <h2>Consolidado General</h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -248,8 +248,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <h2>Detalle de Recibos Pagados</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Liquidado:</B> valor con descuento a servicios |
-                                                <B>Ingreso en Caja:</B> Liquidado + Propina <br />
+                                                <B>Ingreso en Caja::</B> valor con descuento |
+                                                <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
                                                 <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -266,7 +266,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Fecha Pago</th>
                                                             <th>Venta</th>
                                                             <th>Descto.</th>
-                                                            <th>Liquidado</th>
+                                                            <th>Ingreso Caja</th>
                                                             <th>Propina</th>
                                                             <th>Impuesto</th>
                                                             <th>Empleado</th>
@@ -311,7 +311,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Detalle de ventas por producto</h2>
+                                                <h2>Detalle de Ventas por Producto</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
                                                 <B>Liquidado:</B> valor con descuento a servicios |
