@@ -150,10 +150,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <th>Fecha</th>
                                                             <th>Producto</th>
-                                                            <th>Valor Actual</th>
+                                                            <th>Precio Público</th>
                                                             <th>Cargo Adc</th>
                                                             <th>Cant</th>
-                                                            <th>Valor Venta</th>
+                                                            <th>Precio Venta</th>
                                                             <th>Valor Comisión</th>
                                                             <th>% Comisión</th>
                                                             <th>Empleado</th>
@@ -170,7 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
-                                                                    <td class="center"><?php echo $row_sede['fechaPideCuenta']; ?></td>
+                                                                    <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
                                                                     <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
                                                                     <?php $resultado = is_null($row_sede['ajuste_manual']) ? "NO" : "SI"; ?>
-                                                                    <td class="center"><small><?php echo $resultado; ?></small></td>
+                                                                    <td class="center red"><small><?php echo $resultado; ?></small></td>
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
