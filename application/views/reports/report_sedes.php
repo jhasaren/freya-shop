@@ -248,7 +248,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <h2>Detalle de Recibos Pagados</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Ingreso en Caja::</B> valor con descuento |
+                                                <B>Ingreso en Caja:</B> valor con descuento
                                                 <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
                                                 <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
                                                 <ul class="nav navbar-right panel_toolbox">
