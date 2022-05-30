@@ -588,7 +588,7 @@ class MSale extends CI_Model {
                                     IFNULL(cv.valorDescProd, 0) as valorDescProd,
                                     (p.valorProducto - IFNULL(cv.valorDescProd, 0)) as valorProducto,
                                     /*p.distribucionProducto as valorEmpleado,*/
-                                    ((p.valorProducto - IFNULL(cv.valorDescProd, 0)) * IFNULL(cv.porcenComisionProd, 0)) as valorEmpleado,
+                                    IFNULL(cv.porcenComisionProd, 0) as valorEmpleado,
                                     g.descGrupoServicio,
                                     p.codigoBarras
                                     FROM productos p
