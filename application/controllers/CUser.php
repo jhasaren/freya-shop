@@ -586,11 +586,11 @@ class CUser extends CI_Controller {
             if ($this->MRecurso->validaRecurso(7)){
             
                 $dataUser = $this->MUser->get_user($idUsuario);
-                $horarioUser = json_decode(json_encode($this->MUser->horario_user($idUsuario)));
+                $configUser = $this->MUser->config_user_desc_comm($idUsuario);
 
                 $info['id'] = $idUsuario;
                 $info['data_user'] = $dataUser;
-                $info['horario_user'] = $horarioUser;
+                $info['config_user'] = $configUser;
                 $this->load->view('users/user_config_plan',$info);
             
             } else {

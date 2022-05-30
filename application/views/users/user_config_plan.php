@@ -95,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Configuracion Descuento/Comisión [ID:<?php echo $data_user->idUsuario; ?>]</h2>
+                                <h2>Configuración Descuento/Comisión [Cliente ID:<?php echo $data_user->idUsuario; ?>]</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -105,314 +105,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <!--Formulario-->
-                                <form role="form" name="form_user_horario" action="<?php echo base_url().'index.php/CUser/updhorario'; ?>" method="post" autocomplete="off">
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="Nombre"><?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
-                                            <input type="hidden" value="<?php echo $data_user->idUsuario; ?>" name='idEmpleado' >
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Lunes</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[0]->horaIniciaTurno; ?>" name='horaIniLun' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[0]->horaFinTurno; ?>" name='horaFinLun' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[0]->horaIniciaAlmuerzo; ?>" name='horaIniLunAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[0]->horaFinAlmuerzo; ?>" name='horaFinLunAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Martes</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[1]->horaIniciaTurno; ?>" name='horaIniMar' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[1]->horaFinTurno; ?>" name='horaFinMar' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[1]->horaIniciaAlmuerzo; ?>" name='horaIniMarAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[1]->horaFinAlmuerzo; ?>" name='horaFinMarAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Miercoles</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[2]->horaIniciaTurno; ?>" name='horaIniMie' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[2]->horaFinTurno; ?>" name='horaFinMie' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[2]->horaIniciaAlmuerzo; ?>" name='horaIniMieAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[2]->horaFinAlmuerzo; ?>" name='horaFinMieAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Jueves</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[3]->horaIniciaTurno; ?>" name='horaIniJue' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[3]->horaFinTurno; ?>" name='horaFinJue' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[3]->horaIniciaAlmuerzo; ?>" name='horaIniJueAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[3]->horaFinAlmuerzo; ?>" name='horaFinJueAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Viernes</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[4]->horaIniciaTurno; ?>" name='horaIniVie' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[4]->horaFinTurno; ?>" name='horaFinVie' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[4]->horaIniciaAlmuerzo; ?>" name='horaIniVieAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[4]->horaFinAlmuerzo; ?>" name='horaFinVieAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Sabado</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[5]->horaIniciaTurno; ?>" name='horaIniSab' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[5]->horaFinTurno; ?>" name='horaFinSab' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[5]->horaIniciaAlmuerzo; ?>" name='horaIniSabAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[5]->horaFinAlmuerzo; ?>" name='horaFinSabAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr />
-                                        <div class="form-group">
-                                            <h4>Domingo</h4>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    Inicia Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[6]->horaIniciaTurno; ?>" name='horaIniDom' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Turno
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[6]->horaFinTurno; ?>" name='horaFinDom' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time red"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Inicia Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[6]->horaIniciaAlmuerzo; ?>" name='horaIniDomAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    Finaliza Almuerzo
-                                                    <div class="input-group clockpicker-with-callbacks">
-                                                        <input type="text" class="form-control" value="<?php echo $horario_user[6]->horaFinAlmuerzo; ?>" name='horaFinDomAlm' readonly="">
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-time green"></span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="<?php echo base_url().'index.php/CUser'; ?>" class="btn btn-default" data-dismiss="modal">Cancelar</a>
-                                        <button type="submit" class="btn btn-success">Guardar</button>
-                                    </div>
-                                </form>
-                                <!--/Formulario-->
+                                <!--Lista de productos-->
+                                <table id="datatable-buttons" class="table table-striped table-bordered">
+                                    <thead>
+                                        <th>Producto</th>
+                                        <th>Precio Público</th>
+                                        <th>Descuento Cliente</th>
+                                        <th>Comisión Empleado</th>
+                                        <th>Acción</th>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if ($config_user != FALSE) {
+                                            foreach ($config_user as $row_list){
+                                                ?>
+                                                <tr style="background-color: #2A3F54;">
+                                                    <td class="center green"><?php echo $row_list['idProducto']." ".$row_list['descProducto']; ?></td>
+                                                    <td class="center blue"><?php echo $row_list['valorProducto']; ?></td>
+                                                    <td class="center"><?php echo $row_list['valorDescProd']; ?></td>
+                                                    <td class="center"><?php echo $row_list['porcenComisionProd']; ?></td>
+                                                    <td class="center">
+                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CPrincipal/dataedit/user/'.$row_list['idUsuario']; ?>">
+                                                            <i class="glyphicon glyphicon-cog"></i>
+                                                            Editar
+                                                        </a>
+                                                        <?php if (($row_list['idTipoUsuario'] == 1) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
+                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/calendarempleado/'.$row_list['idUsuario']; ?>">
+                                                            <i class="glyphicon glyphicon-time"></i>
+                                                            Horario
+                                                        </a>
+                                                        <?php } ?>
+                                                        <?php if (($this->config->item('mod_commision') == 1) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
+                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/configcomisiondescuento/'.$row_list['idUsuario']; ?>">
+                                                            <i class="glyphicon glyphicon-cog"></i>
+                                                            Descuento/Comisión
+                                                        </a>
+                                                        <?php } ?>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                <!--/Fin Lista de productos-->
                             </div>
                         </div>
                     </div>

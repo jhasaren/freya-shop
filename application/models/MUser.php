@@ -680,6 +680,40 @@ class MUser extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: config_user_desc_comm
+     * Descripcion: Obtiene la configuracion de descuentos/comisiones para el cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function config_user_desc_comm($idUsuario) {
+        
+        /*Recupera los usuarios creados*/
+        $query = $this->db->query("SELECT 
+                                p.idProducto,
+                                p.descProducto,
+                                p.valorProducto,
+                                cv.idConfig,
+                                cv.idCliente,
+                                cv.valorDescProd,
+                                (cv.porcenComisionProd * 100) as porcenComisionProd
+                                FROM productos p
+                                LEFT JOIN config_venta_detalle cv ON cv.idProducto = p.idProducto and cv.idCliente = '".$idUsuario."'
+                                WHERE p.activo = 'S'
+                                AND p.idTipoProducto = 2");
+        
+        if ($query->num_rows() == 0) {
+            
+            return false;
+            
+        } else {
+            
+            return $query->result_array();
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: save_horario
