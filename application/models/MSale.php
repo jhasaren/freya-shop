@@ -1665,6 +1665,46 @@ class MSale extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: add_porcentaje_desc_man
+     * Descripcion: Registra descuento a la venta (manual comisiones)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function add_porcentaje_desc_man($valor,$idDetalle) {
+                
+        $this->db->trans_start();
+        
+        if ($this->config->item('tipo_negocio') == 3 && $this->config->item('mod_commision') == 2) {
+
+            $this->db->query("UPDATE
+                            venta_detalle SET
+                            valor = ".$valor."
+                            WHERE
+                            idRegistroDetalle = ".idDetalle."
+                            ");
+
+        } else {
+
+            return false;
+
+        }
+        
+        $this->db->trans_complete();
+        $this->db->trans_off();
+        
+        if ($this->db->trans_status() === FALSE){
+
+            return false;
+
+        } else {
+            
+            return true;
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: add_product_int

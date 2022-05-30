@@ -1416,6 +1416,75 @@ class CSale extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: addporcentdescman
+     * Descripcion: Agregar Porcentaje de descuento (manual comisiones)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function addporcentdescman(){
+        
+        if ($this->session->userdata('validated')) {
+        
+            /*valida que la peticion http sea POST*/
+            if (!$this->input->post()){
+
+                $this->module($info);
+
+            } else {
+
+                if ($this->MRecurso->validaRecurso(9)){
+                
+                    /*Captura Variables*/
+                    $descuentoValor = $this->input->post('value_desct');
+                    $data = explode('|', $this->input->post('idproductoventa'));
+                    $idDetalle = $dataUsuario[0];
+                    $valorDetalle = $dataUsuario[1];
+                    $totalValor = $valorDetalle - $descuentoValor;
+
+                    if ($this->jasr->validaTipoString($descuentoValor,11) ){
+
+                        /*Envia datos al modelo para el registro*/
+                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$idDetalleVenta);
+
+                        if ($registerData == TRUE){
+
+                            $info['idmessage'] = 1;
+                            $info['message'] = "Descuento registrado exitosamente";
+                            $this->module($info);
+
+                        } else {
+
+                            $info['idmessage'] = 2;
+                            $info['message'] = "No fue posible registrar Descuento";
+                            $this->module($info);
+
+                        }
+
+                    } else {
+
+                        $info['idmessage'] = 2;
+                        $info['message'] = "No fue posible registrar Descuento. Valor incorrecto";
+                        $this->module($info); 
+
+                    }
+
+                } else {
+                    
+                    show_404();
+                    
+                }
+                
+            } 
+        
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: saleclean

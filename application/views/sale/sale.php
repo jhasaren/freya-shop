@@ -891,7 +891,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php
                                     foreach ($productInList as $row_prod_inlist) {
                                         ?>
-                                        <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idProducto']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
+                                        <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
                                         <?php
                                     }
                                     ?>
