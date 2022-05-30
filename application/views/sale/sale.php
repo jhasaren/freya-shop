@@ -823,6 +823,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         ?>
                                     </select>
                                 </div>
+                                <br />
                                 <label class="control-label" for="Porcentaje">Descuento (%)</label>
                                 <input type="tel" class="form-control" id="porcen_servicio" name="porcen_servicio" placeholder="% Porcentaje" value="<?php if ($porcenInList->porcenServicio == 0){ echo $this->config->item('procen_servicio'); } else { echo $porcenInList->porcenServicio*100; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> >
                                 <br />
@@ -835,7 +836,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                         <div class="modal-footer">
                             <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            <?php if ($productInList != NULL){ ?>
                             <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
