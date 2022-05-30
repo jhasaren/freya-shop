@@ -378,6 +378,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Cant</th>
                                                             <th>Precio</th>
                                                             <th>Venta</th>
+                                                            <th>Comisión</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
@@ -391,6 +392,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valor'],0,',','.'); ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.'); ?></td>
                                                                 <td>
                                                                 <?php 
                                                                 if ($porcenInList->idEstadoRecibo != 8) {

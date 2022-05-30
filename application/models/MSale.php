@@ -263,7 +263,8 @@ class MSale extends CI_Model {
                                 p.valorProducto,
                                 v.valor,
                                 v.cantidad,
-                                v.idEmpleado
+                                v.idEmpleado,
+                                v.valorEmpleado
                                 FROM
                                 venta_detalle v
                                 JOIN productos p ON p.idProducto = v.idProducto
