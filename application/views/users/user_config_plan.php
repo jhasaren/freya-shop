@@ -170,10 +170,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <label class="control-label" for="Interno">Producto</label>
                             <input type="text" class="form-control" id="descProducto" name="descProducto" readonly="" >
                             <br />
-                            <label class="control-label" for="pass">Valor Descuento</label>
+                            <label class="control-label" for="pass">Valor Descuento al Cliente</label>
                             <input type="tel" class="form-control" id="valordesc" name="valordesc" placeholder="$" required="" autocomplete="off" pattern="\d*">
                             <br />
-                            <label class="control-label" for="pass">Porcentaje Comisión</label>
+                            <label class="control-label" for="pass">Porcentaje Comisión al Empleado</label>
                             <input type="tel" class="form-control" id="commision" name="commision" placeholder="%" required="" autocomplete="off" pattern="\d*">
                             <br />
                             <input type="hidden" class="form-control" id="idproducto" name="idproducto">
