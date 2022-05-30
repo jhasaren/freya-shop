@@ -169,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="x_content collapse">
+                                            <div class="x_content">
                                                 <div id="egresossede" style="height:350px;"></div>
                                             </div>
                                         </div>
