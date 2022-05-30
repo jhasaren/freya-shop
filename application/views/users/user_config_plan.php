@@ -64,10 +64,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="page-title">
                     <div class="title_left">
                         <h3>Clientes</h3>
-                        <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
+                        <!--
+                        <a class="btn btn-danger btn-sm" href="<?php //echo base_url().'index.php/CUser'; ?>">
                             <i class="glyphicon glyphicon-log-out"></i>
                             Salir
                         </a>
+                        -->
                     </div>
 
                     <div class="title_right">
