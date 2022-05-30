@@ -1117,7 +1117,7 @@ class CSale extends CI_Controller {
                     $varprod = explode('|', $producto);
                     $idProducto = $varprod[0];
                     $valueProducto = $varprod[1];
-                    $porcentEmpleado = 0;
+                    $porcentEmpleado = $varprod[3];
                     $cantidad = $this->input->post('cantidad');
                     $valueEmpleado = ($valueProducto*$cantidad)*$porcentEmpleado;
                     //$valueTotal = $valueProducto = $varprod[1]*$cantidad;
