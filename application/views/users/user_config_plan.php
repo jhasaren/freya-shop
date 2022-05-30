@@ -135,22 +135,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <td class="center red"><?php echo $row_list['valorDescProd']; ?></td>
                                                     <td class="center"><?php echo $row_list['porcenComisionProd']." %"; ?></td>
                                                     <td class="center">
-                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CPrincipal/dataedit/user/'.$row_list['idUsuario']; ?>">
-                                                            <i class="glyphicon glyphicon-cog"></i>
-                                                            Editar
-                                                        </a>
-                                                        <?php if (($row_list['idTipoUsuario'] == 1) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
-                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/calendarempleado/'.$row_list['idUsuario']; ?>">
-                                                            <i class="glyphicon glyphicon-time"></i>
-                                                            Horario
-                                                        </a>
-                                                        <?php } ?>
-                                                        <?php if (($this->config->item('mod_commision') == 1) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
-                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/configcomisiondescuento/'.$row_list['idUsuario']; ?>">
-                                                            <i class="glyphicon glyphicon-cog"></i>
-                                                            Descuento/Comisión
-                                                        </a>
-                                                        <?php } ?>
+                                                    <?php 
+                                                    echo "<a class='btn-itemconfig' data-rel='".$row_list['idProducto']."' data-rel2='".$data_user->idUsuario."' data-rel3='".$row_list['idConfig']."' href='#'>Prueba</a>";
+                                                    ?>
                                                     </td>
                                                 </tr>
                                                 <?php
