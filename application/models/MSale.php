@@ -344,8 +344,8 @@ class MSale extends CI_Model {
 
             $result = $query->row();
 
-            $a = settype($result->comision, "float");
-            $b = settype($comision, "float");
+            $a = $result->comision;
+            $b = $comision;
 
             log_message("debug", "*******************************************");
             log_message("debug", "Result Comision: ".$a);
@@ -372,21 +372,21 @@ class MSale extends CI_Model {
                 log_message("debug", "*******************************************");
             }
 
-            if ($a !== $b){ //Valida que el valor de comision sea el configurado
-
-                log_message("debug", "*******************************************");
-                log_message("debug", "Entra y devuelve FALSE ");
-                log_message("debug", "*******************************************");
-
-                return false;
-
-            } else {
+            if (is_float(floatval($a)) === is_float(floatval($b))){ //Valida que el valor de comision sea el configurado
 
                 log_message("debug", "*******************************************");
                 log_message("debug", "Entra y devuelve TRUE ");
                 log_message("debug", "*******************************************");
 
                 return true;
+
+            } else {
+
+                log_message("debug", "*******************************************");
+                log_message("debug", "Entra y devuelve FALSE ");
+                log_message("debug", "*******************************************");
+
+                return false;
 
             }
 
