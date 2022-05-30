@@ -145,7 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="x_content">
-                                                <table id="datatable-buttons" class="table table-striped table-bordered" style="width:100%">
+                                                <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
                                                             <th>Fecha</th>
