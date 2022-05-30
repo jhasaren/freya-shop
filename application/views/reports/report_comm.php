@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center green"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
-                                                                    <td class="center"><small><?php echo $row_sede['recibo'].'<br />'.number_format($row_sede['valorDescuento'],0,',','.').' <br /> '.number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['recibo'].'| Descuento: '.number_format($row_sede['valorDescuento'],0,',','.').'| ValorLiquida: '.number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
                                                             }
