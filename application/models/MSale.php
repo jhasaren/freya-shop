@@ -1672,7 +1672,7 @@ class MSale extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 30/05/2022, Ultima modificacion: 
      **************************************************************************/
-    public function add_porcentaje_desc_man($valor,$idDetalle) {
+    public function add_porcentaje_desc_man($valorVenta,$valorEmpleado,$idDetalle) {
                 
         $this->db->trans_start();
         
@@ -1680,7 +1680,8 @@ class MSale extends CI_Model {
 
             $this->db->query("UPDATE
                             venta_detalle SET
-                            valor = ".$valor."
+                            valor = ".$valorVenta.",
+                            valorEmpleado = ".$valorEmpleado."
                             WHERE
                             idRegistroDetalle = ".$idDetalle."
                             ");

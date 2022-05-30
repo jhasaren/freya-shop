@@ -1438,15 +1438,19 @@ class CSale extends CI_Controller {
                 
                     /*Captura Variables*/
                     $descuentoValor = $this->input->post('value_desct');
+                    $porcenComm = ($this->input->post('porcen_comm'))/100;
                     $data = explode('|', $this->input->post('idproductoventa'));
                     $idDetalle = $data[0];
                     $valorDetalle = $data[1];
                     $totalValor = $valorDetalle - $descuentoValor;
+                    $valorEmpleado = $totalValor * $porcenComm;
+
+                    
 
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){
 
                         /*Envia datos al modelo para el registro*/
-                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$idDetalle);
+                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$valorEmpleado,$idDetalle);
 
                         if ($registerData == TRUE){
 
