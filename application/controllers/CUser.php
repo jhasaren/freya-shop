@@ -572,6 +572,40 @@ class CUser extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: configcomisiondescuento
+     * Descripcion: Obtiene la configuracion de Descuento/Comisiones para el Cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function configcomisiondescuento($idUsuario){
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(7)){
+            
+                $dataUser = $this->MUser->get_user($idUsuario);
+                $horarioUser = json_decode(json_encode($this->MUser->horario_user($idUsuario)));
+
+                $info['id'] = $idUsuario;
+                $info['data_user'] = $dataUser;
+                $info['horario_user'] = $horarioUser;
+                $this->load->view('users/user_config_plan',$info);
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->module($info);
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: updhorario
