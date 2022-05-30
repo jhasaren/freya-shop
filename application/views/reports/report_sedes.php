@@ -72,12 +72,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
                                 </span>
                             </div>
+                            <?php 
+                            if ($this->config->item('mod_commision') == 1){ //Manejo de Comisiones habilitado
+                            ?>
                             <div class="input-group">
                                 <div></div>
                                 <span class="input-group-btn">
                                     <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
                                 </span>
                             </div>
+                            <?php 
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

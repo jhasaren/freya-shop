@@ -131,13 +131,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </center>
                                     </div>
                                 </form>
-                                <?php if ($dataRow == 1) { ?>
+                                <?php if (($dataRow == 1) && ($this->config->item('mod_commision') == 1)) { ?>
                                     
                                     <!-- detalle pagos por sede-->   
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Detalle de Recibos Pagados</h2>
+                                                <h2>Detalle de Ventas por Producto</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
                                                 <B>Ingreso en Caja:</B> valor con descuento

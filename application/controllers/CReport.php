@@ -787,46 +787,7 @@ class CReport extends CI_Controller {
                     $info['fechaFin'] = $fechafin;
                     $info['dataRow'] = 1;
                     $info['paymentDataSedes'] = $paymentDataSedes;
-                    //$info['paymentConsolidaSedes'] = $paymentConsolidaSede;
-                    //$info['paymenEntidades'] = $paymentEntidades;
-                    //$info['paymentFechaDia'] = $paymentFechaDia;
-                    //$info['paymentAbonos'] = $paymentAbonos;
-                    //$info['gastosConsolidaSedes'] = $gastosTipoCat;
                     $this->load->view('reports/report_comm',$info);
-
-                    /*Consulta Modelo consolidado pagos por sede*/
-                    //$paymentConsolidaSede = $this->MReport->payment_consolidado_sedes($fechaini,$fechafin);
-
-                    //if ($paymentConsolidaSede == TRUE){
-
-                        /*Consulta Modelo ingreso por Forma de Pago*/
-                        //$paymentEntidades = $this->MReport->payment_entidades($fechaini,$fechafin);
-                        /*Consulta Modelo ingreso por Fecha/Dia*/
-                        //$paymentFechaDia = $this->MReport->payment_fechadia($fechaini,$fechafin);
-                        /*Consulta Modelo ingreso de abonos por Sede*/
-                        //$paymentAbonos = $this->MReport->abonos_consolidado_sedes($fechaini,$fechafin);
-                        /*Consulta Modelo gastos por Sede por Tipo de Categoria*/
-                        //$gastosTipoCat = $this->MReport->gastos_consolidado_cat($fechaini,$fechafin);
-
-
-                        //$info['fechaIni'] = $fechaini;
-                        //$info['fechaFin'] = $fechafin;
-                        //$info['dataRow'] = 1;
-                        //$info['paymentDataSedes'] = $paymentDataSedes;
-                        //$info['paymentConsolidaSedes'] = $paymentConsolidaSede;
-                        //$info['paymenEntidades'] = $paymentEntidades;
-                        //$info['paymentFechaDia'] = $paymentFechaDia;
-                        //$info['paymentAbonos'] = $paymentAbonos;
-                        //$info['gastosConsolidaSedes'] = $gastosTipoCat;
-                        //$this->load->view('reports/report_comm',$info);
-
-                    //} else {
-
-                        //$info['dataRow'] = 2;
-                        //$info['message'] = "No fue posible obtener reporte de comisiones en el periodo seleccionado.";
-                        //$this->load->view('reports/report_comm',$info);
-
-                    //}   
 
                 } else {
 

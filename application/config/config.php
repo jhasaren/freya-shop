@@ -680,6 +680,16 @@ $config['print_mode_ticket'] = 0;
 
 /*
 |--------------------------------------------------------------------------
+| Reporte de Comisiones
+ * Permite controlar la funcionalidad
+ * 1-habilitar, 0-deshabilitar
+|--------------------------------------------------------------------------
+*/
+$config['mod_commision'] = 1;
+
+
+/*
+|--------------------------------------------------------------------------
 | Consultar WS Catalogo App
  * Permite controlar la funcionalidad
  * 1-habilitar, 0-deshabilitar
