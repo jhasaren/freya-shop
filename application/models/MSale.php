@@ -353,7 +353,15 @@ class MSale extends CI_Model {
 
                 return false;
 
+                log_message("debug", "*******************************************");
+                log_message("debug", "Entra y devuelve FALSE ");
+                log_message("debug", "*******************************************");
+
             } else {
+
+                log_message("debug", "*******************************************");
+                log_message("debug", "Entra y devuelve TRUE ");
+                log_message("debug", "*******************************************");
 
                 return true;
 
