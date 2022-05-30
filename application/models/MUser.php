@@ -714,6 +714,63 @@ class MUser extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: save_config_user
+     * Descripcion: Guarda registro de configuracion descuento/comision
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function save_config_user($idConfig,$idProducto,$idUsuario,$valorDescuento,$porcenComision) {
+        
+        $this->db->trans_strict(TRUE);
+        $this->db->trans_start();
+
+        if ($idConfig == ""){
+
+            $this->db->query("INSERT INTO config_venta_detalle(
+                                idCliente,
+                                idProducto,
+                                valorDescProd,
+                                porcenComisionProd,
+                                fechaAjuste,
+                                usuarioAjuste
+                            ) VALUES (
+                                '".$idUsuario."',
+                                ".$idProducto.",
+                                ".$valorDescuento.",
+                                ".($porcenComision/100).",
+                                NOW(),
+                                '".$this->session->userdata('userid')."')");
+
+        } else {
+
+            $this->db->query("UPDATE config_venta_detalle
+                                SET 
+                                valorDescProd = ".$valorDescuento.",
+                                porcenComisionProd = ".($porcenComision/100).",
+                                fechaAjuste = NOW(),
+                                usuarioAjuste = '".$this->session->userdata('userid')."'
+                                WHERE
+                                idConfig = ".$idConfig."
+                                ");
+
+        }
+
+        $this->db->trans_complete();
+        $this->db->trans_off();
+
+        if ($this->db->trans_status() === FALSE){
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: save_horario

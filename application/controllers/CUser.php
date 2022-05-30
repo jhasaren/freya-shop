@@ -606,6 +606,66 @@ class CUser extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: saveconfiguser
+     * Descripcion: Guarda la configuracion de descuento/comision del cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022
+     **************************************************************************/
+    public function saveconfiguser() {
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(7)){
+                
+                /*Captura Variables*/
+                $idProducto = $this->input->post('idproducto');
+                $idUsuario = $this->input->post('idusuario');
+                $idConfig = $this->input->post('idconfig');
+                $valorDescuento = $this->input->post('valordesc');
+                $porcenComision = $this->input->post('commision');
+
+                log_message('DEBUG', '----------------------------------');
+                log_message('DEBUG', "idproducto->".$idProducto);
+                log_message('DEBUG', "idusuario->".$idUsuario);
+                log_message('DEBUG', "idconfig->".$idConfig);
+                log_message('DEBUG', "descuento".$valorDescuento);
+                log_message('DEBUG', "comision->".$porcenComision);
+                log_message('DEBUG', '----------------------------------');
+                                        
+                /*Consulta Modelo para eliminar el id del detalle, y registrar motivo de eliminacion*/
+                $configRegistro = $this->MUser->save_config_user($idConfig,$idProducto,$idUsuario,$valorDescuento,$porcenComision);
+                
+                if ($configRegistro == TRUE){
+
+                    $info['idmessage'] = 1;
+                    $info['message'] = "Configuración guardada correctamente.";
+                    //$this->module($info);
+                    $this->configcomisiondescuento($idUsuario);
+
+                } else {
+
+                    $info['idmessage'] = 2;
+                    $info['message'] = "No es posible guardar la configuración";
+                    //$this->module($info);
+                    $this->configcomisiondescuento($idUsuario);
+
+                }
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: updhorario

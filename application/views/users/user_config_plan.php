@@ -162,10 +162,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal fade" id="myModal-itemconfig" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-itemconfig" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CSale/deletedetailsale'; ?>" method="post">
+                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CUser/saveconfiguser'; ?>" method="post">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Configurar Descuento/Comision</h3>
+                            <h3>Configurar Descuento/Comisión</h3>
                         </div>
                         <div class="modal-body">
                             <label class="control-label" for="Interno">Producto</label>
