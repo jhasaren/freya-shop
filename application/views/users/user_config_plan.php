@@ -70,7 +70,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
                                 <div></div>
-                                <span class="input-group-btn">
+                                <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
+                                    <i class="glyphicon glyphicon-cog"></i>
+                                    Salir
+                                </a>
                                 </span>
                             </div>
                         </div>
