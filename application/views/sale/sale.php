@@ -376,8 +376,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Id</th>
                                                             <th>Nombre</th>
                                                             <th>Cant</th>
-                                                            <th>Precio</th>
-                                                            <th>Venta</th>
+                                                            <th>Precio Publico</th>
+                                                            <th>Precio Cliente</th>
                                                             <th>Comisión</th>
                                                             <th>Acción</th>
                                                         </tr>
