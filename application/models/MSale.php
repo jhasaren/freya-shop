@@ -1079,6 +1079,11 @@ class MSale extends CI_Model {
                                 WHERE
                                 idVenta = ".$idventa."");
 
+        $query = $this->db->query("DELETE FROM
+                                venta_detalle
+                                WHERE
+                                idVenta = ".$idventa."");
+
         $this->db->trans_complete();
         $this->db->trans_off();
         
