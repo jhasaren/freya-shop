@@ -1747,13 +1747,13 @@ class MSale extends CI_Model {
                                 fechaRegistro, 
                                 idEmpleado)
                             VALUES (
-                                $idDetalle, 
-                                $descAnt, 
-                                $descNew, 
-                                $emplAnt, 
-                                $emplNew,
+                                ".$idDetalle.", 
+                                ".$descAnt.", 
+                                ".$descNew.", 
+                                ".$emplAnt.", 
+                                ".$emplNew.",
                                 NOW(),
-                                $this->session->userdata('userid')
+                                '".$this->session->userdata('userid')."'
                                 )
                             ");
 
