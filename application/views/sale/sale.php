@@ -363,7 +363,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <?php } ?>
                                     <?php if ($productInList != NULL){ ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title" style="background-color: #5ec0ff; color: black;">
                                                 <h2>Productos</h2>
@@ -392,7 +392,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valor'],0,',','.'); ?></td>
-                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.'); ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100)."%)"; ?></td>
                                                                 <td>
                                                                 <?php 
                                                                 if ($porcenInList->idEstadoRecibo != 8) {
@@ -411,7 +411,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <?php } ?>
                                     <?php if ($adicionalInList != NULL){ ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title" style="background-color: #E8E792; color: black;">
                                                 <h2>Cargos Adicionales</h2>
