@@ -150,16 +150,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <th>Fecha</th>
                                                             <th>Producto</th>
-                                                            <th>ValorActual</th>
-                                                            <th>CargoAdc</th>
+                                                            <th>Valor Actual</th>
+                                                            <th>Cargo Adc</th>
                                                             <th>Cant</th>
-                                                            <th>ValorVenta</th>
-                                                            <th>Comision</th>
+                                                            <th>Valor Venta</th>
+                                                            <th>Valor Comisión</th>
+                                                            <th>% Comisión</th>
                                                             <th>Empleado</th>
                                                             <th>Cliente</th>
                                                             <th>Recibo</th>
-                                                            <th>DsctoManual</th>
-                                                            <th>TotalFactura</th>
+                                                            <th>Dscto Manual</th>
+                                                            <th>Total Factura</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -170,12 +171,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
                                                                     <td class="center"><?php echo $row_sede['fechaPideCuenta']; ?></td>
-                                                                    <td class="center" style="width: 10px;"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
+                                                                    <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
-                                                                    <td class="center green"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
+                                                                    <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
+                                                                    <td class="center red"><?php echo (($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100)."%"; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
