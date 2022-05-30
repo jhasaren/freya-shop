@@ -346,10 +346,10 @@ class MSale extends CI_Model {
 
             log_message("debug", "*******************************************");
             log_message("debug", "Result Comision: ".$result->comision);
-            log_message("debug", "Comision calculada manual: ".($comision/100));
+            log_message("debug", "Comision calculada manual: ".($comision));
             log_message("debug", "*******************************************");
 
-            if ($result->comision == ($comision/100)){
+            if ($result->comision == $comision){
 
                 return true;
 
