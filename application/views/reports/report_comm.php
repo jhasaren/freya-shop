@@ -181,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
-                                                                    <?php $resultado = is_null($row_sede['ajuste_manual']) ? "SI" : "NO"; ?>
+                                                                    <?php $resultado = is_null($row_sede['ajuste_manual']) ? "NO" : "SI"; ?>
                                                                     <td class="center"><small><?php echo $resultado; ?></small></td>
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
