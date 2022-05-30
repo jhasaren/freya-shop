@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Usuarios</h3>
+                        <h3>Clientes</h3>
                     </div>
 
                     <div class="title_right">
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="input-group">
                                 <div></div>
                                 <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
-                                    <i class="glyphicon glyphicon-cog"></i>
+                                    <i class="glyphicon glyphicon-back"></i>
                                     Salir
                                 </a>
                             </div>
