@@ -1442,10 +1442,9 @@ class CSale extends CI_Controller {
                     $data = explode('|', $this->input->post('idproductoventa'));
                     $idDetalle = $data[0];
                     $valorDetalle = $data[1];
+                    $valorEmpleadoAnt = $data[2];
                     $totalValor = $valorDetalle - $descuentoValor;
                     $valorEmpleado = $totalValor * $porcenComm;
-
-                    
 
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){
 
@@ -1454,14 +1453,17 @@ class CSale extends CI_Controller {
 
                         if ($registerData == TRUE){
 
+                            /*Envia datos al modelo para el registro - log venta manual*/
+                            $this->MSale->log_venta_manual($idDetalle, $valorDetalle, $totalValor, $valorEmpleadoAnt, $valorEmpleado);
+
                             $info['idmessage'] = 1;
-                            $info['message'] = "Descuento registrado exitosamente";
+                            $info['message'] = "Descuento/Comisión registrado exitosamente";
                             $this->module($info);
 
                         } else {
 
                             $info['idmessage'] = 2;
-                            $info['message'] = "No fue posible registrar Descuento";
+                            $info['message'] = "No fue posible registrar Descuento/Comisión";
                             $this->module($info);
 
                         }
@@ -1469,7 +1471,7 @@ class CSale extends CI_Controller {
                     } else {
 
                         $info['idmessage'] = 2;
-                        $info['message'] = "No fue posible registrar Descuento. Valor incorrecto";
+                        $info['message'] = "No fue posible registrar Descuento/Comisión. Valor incorrecto";
                         $this->module($info); 
 
                     }

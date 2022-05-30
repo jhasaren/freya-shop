@@ -1723,6 +1723,60 @@ class MSale extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: log_venta_manual
+     * Descripcion: Permite registrar el log cuando se realiza la actualizacion
+     * manual de descuento o comision.
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function log_venta_manual($idDetalle, $descAnt, $descNew, $emplAnt, $emplNew) {
+                
+        $this->db->trans_start();
+        
+        if ($this->config->item('tipo_negocio') == 3 && $this->config->item('mod_commision') == 1) {
+
+            $this->db->query("INSERT INTO 
+                            log_venta_manual (
+                                idRegistroDetalle, 
+                                valorDescuentoAnt, 
+                                valorDescuentoNue, 
+                                valorEmpleadoAnt, 
+                                valorEmpleadoNue, 
+                                fechaRegistro, 
+                                idEmpleado)
+                            VALUES (
+                                $idDetalle, 
+                                $descAnt, 
+                                $descNew, 
+                                $emplAnt, 
+                                $emplNew,
+                                NOW(),
+                                $this->session->userdata('userid')
+                                )
+                            ");
+
+        } else {
+
+            return false;
+
+        }
+        
+        $this->db->trans_complete();
+        $this->db->trans_off();
+        
+        if ($this->db->trans_status() === FALSE){
+
+            return false;
+
+        } else {
+            
+            return true;
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: add_product_int
