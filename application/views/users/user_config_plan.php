@@ -63,13 +63,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Clientes</h3>
-                        <!--
+                        <h3>Clientes
                         <a class="btn btn-danger btn-sm" href="<?php //echo base_url().'index.php/CUser'; ?>">
                             <i class="glyphicon glyphicon-log-out"></i>
                             Salir
                         </a>
-                        -->
+                        </h3>
                     </div>
 
                     <div class="title_right">
@@ -103,7 +102,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Configuración Descuento/Comisión [Cliente ID:<?php echo $data_user->idUsuario; ?>]</h2>
+                                <h2>Configuración Descuento/Comisión</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -114,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                             <div class="x_content">
                                 <div class="form-group">
-                                    <label for="Nombre"><?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
+                                    <label for="Nombre">[Cliente ID:<?php echo $data_user->idUsuario; ?>] <?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
                                     <input type="hidden" value="<?php echo $data_user->idUsuario; ?>" name='idEmpleado' >
                                 </div>
                                 <!--Lista de productos-->
