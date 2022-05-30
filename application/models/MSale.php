@@ -259,6 +259,7 @@ class MSale extends CI_Model {
                                 v.idVenta,
                                 v.idProducto,
                                 p.descProducto,
+                                p.valorProducto,
                                 v.valor,
                                 v.cantidad,
                                 v.idEmpleado
