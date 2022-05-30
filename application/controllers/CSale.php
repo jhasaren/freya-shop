@@ -1446,7 +1446,7 @@ class CSale extends CI_Controller {
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){
 
                         /*Envia datos al modelo para el registro*/
-                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$idDetalleVenta);
+                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$idDetalle);
 
                         if ($registerData == TRUE){
 
