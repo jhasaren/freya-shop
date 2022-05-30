@@ -1129,7 +1129,7 @@ class CSale extends CI_Controller {
                         if ($valueProducto != NULL){
                         
                             /*Valida el producto y valor*/
-                            $validateProduct = $this->MSale->validate_select_sale($idProducto,$valueProducto,2);
+                            $validateProduct = $this->MSale->validate_select_sale($idProducto,$valueProducto,$porcentEmpleado,2);
 
                             if ($validateProduct){
 

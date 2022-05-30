@@ -289,7 +289,7 @@ class MSale extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 22/09/2018, Ultima modificacion: 
      **************************************************************************/
-    public function validate_select_sale($item,$value,$type) {
+    public function validate_select_sale($item,$value,$comision,$type) {
         
         if ($type == 1){ /*servicio*/
             
@@ -324,7 +324,9 @@ class MSale extends CI_Model {
                                                 FROM productos p
                                                 LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto AND idCliente = '".$this->session->userdata('sclient')."')
                                                 WHERE p.idProducto = ".$item."
-                                                AND ((p.valorProducto - cv.valorDescProd) = '".$value."') OR (p.valorProducto = '".$value."')");
+                                                AND ((p.valorProducto - cv.valorDescProd) = '".$value."') OR (p.valorProducto = '".$value."')
+                                                AND (IFNULL(cv.porcenComisionProd,0) = '".($comision/100)."')
+                                                ");
                             
                     }
 
