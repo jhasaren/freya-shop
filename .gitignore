@@ -23,3 +23,5 @@ application/config/database.php
 #application/config/config.php
 #application/config/database.php
 #application/models/MAuditoria.php
+.vscode/settings.json
+*.sql

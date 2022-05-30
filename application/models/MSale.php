@@ -16,6 +16,7 @@ class MSale extends CI_Model {
         parent::__construct();
         $this->load->driver('cache'); /*Carga cache*/
         $this->load->model('MAuditoria'); /*Carga Modelo para Auditoria*/
+        $this->db->query("SET time_zone='-5:00'");
         
     }
     
