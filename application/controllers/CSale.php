@@ -1439,8 +1439,8 @@ class CSale extends CI_Controller {
                     /*Captura Variables*/
                     $descuentoValor = $this->input->post('value_desct');
                     $data = explode('|', $this->input->post('idproductoventa'));
-                    $idDetalle = $dataUsuario[0];
-                    $valorDetalle = $dataUsuario[1];
+                    $idDetalle = $data[0];
+                    $valorDetalle = $data[1];
                     $totalValor = $valorDetalle - $descuentoValor;
 
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){

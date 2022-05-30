@@ -889,10 +889,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="controls">
                                 <select class="select2_single form-control" id="idproductoventa" name="idproductoventa" data-rel="chosen">
                                     <?php
-                                    foreach ($productInList as $row_prod_inlist) {
-                                        ?>
-                                        <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
-                                        <?php
+                                    if ($productInList != NULL){
+                                        foreach ($productInList as $row_prod_inlist) {
+                                            ?>
+                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
+                                            <?php
+                                        }
                                     }
                                     ?>
                                 </select>
@@ -900,7 +902,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <br />
                             <label class="control-label" for="Porcentaje">Descuento ($)</label>
                             <input type="tel" class="form-control" id="value_desct" name="value_desct" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
-                            <input type="hidden" class="form-control" id="procentaje" name="procentaje" placeholder="Descuento" value="<?php if ($porcenInList->porcenDescuento !== NULL){ echo $porcenInList->porcenDescuento*100; } else { echo 0; } ?>" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
                             <br />
                         </div>
                         <div class="modal-footer">
