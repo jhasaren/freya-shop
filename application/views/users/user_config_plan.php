@@ -120,10 +120,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             foreach ($config_user as $row_list){
                                                 ?>
                                                 <tr style="background-color: #2A3F54;">
-                                                    <td class="center green"><?php echo $row_list['idProducto']." ".$row_list['descProducto']; ?></td>
+                                                    <td class="center green"><?php echo "[".$row_list['idProducto']."] ".$row_list['descProducto']; ?></td>
                                                     <td class="center blue"><?php echo $row_list['valorProducto']; ?></td>
-                                                    <td class="center"><?php echo $row_list['valorDescProd']; ?></td>
-                                                    <td class="center"><?php echo $row_list['porcenComisionProd']; ?></td>
+                                                    <td class="center red"><?php echo $row_list['valorDescProd']; ?></td>
+                                                    <td class="center"><?php echo $row_list['porcenComisionProd']." %"; ?></td>
                                                     <td class="center">
                                                         <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CPrincipal/dataedit/user/'.$row_list['idUsuario']; ?>">
                                                             <i class="glyphicon glyphicon-cog"></i>
