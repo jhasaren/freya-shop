@@ -246,14 +246,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
-                scrollY:        "300px",
-                scrollX:        true,
-                scrollCollapse: true,
-                paging:         false,
-                columnDefs: [
-                    { width: '20%', targets: 0 }
-                ],
-                fixedColumns: true,
+                
+                dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
                 ]
