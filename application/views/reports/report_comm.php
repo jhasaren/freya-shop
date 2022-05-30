@@ -133,16 +133,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </form>
                                 <?php if (($dataRow == 1) && ($this->config->item('mod_commision') == 1)) { ?>
                                     
-                                    <!-- detalle pagos por sede-->   
+                                    <!-- detalle pagos por producto con comision-->   
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>Detalle de Ventas por Producto</h2>
-                                                <br /><br />
-                                                <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Ingreso en Caja:</B> valor con descuento
-                                                <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
-                                                <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -153,39 +148,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>Sede</th>
-                                                            <th>Nro. Recibo</th>
-                                                            <th>Fecha Pago</th>
-                                                            <th>Venta</th>
-                                                            <th>Descto.</th>
-                                                            <th>Ingreso Caja</th>
-                                                            <th>Propina</th>
-                                                            <th>Impuesto</th>
-                                                            <th>Empleado</th>
-                                                            <th>Acción</th>
+                                                            <th>idRegistroDetalle</th>
+                                                            <th>idProducto</th>
+                                                            <th>descProducto</th>
+                                                            <th>valorActual</th>
+                                                            <th>cargoEspecial</th>
+                                                            <th>cantidad</th>
+                                                            <th>valorVenta</th>
+                                                            <th>valorEmpleado</th>
+                                                            <th>idEmpleado</th>
+                                                            <th>recibo</th>
+                                                            <th>valorDescuento</th>
+                                                            <th>valorLiquida</th>
+                                                            <th>nombre_cliente</th>
+                                                            <th>fechaPideCuenta</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
                                                         if ($paymentDataSedes != FALSE){
-                                                            $impoconsumo = $this->config->item('porcen_consumo');
+
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
-                                                                    <td class="center"><small><?php echo $row_sede['nombreSede']; ?></small></td>
-                                                                    <td class="center green"><?php echo $row_sede['nroRecibo']; ?></td>
-                                                                    <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
-                                                                    <td class="center blue"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format(($row_sede['valorVenta']-$row_sede['valorLiquida']),0,',','.'); ?></td>
+                                                                    <td class="center"><small><?php echo $row_sede['idRegistroDetalle']; ?></small></td>
+                                                                    <td class="center green"><?php echo $row_sede['idProducto']; ?></td>
+                                                                    <td class="center"><small><?php echo $row_sede['descProducto']; ?></small></td>
+                                                                    <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
+                                                                    <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
+                                                                    <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
+                                                                    <td class="center green"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
+                                                                    <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['recibo']; ?></small></td>
+                                                                    <td class="center green"><?php echo number_format($row_sede['valorDescuento'],0,',','.'); ?></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></td>
-                                                                    <td class="center green"><?php echo number_format($row_sede['popina_servicio'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format((($row_sede['valorLiquida']/($row_sede['impoconsumo']+1))*$row_sede['impoconsumo']),0,',','.'); ?></td>
-                                                                    <td class="center"><small><?php echo $row_sede['empleado']; ?></small></td>
-                                                                    <td class="center">
-                                                                        <a class="label label-primary btn-detail" href="<?php echo base_url().'index.php/CReport/detallerecibo/'.$row_sede['idVenta'].'/'.$row_sede['nroRecibo']; ?>">
-                                                                            Ver Detalle
-                                                                        </a>
-                                                                    </td>
+                                                                    <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
                                                                 </tr>
                                                                 <?php
                                                             }
@@ -196,7 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- /detalle pagos por sede--> 
+                                    <!-- /detalle pagos por producto con comision-->    
 
                                 <?php } ?>
                             </div>
