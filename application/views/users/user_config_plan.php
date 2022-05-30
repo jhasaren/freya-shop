@@ -74,20 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                             <div class="input-group">
                                 <div></div>
-                                <a class="btn btn-danger btn-sm" href="<?php echo base_url().'index.php/CUser'; ?>">
-                                    <i class="glyphicon glyphicon-log-out"></i>
-                                    Salir
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="title_right">
-                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                            <div class="input-group">
-                                <div></div>
-                                <span style="font-size: 18px">
-                                    HOla
-                                </span>
                             </div>
                         </div>
                     </div>
