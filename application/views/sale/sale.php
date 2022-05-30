@@ -359,7 +359,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Nombre</th>
                                                             <th>Cant</th>
                                                             <th>Precio</th>
-                                                            <th>PrecioDescuento</th>
+                                                            <th>Descuento</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
