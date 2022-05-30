@@ -317,7 +317,7 @@ class MSale extends CI_Model {
 
                     if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
                         
-                        if ($this->session->userdata('sclient') == '999999'){ //Usuario generico
+                        //if ($this->session->userdata('sclient') == '999999'){ //Usuario generico
                             /*Producto de la venta*/
                             $query = $this->db->query("SELECT
                                                     p.idProducto
@@ -325,14 +325,16 @@ class MSale extends CI_Model {
                                                     LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto AND idCliente = '".$this->session->userdata('sclient')."')
                                                     WHERE p.idProducto = ".$item."
                                                     AND ((p.valorProducto - cv.valorDescProd) = '".$value."') OR (p.valorProducto = '".$value."')");
-                        } else {
+                        //} else {
+                            /*
                             $query = $this->db->query("SELECT
                                                     p.idProducto
                                                     FROM productos p
                                                     LEFT JOIN config_venta_detalle cv ON (cv.idProducto = p.idProducto AND idCliente = '".$this->session->userdata('sclient')."')
                                                     WHERE p.idProducto = ".$item."
                                                     AND ((p.valorProducto - cv.valorDescProd) = '".$value."')");
-                        }      
+                                                    */
+                        //}      
                     }
 
                 }
