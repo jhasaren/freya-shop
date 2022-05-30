@@ -253,7 +253,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 columnDefs: [
                     { width: '20%', targets: 0 }
                 ],
-                fixedColumns: true
+                fixedColumns: true,
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             } );
         } );
     </script>    
