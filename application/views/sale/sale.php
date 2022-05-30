@@ -224,6 +224,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>    
                                     </div>
+                                    <!--
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saledesc" href="#">
                                             <div class="bs-glyphicons">
@@ -231,17 +232,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <li>
                                                         <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
                                                         <span class="glyphicon-class" style="font-size: 14px;">
-                                                            <?php if ($this->config->item('tipo_negocio') !== 3) { ?>
+                                                            <?php //if ($this->config->item('tipo_negocio') !== 3) { ?>
                                                                 Servicio/Descuento
-                                                                <div><?php echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
-                                                            <?php } else { ?>
-                                                                <?php if ($this->config->item('mod_commision') == 1) { ?>
+                                                                <div><?php //echo (round($porcenInList->porcenServicio*100,2))."% / ".($porcenInList->porcenDescuento*100)."%"; ?></div>
+                                                            <?php //} else { ?>
+                                                                <?php //if ($this->config->item('mod_commision') == 1) { ?>
                                                                     Descuento manual
-                                                                <?php } else { ?>
+                                                                <?php //} else { ?>
                                                                     Descuento
-                                                                <?php } ?>
-                                                                <div><?php echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
-                                                            <?php } ?>
+                                                                <?php //} ?>
+                                                                <div><?php //echo (number_format($porcenInList->porcenDescuento*100,2,',','.'))."%"; ?></div>
+                                                            <?php //} ?>
                                                             
                                                         </span>
                                                     </li>
@@ -249,6 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>
                                     </div>
+                                    -->
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saleempleado" href="#">
                                             <div class="bs-glyphicons">
