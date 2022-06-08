@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                             <div class="x_content">
                                 <div class="form-group">
-                                    <label for="Nombre">[Cliente ID:<?php echo $data_user->idUsuario; ?>] <?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
+                                    <label for="Nombre" style="color: red;">[Cliente ID:<?php echo $data_user->idUsuario; ?>] <?php echo $data_user->nombre . " " . $data_user->apellido; ?></label><br />
                                     <input type="hidden" value="<?php echo $data_user->idUsuario; ?>" name='idEmpleado' >
                                 </div>
                                 <!--Lista de productos-->
