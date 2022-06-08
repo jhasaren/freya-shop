@@ -697,8 +697,10 @@ class MUser extends CI_Model {
                                 cv.idConfig,
                                 cv.idCliente,
                                 cv.valorDescProd,
-                                (cv.porcenComisionProd * 100) as porcenComisionProd
+                                (cv.porcenComisionProd * 100) as porcenComisionProd,
+                                g.descGrupoServicio
                                 FROM productos p
+                                JOIN grupo_servicio g ON g.idGrupoServicio = p.idGrupoServicio
                                 LEFT JOIN config_venta_detalle cv ON cv.idProducto = p.idProducto and cv.idCliente = '".$idUsuario."'
                                 WHERE p.activo = 'S'
                                 AND p.idTipoProducto = 2");
