@@ -124,7 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             foreach ($config_user as $row_list){
                                                 ?>
                                                 <tr style="background-color: #2A3F54;">
-                                                    <td class="center green"><?php echo $row_list['descGrupoServicio']; ?></td>
+                                                    <td class="center"><?php echo $row_list['descGrupoServicio']; ?></td>
                                                     <td class="center green"><?php echo "[".$row_list['idProducto']."] ".$row_list['descProducto']; ?></td>
                                                     <td class="center blue"><?php echo number_format($row_list['valorProducto'],0,',','.'); ?></td>
                                                     <td class="center red"><?php echo number_format($row_list['valorDescProd'],0,',','.'); ?></td>
