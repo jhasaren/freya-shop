@@ -60,6 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'sdescuento' => ($porcenInList->porcenDescuento*100),
                             'sservicio' => ($porcenInList->porcenServicio*100),
                             'sclient' => $clientInList->idUsuario,
+                            'sclientcategory' => $clientInList->categoria,
                             'sempleado' => $porcenInList->idEmpleadoAtiende
                         );
                         $this->session->set_userdata($datos_session);
