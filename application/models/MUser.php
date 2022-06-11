@@ -44,7 +44,8 @@ class MUser extends CI_Model {
                                     a.idTipoUsuario,
                                     a.numCelular,
                                     a.activo,
-                                    tpr.descTipoProveedor
+                                    tpr.descTipoProveedor,
+                                    a.categoria
                                     FROM
                                     app_usuarios a
                                     JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
@@ -91,7 +92,8 @@ class MUser extends CI_Model {
                                     a.idTipoUsuario,
                                     a.numCelular,
                                     a.activo,
-                                    tpr.descTipoProveedor
+                                    tpr.descTipoProveedor,
+                                    a.categoria
                                     FROM
                                     app_usuarios a
                                     JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
