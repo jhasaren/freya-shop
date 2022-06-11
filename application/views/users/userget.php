@@ -150,6 +150,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php if ($this->config->item('bday_cliente') == 1) { ?>
                                             <strong>Fecha Cumpleaños</strong><input type="text" class="form-control" id="fechacumple" name="fechacumple" value="<?php echo $data_user->dia.' del Mes '.$data_user->mes; ?>" disabled="" >
                                             <?php } ?>
+                                            <?php 
+                                            /*Tiene habilitada funcionalidad de Categoria del Cliente, y el tipo de usuario es cliente*/
+                                            if ($this->config->item('category_client') == 1 && $data_user->idTipoUsuario == 1) { 
+                                            ?> 
+                                            <strong>Categoria</strong><input type="text" class="form-control" id="fechacumple" name="fechacumple" value="<?php echo $data_user->dia.' del Mes '.$data_user->mes; ?>" disabled="" >
+                                            <?php } ?>
                                         </div>
                                         <div class="form-group">
                                             <label for="tipousuario">Tipo</label>

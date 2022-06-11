@@ -193,7 +193,8 @@ class MUser extends CI_Model {
                                 u.idRol,
                                 r.descRol,
                                 a.idSede,
-                                s.nombreSede
+                                s.nombreSede,
+                                a.categoria
                                 FROM app_usuarios a
                                 JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
                                 JOIN fecha_cumple_usuario f ON f.idUsuario = a.idUsuario
