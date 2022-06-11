@@ -681,9 +681,8 @@ class MSale extends CI_Model {
                     log_message("debug", "Grupo: ".$row_list['descGrupoServicio']);
                     log_message("debug", "*****************************");
 
-                    return true;
-
                 }
+                return true;
             }
             
         }
