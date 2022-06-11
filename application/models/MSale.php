@@ -723,7 +723,7 @@ class MSale extends CI_Model {
                             /*registra descuento 25% comision del 2%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.25)."','0.02',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * 0.25).",'0.02',NOW())
                                             ");
                         } else {
                             /*Si el producto es WISE*/
@@ -763,7 +763,7 @@ class MSale extends CI_Model {
                             /*registra descuento 33% comision del 2%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.33)."','0.02',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * 0.33).",'0.02',NOW())
                                             ");
                         } else {
                             /*Si el producto es WISE*/
