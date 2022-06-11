@@ -135,6 +135,7 @@ class CUser extends CI_Controller {
                     $sede = $dataSede[0];
                     $horario = $dataSede[1];
                     $tproveedor = $this->input->post('tproveedor');
+                    $categoria = $this->input->post('cat_client');
 
                     /*Valida si el usuario ya existe y recupera el estado*/
                     $validateClient = $this->MUser->verify_user($identificacion);
@@ -152,7 +153,7 @@ class CUser extends CI_Controller {
                                         if ($tipo === 'cliente'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$sede,$horario,null);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$sede,$horario,null,$categoria);
                                             if ($registerData == TRUE){
 
                                                 $info['message'] = 'Usuario registrado Exitosamente';
@@ -172,7 +173,7 @@ class CUser extends CI_Controller {
                                         if ($tipo === 'proveedor'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,3,$diacumple,$mescumple,'12345',4,$sede,$horario,$tproveedor);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,3,$diacumple,$mescumple,'12345',4,$sede,$horario,$tproveedor,null);
                                             if ($registerData == TRUE){
 
                                                 $info['message'] = 'Proveedor registrado Exitosamente';
@@ -213,7 +214,7 @@ class CUser extends CI_Controller {
                                                 if ($this->jasr->validaTipoString($contrasena,8)){
 
                                                     /*Envia datos al modelo para el registro*/
-                                                    $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,1,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,null);
+                                                    $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,1,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,null,null);
                                                     if ($registerData == TRUE){
 
                                                         $info['message'] = 'Usuario registrado Exitosamente';

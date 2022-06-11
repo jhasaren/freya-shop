@@ -375,7 +375,7 @@ class MUser extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function create_user($name,$lastname,$identificacion,$direccion,$celular,$email,$tipo,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,$tproveedor) {
+    public function create_user($name,$lastname,$identificacion,$direccion,$celular,$email,$tipo,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,$tproveedor,$categoria) {
             
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
@@ -391,7 +391,8 @@ class MUser extends CI_Model {
                                     idTipoUsuario,
                                     activo,
                                     fechaRegistro,
-                                    idSede
+                                    idSede,
+                                    categoria
                                     ) VALUES (
                                     1,
                                     ".$identificacion.",
@@ -403,7 +404,8 @@ class MUser extends CI_Model {
                                     ".$tipo.",
                                     'S',
                                     NOW(),
-                                    '".$sede."'
+                                    '".$sede."',
+                                    '".$categoria."'
                                     )");
 
         $query2 = $this->db->query("INSERT INTO
