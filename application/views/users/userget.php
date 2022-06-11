@@ -155,7 +155,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             if ($this->config->item('category_client') == 1 && $data_user->idTipoUsuario == 2) { 
                                             ?> 
                                             <strong>Categoría</strong>
-                                            <input type="text" class="form-control" id="cat_client" name="cat_client" value="<?php echo $data_user->categoria; ?>" >
                                             <select class="form-control" name="cat_client">
                                                 <option value="CLIENTE_FINAL" <?php if($data_user->categoria == 'CLIENTE_FINAL') echo "selected"; ?> >CLIENTE FINAL</option>
                                                 <option value="GIMNASIO_ENTRENADOR" <?php if($data_user->categoria == 'GIMNASIO_ENTRENADOR') echo "selected"; ?> >GIMNASIO / ENTRENADOR</option>

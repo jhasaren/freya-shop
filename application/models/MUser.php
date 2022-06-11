@@ -605,7 +605,7 @@ class MUser extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 26/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede) {
+    public function update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria) {
             
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
@@ -617,7 +617,8 @@ class MUser extends CI_Model {
                                     direccion = '".$direccion."',
                                     email = '".$email."',
                                     activo = '".$valueState."',
-                                    idSede = '".$sede."'
+                                    idSede = '".$sede."',
+                                    categoria = '".$categoria."'
                                     WHERE
                                     idUsuario = ".$identificacion."
                                     ");

@@ -452,6 +452,7 @@ class CUser extends CI_Controller {
                     if ($estado == 'on'){ $valueState = 'S'; } else $valueState = 'N';
                     $restorepass = $this->input->post('restorepass');
                     $sede = $this->input->post('sede');
+                    $categoria = $this->input->post('cat_client');
 
                     if ($this->jasr->validaTipoString($name,1) && $this->jasr->validaTipoString($lastname,1)){
 
@@ -463,7 +464,7 @@ class CUser extends CI_Controller {
                                 if ($this->jasr->validaTipoString($contrasena,8)){
 
                                     /*Envia datos al modelo para el registro*/
-                                    $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede);
+                                    $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria);
 
                                     if ($updateData == TRUE){
 
@@ -490,7 +491,7 @@ class CUser extends CI_Controller {
                             } else {
 
                                 /*Envia datos al modelo para el registro*/
-                                $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede);
+                                $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria);
 
                                 if ($updateData == TRUE){
 
