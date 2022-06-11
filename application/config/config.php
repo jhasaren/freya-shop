@@ -709,3 +709,13 @@ $config['ws_cat_app'] = 0;
 $config['user_client'] = "";
 $config['pwd_client'] = "";
 $config['key_client'] = "";
+
+
+/*
+|--------------------------------------------------------------------------
+| Categoria del Cliente
+ * Permite controlar la funcionalidad
+ * 1-habilitar, 0-deshabilitar
+|--------------------------------------------------------------------------
+*/
+$config['category_client'] = 1;

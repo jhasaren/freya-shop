@@ -232,6 +232,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="hidden" id="diacumple1" name="diacumple" value="31">
                                 <input type="hidden" id="mescumple" name="mescumple" value="12">
                                 <?php } ?>
+
+                                <?php if ($this->config->item('category_client') == 1) { ?>
+                                <select class="form-control" name="cat_client">
+                                     <option value="CLIENTE_FINAL">CLIENTE FINAL</option>
+                                     <option value="GIMNASIO/ENTRENADOR">GIMNASION / ENTRENADOR</option>
+                                     <option value="MAYORISTA">MAYORISTA</option>
+                                     <option value="SUPERMAYORISTA">SUPERMAYORISTA</option>
+                                </select>
+                                <?php } else { ?>
+                                <input type="hidden" id="cat_client" name="cat_client" value="">
+                                <?php } ?>
                                 
                             </div>
                         </div>
