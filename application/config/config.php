@@ -655,7 +655,7 @@ $config['referidos'] = 0;
  * 1-habilitar, 0-deshabilitar
 |--------------------------------------------------------------------------
 */
-$config['bday_cliente'] = 1;
+$config['bday_cliente'] = 0;
 
 
 /*
