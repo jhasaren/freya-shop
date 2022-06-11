@@ -650,7 +650,7 @@ class MSale extends CI_Model {
     public function descuento_comision_calc($cliente,$categoria) {
         
         /*Elimina configuracion actual del cliente*/
-        //$this->db->query("DELETE FROM config_venta_detalle WHERE idCliente = '".$cliente."'");
+        $this->db->query("DELETE FROM config_venta_detalle WHERE idCliente = '".$cliente."'");
 
         /*Recupera Lista de Productos creados en el sistema*/
         $listProduct = $this->db->query("SELECT
@@ -671,16 +671,162 @@ class MSale extends CI_Model {
             
             $productos = $listProduct->result_array();
 
-            if ($productos != FALSE) {
-                foreach ($productos as $row_list){
+            /*============================================================*/
+            /*SI ES CLIENTE FINAL*/
+            /*============================================================*/
+            if ($categoria == 'CLIENTE_FINAL'){
+                if ($productos != FALSE) {
+                    foreach ($productos as $row_list){
 
-                    log_message("debug", "*****************************");
-                    log_message("debug", "Categoria: ".$categoria);
-                    log_message("debug", "idProducto: ".$row_list['idProducto']);
-                    log_message("debug", "Valor: ".$row_list['valorProducto']);
-                    log_message("debug", "Grupo: ".$row_list['descGrupoServicio']);
-                    log_message("debug", "*****************************");
+                        /*Si el producto es WISE*/
+                        if ($row_list['descGrupoServicio'] == 'WISE'){ 
+                            /*registra descuento 0 comision del 5%*/
+                            $this->db->query("INSERT INTO config_venta_detalle 
+                                            (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                            ");
+                        } else {
+                            /*Si el producto es INSIDE*/
+                            if ($row_list['descGrupoServicio'] == 'INSIDE'){ 
+                                /*registra descuento 0 comision del 2%*/
+                                $this->db->query("INSERT INTO config_venta_detalle 
+                                                (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                ");
+                            } else {
+                                /*Si el producto es OTROS*/
+                                if ($row_list['descGrupoServicio'] == 'OTROS'){ 
+                                    /*registra descuento 0 comision del 2%*/
+                                    $this->db->query("INSERT INTO config_venta_detalle 
+                                                    (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    ");
+                                }
+                            }
+                        }
 
+                    }
+                    
+                }
+                return true;
+            }
+
+            /*============================================================*/
+            /*SI ES GIMNASIO_ENTRENADOR*/
+            /*============================================================*/
+            if ($categoria == 'GIMNASIO_ENTRENADOR'){
+                if ($productos != FALSE) {
+                    foreach ($productos as $row_list){
+
+                        /*Si el producto es INSIDE*/
+                        if ($row_list['descGrupoServicio'] == 'INSIDE'){ 
+                            /*registra descuento 25% comision del 2%*/
+                            $this->db->query("INSERT INTO config_venta_detalle 
+                                            (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.25)."','0.02',NOW())
+                                            ");
+                        } else {
+                            /*Si el producto es WISE*/
+                            if ($row_list['descGrupoServicio'] == 'WISE'){ 
+                                /*registra descuento 0 comision del 5%*/
+                                $this->db->query("INSERT INTO config_venta_detalle 
+                                                (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                ");
+                            } else {
+                                /*Si el producto es OTROS*/
+                                if ($row_list['descGrupoServicio'] == 'OTROS'){ 
+                                    /*registra descuento 0 comision del 2%*/
+                                    $this->db->query("INSERT INTO config_venta_detalle 
+                                                    (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    ");
+                                }
+                            }
+                        }
+
+                    }
+                    
+                }
+                return true;
+            }
+
+            /*============================================================*/
+            /*SI ES MAYORISTA*/
+            /*============================================================*/
+            if ($categoria == 'MAYORISTA'){
+                if ($productos != FALSE) {
+                    foreach ($productos as $row_list){
+
+                        /*Si el producto es INSIDE*/
+                        if ($row_list['descGrupoServicio'] == 'INSIDE'){ 
+                            /*registra descuento 33% comision del 2%*/
+                            $this->db->query("INSERT INTO config_venta_detalle 
+                                            (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.33)."','0.02',NOW())
+                                            ");
+                        } else {
+                            /*Si el producto es WISE*/
+                            if ($row_list['descGrupoServicio'] == 'WISE'){ 
+                                /*registra descuento 0 comision del 5%*/
+                                $this->db->query("INSERT INTO config_venta_detalle 
+                                                (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                ");
+                            } else {
+                                /*Si el producto es OTROS*/
+                                if ($row_list['descGrupoServicio'] == 'OTROS'){ 
+                                    /*registra descuento 0 comision del 2%*/
+                                    $this->db->query("INSERT INTO config_venta_detalle 
+                                                    (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    ");
+                                }
+                            }
+                        }
+
+                    }
+                    
+                }
+                return true;
+            }
+
+            /*============================================================*/
+            /*SI ES SUPERMAYORISTA*/
+            /*============================================================*/
+            if ($categoria == 'SUPERMAYORISTA'){
+                if ($productos != FALSE) {
+                    foreach ($productos as $row_list){
+
+                        /*Si el producto es INSIDE*/
+                        if ($row_list['descGrupoServicio'] == 'INSIDE'){ 
+                            /*registra descuento 38% comision del 2%*/
+                            $this->db->query("INSERT INTO config_venta_detalle 
+                                            (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.38)."','0.02',NOW())
+                                            ");
+                        } else {
+                            /*Si el producto es WISE*/
+                            if ($row_list['descGrupoServicio'] == 'WISE'){ 
+                                /*registra descuento 0 comision del 5%*/
+                                $this->db->query("INSERT INTO config_venta_detalle 
+                                                (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                ");
+                            } else {
+                                /*Si el producto es OTROS*/
+                                if ($row_list['descGrupoServicio'] == 'OTROS'){ 
+                                    /*registra descuento 0 comision del 2%*/
+                                    $this->db->query("INSERT INTO config_venta_detalle 
+                                                    (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    ");
+                                }
+                            }
+                        }
+
+                    }
+                    
                 }
                 return true;
             }
