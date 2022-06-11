@@ -560,7 +560,7 @@ class MSale extends CI_Model {
                                     p.activo = 'S'
                                     AND p.idTipoProducto = 2
                                     AND p.idSede = ".$this->session->userdata('sede')."
-                                    AND s.disponibles <> 0
+                                    AND s.disponibles > 0
                                     ORDER BY 2");
             
             $this->cache->memcached->save('mListProductSale', $query->result_array(), 180); /*3 minutos en Memoria*/
@@ -617,7 +617,7 @@ class MSale extends CI_Model {
                                     p.activo = 'S'
                                     AND p.idTipoProducto = 2
                                     AND p.idSede = ".$this->session->userdata('sede')."
-                                    AND s.disponibles <> 0
+                                    AND s.disponibles > 0
                                     ORDER BY 2");
             
             $this->cache->memcached->save('mListProductSaleClient', $query->result_array(), 180); /*3 minutos en Memoria*/
