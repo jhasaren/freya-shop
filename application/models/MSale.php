@@ -141,7 +141,8 @@ class MSale extends CI_Model {
                                 concat(a.nombre,' ',a.apellido) as nombre_usuario,
                                 a.numCelular,
                                 a.direccion,
-                                a.email
+                                a.email,
+                                a.categoria
                                 FROM
                                 venta_maestro v
                                 JOIN app_usuarios a ON a.idUsuario = v.idUsuarioCliente

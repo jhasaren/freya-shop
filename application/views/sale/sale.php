@@ -290,6 +290,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             <div class="x_content" style="color: white;">
                                                 Nombre: <?php echo $clientInList->nombre_usuario; ?><br />
+                                                <?php if ($this->config->item('category_client') == 1) { ?>
+                                                Categoría: <?php echo $clientInList->categoria; ?><br />
+                                                <?php } ?>
                                                 Dirección: <?php echo $clientInList->direccion; ?> | 
                                                 Telefono: <?php echo $clientInList->numCelular; ?> |
                                                 Email: <?php echo $clientInList->email; ?>
