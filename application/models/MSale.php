@@ -597,6 +597,10 @@ class MSale extends CI_Model {
             return $dataCache;
 
         } else {
+
+            if ($this->config->item('mod_commision') == 1) { /*Habilitado modulo de comisiones*/
+                $this->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+            }
         
             /*Recupera los productos creados teniendo en cuenta la config de descuentos*/
             $query = $this->db->query("SELECT
@@ -634,6 +638,56 @@ class MSale extends CI_Model {
 
             }
         }
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: list_product_int
+     * Descripcion: Obtiene lista de Productos de consumo interno y para
+     * la venta en la sede.
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/03/2017, Ultima modificacion: 
+     **************************************************************************/
+    public function descuento_comision_calc($cliente,$categoria) {
+        
+        /*Elimina configuracion actual del cliente*/
+        //$this->db->query("DELETE FROM config_venta_detalle WHERE idCliente = '".$cliente."'");
+
+        /*Recupera Lista de Productos creados en el sistema*/
+        $listProduct = $this->db->query("SELECT
+                                        p.idProducto,
+                                        p.valorProducto,
+                                        g.descGrupoServicio
+                                        FROM productos p
+                                        JOIN grupo_servicio g ON g.idGrupoServicio = p.idGrupoServicio
+                                        WHERE
+                                        p.idTipoProducto = 2
+                                        AND p.idSede = ".$this->session->userdata('sede')."");
+        
+        if ($listProduct->num_rows() == 0) {
+            
+            return false;
+            
+        } else {
+            
+            $productos = $listProduct->result_array();
+
+            if ($productos != FALSE) {
+                foreach ($productos as $row_list){
+
+                    log_message("debug", "*****************************");
+                    log_message("debug", "Categoria: ".$categoria);
+                    log_message("debug", "idProducto: ".$row_list['idProducto']);
+                    log_message("debug", "Valor: ".$row_list['valorProducto']);
+                    log_message("debug", "Grupo: ".$row_list['descGrupoServicio']);
+                    log_message("debug", "*****************************");
+
+                    return true;
+
+                }
+            }
+            
+        }
+        
     }
     
     /**************************************************************************
