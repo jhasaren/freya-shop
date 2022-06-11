@@ -1558,6 +1558,7 @@ class CSale extends CI_Controller {
                     $mescumple = $this->input->post('mescumple');
                     $contrasena = $this->input->post('contrasena');
                     $rol = $this->input->post('rol');
+                    $categoria = $this->input->post('cat_client');
 
                     /*Valida si el usuario ya existe y recupera el estado*/
                     $validateClient = $this->MUser->verify_user($identificacion);
@@ -1575,7 +1576,7 @@ class CSale extends CI_Controller {
                                         if ($tipo === 'cliente'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$this->session->userdata('sede'),0,NULL);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$this->session->userdata('sede'),0,NULL,$categoria);
                                             if ($registerData == TRUE){
 
                                                 /*aagrega usuario a la venta*/
