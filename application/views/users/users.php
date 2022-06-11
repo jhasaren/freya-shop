@@ -236,7 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php if ($this->config->item('category_client') == 1) { ?>
                                 <select class="form-control" name="cat_client">
                                      <option value="CLIENTE_FINAL">CLIENTE FINAL</option>
-                                     <option value="GIMNASIO/ENTRENADOR">GIMNASIO / ENTRENADOR</option>
+                                     <option value="GIMNASIO_ENTRENADOR">GIMNASIO / ENTRENADOR</option>
                                      <option value="MAYORISTA">MAYORISTA</option>
                                      <option value="SUPERMAYORISTA">SUPERMAYORISTA</option>
                                 </select>
