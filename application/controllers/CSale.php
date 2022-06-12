@@ -166,7 +166,8 @@ class CSale extends CI_Controller {
                     /*Registra el id de venta de la mesa como variable de sesion*/
                     $datos_session = array(
                         'idSale' => $flagBoard,
-                        'sclient' => $client
+                        'sclient' => $client,
+                        'sclientcategory' => 'CLIENTE_FINAL'
                     );
                     $this->session->set_userdata($datos_session);
                     
