@@ -1298,8 +1298,6 @@ class MSale extends CI_Model {
      **************************************************************************/
     public function item_data_sale() {
         
-        $this->db->trans_strict(TRUE);
-        $this->db->trans_start();
         $query = $this->db->query("SELECT
                                 m.nroRecibo,
                                 (SELECT count(1) FROM forma_de_pago f WHERE idVenta = ".$this->session->userdata('idSale').") as forma_pago,
