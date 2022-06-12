@@ -1315,20 +1315,7 @@ class MSale extends CI_Model {
         
         if ($result->forma_pago == 0 && $result->productos == 0 ) {
         
-            if ($result->nroRecibo != 0){
-
-                log_message("debug", "*******************************************");
-                log_message("debug", "ITEM EN VENTA");
-                log_message("debug", "Devuelve TRUE");
-                log_message("debug", "*******************************************");
-
-                return TRUE;
-
-            } else {
-
-                return FALSE;
-
-            }
+            return TRUE;
         
         } else {
             
