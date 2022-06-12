@@ -880,6 +880,11 @@ class CSale extends CI_Controller {
                         /*Envia al modelo para validar si existen items en la venta*/
                         $itemsale = $this->MSale->item_data_sale();
 
+                        log_message("debug", "*******************************************");
+                        log_message("debug", "ITEM EN VENTA CSALE");
+                        log_message("debug", "itemsale ->".$itemsale);
+                        log_message("debug", "*******************************************");
+
                         if ($itemsale == TRUE){
 
                             /*Envia datos al modelo para el registro*/

@@ -1306,10 +1306,21 @@ class MSale extends CI_Model {
                                 venta_maestro m
                                 WHERE m.idVenta = ".$this->session->userdata('idSale')."");
         $result = $query->row();
+
+        log_message("debug", "*******************************************");
+        log_message("debug", "ITEM EN VENTA");
+        log_message("debug", "forma pago ->".$result->forma_pago);
+        log_message("debug", "productos ->".$result->productos);
+        log_message("debug", "*******************************************");
         
         if ($result->forma_pago == 0 && $result->productos == 0 ) {
         
             if ($result->nroRecibo != 0){
+
+                log_message("debug", "*******************************************");
+                log_message("debug", "ITEM EN VENTA");
+                log_message("debug", "Devuelve TRUE");
+                log_message("debug", "*******************************************");
 
                 return TRUE;
 
