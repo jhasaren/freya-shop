@@ -83,6 +83,9 @@ class CSale extends CI_Controller {
                     $listProductSale = $this->MSale->list_product_sale(); /*Consulta Modelo para obtener lista de Productos*/
                 } else {
                     if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
+                        /*Recalcula Descuento Comisión*/
+                        $this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+                        /*Lista de productos en Venta*/
                         $listProductSale = $this->MSale->list_product_sale_client($this->session->userdata('sclient')); /*Consulta Modelo para obtener lista de Productos*/
                     }
                 }
@@ -166,8 +169,7 @@ class CSale extends CI_Controller {
                     /*Registra el id de venta de la mesa como variable de sesion*/
                     $datos_session = array(
                         'idSale' => $flagBoard,
-                        'sclient' => $client,
-                        'sclientcategory' => 'CLIENTE_FINAL'
+                        'sclient' => $client
                     );
                     $this->session->set_userdata($datos_session);
                     

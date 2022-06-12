@@ -597,11 +597,6 @@ class MSale extends CI_Model {
             return $dataCache;
 
         } else {
-
-            if ($this->config->item('mod_commision') == 1) { /*Habilitado modulo de comisiones*/
-                /*Recalcula descuentos y comisiones*/
-                $this->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
-            }
         
             /*Recupera los productos creados teniendo en cuenta la config de descuentos*/
             $query = $this->db->query("SELECT
