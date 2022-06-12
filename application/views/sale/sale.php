@@ -760,6 +760,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!--<option value="CAMBIO_DE_MESA">Cambio de Mesa</option>-->
                                     <!--<option value="CORTESIAS">Cortesias</option>-->
                                     <option value="ERROR_SISTEMA">Error Sistema</option>
+                                    <option value="CAMBIO_CLIENTE">Cambio de Cliente</option>
                                 </select>
                             </div>
                             <br />
