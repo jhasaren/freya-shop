@@ -1289,6 +1289,45 @@ class MSale extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: item_data_sale
+     * Descripcion: Verifica si existen items en la venta
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 12/06/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function item_data_sale() {
+        
+        $this->db->trans_strict(TRUE);
+        $this->db->trans_start();
+        $query = $this->db->query("SELECT
+                                m.nroRecibo,
+                                (SELECT count(1) FROM forma_de_pago f WHERE idVenta = ".$this->session->userdata('idSale').") as forma_pago,
+                                (SELECT count(1) FROM venta_detalle WHERE idVenta = ".$this->session->userdata('idSale').") as productos
+                                FROM
+                                venta_maestro m
+                                WHERE m.idVenta = ".$this->session->userdata('idSale')."");
+        $result = $query->row();
+        
+        if ($result->forma_pago == 0 && $result->productos == 0 ) {
+        
+            if ($result->nroRecibo != 0){
+
+                return TRUE;
+
+            } else {
+
+                return FALSE;
+
+            }
+        
+        } else {
+            
+            return FALSE;
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: add_user

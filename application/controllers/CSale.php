@@ -877,22 +877,35 @@ class CSale extends CI_Controller {
 
                     if ($validateClient != FALSE){
 
-                        /*Envia datos al modelo para el registro*/
-                        $registerData = $this->MSale->add_user($idusuario,$idventa);
+                        /*Envia al modelo para validar si existen items en la venta*/
+                        $itemsale = $this->MSale->item_data_sale();
 
-                        if ($registerData == TRUE){
+                        if ($itemsale == TRUE){
 
-                            /*Recalcula Descuento Comisión*/
-                            $this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+                            /*Envia datos al modelo para el registro*/
+                            $registerData = $this->MSale->add_user($idusuario,$idventa);
 
-                            $info['idmessage'] = 1;
-                            $info['message'] = "Cliente Agregado Exitosamente";
-                            $this->module($info);
+                            if ($registerData == TRUE){
 
+                                /*Recalcula Descuento Comisión*/
+                                //$this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+
+                                $info['idmessage'] = 1;
+                                $info['message'] = "Cliente Agregado Exitosamente";
+                                $this->module($info);
+
+                            } else {
+
+                                $info['idmessage'] = 2;
+                                $info['message'] = "No fue posible agregar el cliente";
+                                $this->module($info);
+
+                            }
+                            
                         } else {
 
                             $info['idmessage'] = 2;
-                            $info['message'] = "No fue posible agregar el cliente";
+                            $info['message'] = "No se puede agregar el cliente. Por favor elimine primero todos los items de la venta.";
                             $this->module($info);
 
                         }
