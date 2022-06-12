@@ -905,6 +905,9 @@ class CSale extends CI_Controller {
 
                         if ($registerData == TRUE){
 
+                            /*Recalcula Descuento Comisión*/
+                            $this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+
                             $info['idmessage'] = 1;
                             $info['message'] = "Cliente Agregado Exitosamente";
                             $this->module($info);
