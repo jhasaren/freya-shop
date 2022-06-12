@@ -396,7 +396,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valor'],0,',','.'); ?></td>
-                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100)."%)"; ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(number_format(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100,0,',','.'))."%)"; ?></td>
                                                                 <td>
                                                                 <?php 
                                                                 if ($porcenInList->idEstadoRecibo != 8) {
