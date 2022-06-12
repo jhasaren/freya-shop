@@ -597,6 +597,11 @@ class MSale extends CI_Model {
             return $dataCache;
 
         } else {
+
+            if ($this->config->item('mod_commision') == 1) { /*Habilitado modulo de comisiones*/
+                /*Recalcula descuentos y comisiones*/
+                $this->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+            }
         
             /*Recupera los productos creados teniendo en cuenta la config de descuentos*/
             $query = $this->db->query("SELECT
@@ -1290,11 +1295,6 @@ class MSale extends CI_Model {
      * Fecha Creacion: 26/03/2017, Ultima modificacion: 
      **************************************************************************/
     public function add_user($idusuario,$idventa) {
-
-        /*Recalcula descuentos y comision*/
-        if ($this->config->item('mod_commision') == 1) { /*Habilitado modulo de comisiones*/
-            $this->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
-        }
         
         $this->db->trans_start();
         $query = $this->db->query("UPDATE
