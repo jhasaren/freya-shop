@@ -155,6 +155,19 @@ class MSale extends CI_Model {
 
         } else {
 
+            log_message("debug", "*****************************");
+            log_message("debug", "CLIENTE IN LIST");
+            log_message("debug", "Usuario: ".$query->row()->idUsuario);
+            log_message("debug", "Categoria: ".$query->row()->categoria);
+            log_message("debug", "*****************************");
+
+             /*Setea los datos como variable de sesion*/
+             $datos_session = array(
+                'sclient' => $query->row()->idUsuario,
+                'sclientcategory' => $query->row()->categoria
+            );
+            $this->session->set_userdata($datos_session);
+
             return $query->row();
 
         }

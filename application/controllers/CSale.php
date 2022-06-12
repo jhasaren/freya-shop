@@ -73,6 +73,16 @@ class CSale extends CI_Controller {
                 $listUserSale = $this->MSale->list_users_sale(); /*Consulta Modelo para obtener lista de usuarios*/
                 $listServiceSale = $this->MSale->list_service_sale(); /*Consulta Modelo para obtener lista de Servicios*/
                 $listEmpleadoSale = $this->MSale->list_empleado_sale(); /*Consulta Modelo para obtener lista de Empleados*/
+                
+                //$listProductInterno = $this->MSale->list_product_int(); /*Consulta Modelo para obtener lista de Productos de Consumo Interno*/
+                $receiptSale = $this->MPrincipal->rango_recibos(1);  /*Consulta el Modelo Cantidad de recibos disponibles*/
+                
+                $clientInList = $this->MSale->client_in_list(); /*datos del cliente agregados a la venta*/
+                $serviceInList = $this->MSale->service_in_list(); /*lista de servicios agregados a la venta*/
+                $productInList = $this->MSale->product_in_list(); /*lista de productos agregados a la venta*/
+                $adicionalInList = $this->MSale->adicional_in_list(); /*lista cargos adicionales agregados a la venta*/
+                $consumoInList = $this->MSale->consumo_in_list(); /*lista consumo interno agregados a la venta*/
+                $porcenInList = $this->MSale->porcen_in_list(); /*recupera descuento, servicio y idempleado que atiende que estan agregados en la venta*/
 
                 /*
                 Fecha: 29/05/2022 
@@ -89,16 +99,6 @@ class CSale extends CI_Controller {
                         $listProductSale = $this->MSale->list_product_sale_client($this->session->userdata('sclient')); /*Consulta Modelo para obtener lista de Productos*/
                     }
                 }
-                
-                //$listProductInterno = $this->MSale->list_product_int(); /*Consulta Modelo para obtener lista de Productos de Consumo Interno*/
-                $receiptSale = $this->MPrincipal->rango_recibos(1);  /*Consulta el Modelo Cantidad de recibos disponibles*/
-                
-                $clientInList = $this->MSale->client_in_list(); /*datos del cliente agregados a la venta*/
-                $serviceInList = $this->MSale->service_in_list(); /*lista de servicios agregados a la venta*/
-                $productInList = $this->MSale->product_in_list(); /*lista de productos agregados a la venta*/
-                $adicionalInList = $this->MSale->adicional_in_list(); /*lista cargos adicionales agregados a la venta*/
-                $consumoInList = $this->MSale->consumo_in_list(); /*lista consumo interno agregados a la venta*/
-                $porcenInList = $this->MSale->porcen_in_list(); /*recupera descuento, servicio y idempleado que atiende que estan agregados en la venta*/
 
                 /*Retorna a la vista con los datos obtenidos*/
                 $info['list_user'] = $listUserSale;
@@ -145,8 +145,10 @@ class CSale extends CI_Controller {
                     
                     /*Consulta Modelo para crear el id de venta*/
                     $createSale = $this->MSale->create_sale($this->session->userdata('userid'),$board);
+
                     /*Envia datos al modelo para el registro del Cliente por Default*/
                     $this->MSale->add_user('999999',$this->session->userdata('idSale'));
+
                     /*Envia datos al modelo para el registro del Empleado por Default*/
                     if ($this->config->item('tipo_negocio') == 3) {
                         $this->MSale->add_empleado_sale($this->session->userdata('userid'),$this->session->userdata('idSale'));
@@ -176,32 +178,7 @@ class CSale extends CI_Controller {
                     $this->module($info);
                     
                 }
-                
-                /*Valida si ya existe un id de venta registrado en la sesion*/
-                //if ($this->session->userdata('idSale') == NULL){
-
-                    /*Consulta Modelo para crear el id de venta*/
-                    //$createSale = $this->MSale->create_sale($this->session->userdata('userid'));
-                    
-                    /*Envia datos al modelo para el registro del Cliente por Default*/
-                    //$this->MSale->add_user('999999',$this->session->userdata('idSale'));
-
-                    //if ($createSale == TRUE){
-
-                        //$this->module($info);
-
-                    //} else {
-
-                        //show_404();
-
-                    //}
-
-                //} else {
-
-                    //$this->module($info);
-
-                //}
-            
+                            
             } else {
                 
                 show_404();
