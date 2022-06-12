@@ -155,12 +155,6 @@ class MSale extends CI_Model {
 
         } else {
 
-            log_message("debug", "*****************************");
-            log_message("debug", "CLIENTE IN LIST");
-            log_message("debug", "Usuario: ".$query->row()->idUsuario);
-            log_message("debug", "Categoria: ".$query->row()->categoria);
-            log_message("debug", "*****************************");
-
              /*Setea los datos como variable de sesion*/
              $datos_session = array(
                 'sclient' => $query->row()->idUsuario,
@@ -692,7 +686,7 @@ class MSale extends CI_Model {
                             /*registra descuento 0 comision del 5%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('final_wise_descuento')).",'".$this->config->item('final_wise_comision')."',NOW())
                                             ");
                         } else {
                             /*Si el producto es INSIDE*/
@@ -700,7 +694,7 @@ class MSale extends CI_Model {
                                 /*registra descuento 0 comision del 2%*/
                                 $this->db->query("INSERT INTO config_venta_detalle 
                                                 (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('final_inside_descuento')).",'".$this->config->item('final_inside_comision')."',NOW())
                                                 ");
                             } else {
                                 /*Si el producto es OTROS*/
@@ -708,7 +702,7 @@ class MSale extends CI_Model {
                                     /*registra descuento 0 comision del 2%*/
                                     $this->db->query("INSERT INTO config_venta_detalle 
                                                     (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('final_otros_descuento')).",'".$this->config->item('final_otros_comision')."',NOW())
                                                     ");
                                 }
                             }
@@ -732,7 +726,7 @@ class MSale extends CI_Model {
                             /*registra descuento 25% comision del 2%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * 0.25).",'0.02',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('gim_inside_descuento')).",'".$this->config->item('gim_inside_comision')."',NOW())
                                             ");
                         } else {
                             /*Si el producto es WISE*/
@@ -740,7 +734,7 @@ class MSale extends CI_Model {
                                 /*registra descuento 0 comision del 5%*/
                                 $this->db->query("INSERT INTO config_venta_detalle 
                                                 (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('gim_wise_descuento')).",'".$this->config->item('gim_wise_comision')."',NOW())
                                                 ");
                             } else {
                                 /*Si el producto es OTROS*/
@@ -748,7 +742,7 @@ class MSale extends CI_Model {
                                     /*registra descuento 0 comision del 2%*/
                                     $this->db->query("INSERT INTO config_venta_detalle 
                                                     (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('gim_otros_descuento')).",'".$this->config->item('gim_otros_comision')."',NOW())
                                                     ");
                                 }
                             }
@@ -772,7 +766,7 @@ class MSale extends CI_Model {
                             /*registra descuento 33% comision del 2%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * 0.33).",'0.02',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('mayor_inside_descuento')).",'".$this->config->item('mayor_inside_comision')."',NOW())
                                             ");
                         } else {
                             /*Si el producto es WISE*/
@@ -780,7 +774,7 @@ class MSale extends CI_Model {
                                 /*registra descuento 0 comision del 5%*/
                                 $this->db->query("INSERT INTO config_venta_detalle 
                                                 (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('mayor_wise_descuento')).",'".$this->config->item('mayor_wise_comision')."',NOW())
                                                 ");
                             } else {
                                 /*Si el producto es OTROS*/
@@ -788,7 +782,7 @@ class MSale extends CI_Model {
                                     /*registra descuento 0 comision del 2%*/
                                     $this->db->query("INSERT INTO config_venta_detalle 
                                                     (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('mayor_otros_descuento')).",'".$this->config->item('mayor_otros_comision')."',NOW())
                                                     ");
                                 }
                             }
@@ -812,7 +806,7 @@ class MSale extends CI_Model {
                             /*registra descuento 38% comision del 2%*/
                             $this->db->query("INSERT INTO config_venta_detalle 
                                             (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * 0.38)."','0.02',NOW())
+                                            VALUES ('".$cliente."','".$row_list['idProducto']."','".($row_list['valorProducto'] * $this->config->item('supmayor_inside_descuento'))."','".$this->config->item('supmayor_inside_comision')."',NOW())
                                             ");
                         } else {
                             /*Si el producto es WISE*/
@@ -820,7 +814,7 @@ class MSale extends CI_Model {
                                 /*registra descuento 0 comision del 5%*/
                                 $this->db->query("INSERT INTO config_venta_detalle 
                                                 (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.05',NOW())
+                                                VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('supmayor_wise_descuento')).",'".$this->config->item('supmayor_wise_comision')."',NOW())
                                                 ");
                             } else {
                                 /*Si el producto es OTROS*/
@@ -828,7 +822,7 @@ class MSale extends CI_Model {
                                     /*registra descuento 0 comision del 2%*/
                                     $this->db->query("INSERT INTO config_venta_detalle 
                                                     (idCliente, idProducto, valorDescProd, porcenComisionProd,fechaAjuste)
-                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',0,'0.02',NOW())
+                                                    VALUES ('".$cliente."','".$row_list['idProducto']."',".($row_list['valorProducto'] * $this->config->item('supmayor_otros_descuento')).",'".$this->config->item('supmayor_otros_comision')."',NOW())
                                                     ");
                                 }
                             }
