@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <table style="width: 100%">
                                     <tr>
                                         <td align="center" style="font-size: 20px; font-weight:bold;">
-                                            TURNO <?php echo $turno; ?>
+                                            TURNO <?php //echo $turno; ?>
                                         </td>
                                     </tr>                               
                                 </table>
