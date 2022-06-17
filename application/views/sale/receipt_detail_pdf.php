@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <td style="width: 50%; padding-left: 5%">
                                             <p>
                                                 <span style="font-weight: bold; font-size: 20px; color: #000000">Body Power Colombia</span> <br />
-                                                <span style="font-weight: 400;">German Escobar</span> <br />
+                                                <!--<span style="font-weight: 400;">German Escobar</span> <br />-->
                                                 <span style="font-weight: 400;">Cra 42 #28a-82 Villas del Sur</span><br />
                                                 <span style="font-weight: 400;">Cali - Valle del Cauca</span>
                                             </p>
