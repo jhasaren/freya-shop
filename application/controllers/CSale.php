@@ -588,6 +588,7 @@ class CSale extends CI_Controller {
                     $this->session->unset_userdata('idSale'); 
                     $this->session->unset_userdata('sdescuento');
                     $this->session->unset_userdata('sservicio');
+                    $this->session->unset_userdata('sclientcategory');
 
                     //$this->boards(2);
                     redirect('CSale/boards/2', 'refresh');
