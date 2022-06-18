@@ -504,7 +504,7 @@ class MUser extends CI_Model {
                  * Cuando la conexion a BD va con host:localhost aqui se debe configurar el valor 'localhost',
                  * cuando la conexion va con direccion ip remota se debe configurar el valor '%'
                  */
-                $typeHost = '%';
+                $typeHost = 'localhost';
                 $this->db->trans_strict(TRUE);
                 $this->db->trans_start();
                 $this->db->query("CREATE USER '".$identificacion."'@'".$typeHost."' IDENTIFIED BY 'Jh4s4r3n2020'");
