@@ -191,9 +191,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <td style="width: 15%; height: 18px;">$0</td>
                                     </tr>
                                     <tr style="height: 18px;">
-                                        <td style="width: 70%; height: 18px;">Nro. CUENTA DE AHORROS <span style="font-weight: bold;">912131487-32</span> de BANCOLOMBIA</td>
-                                        <td style="width: 15%; height: 18px; font-weight: bold; font-size: 14px; background-color: #cccccc">PENDIENTE</td>
-                                        <td style="width: 15%; height: 18px; font-size: 14px; background-color: #cccccc"><?php echo "$".number_format(($general->valorLiquida + ($general->valorLiquida * $general->porcenServicio))-$pagado, 0, ',', '.'); ?> CO</td>
+                                        <td style="width: 70%; height: 18px;">Distribuidor Oficial <span style="font-weight: bold;">productos y suplementos deportivos.</span></td>
+                                        <td style="width: 15%; height: 18px; font-weight: bold; font-size: 14px; background-color: #cccccc">TOTAL</td>
+                                        <td style="width: 15%; height: 18px; font-size: 14px; background-color: #cccccc"><?php echo "$".number_format($general->valorLiquida + ($general->valorLiquida * $general->porcenServicio), 0, ',', '.'); ?> CO</td>
                                     </tr>
                                 </tbody>
                             </table>
