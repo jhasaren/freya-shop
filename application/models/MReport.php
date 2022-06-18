@@ -15,6 +15,7 @@ class MReport extends CI_Model {
         /*instancia la clase de conexion a la BD para este modelo*/
         parent::__construct();
         $this->load->driver('cache'); /*Carga cache*/
+        $this->db->query("SET time_zone='-5:00'");
         
     }
         
@@ -266,6 +267,54 @@ class MReport extends CI_Model {
                                 WHERE
                                 m.idEstadoRecibo = 5
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
+        
+        if ($query->num_rows() == 0) {
+            
+            return false;
+            
+        } else {
+            
+            return $query->result_array();
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: payment_salesproduct
+     * Descripcion: Detalle de ventas por producto (comisiones)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function payment_salesproduct($fechaIni,$fechaFin) {
+        
+        $query = $this->db->query("SELECT
+                                v.idRegistroDetalle,
+                                v.idProducto,
+                                p.descProducto,
+                                p.valorProducto as valorActual,
+                                v.cargoEspecial,
+                                v.cantidad,
+                                v.valor as valorVenta,
+                                v.valorEmpleado,
+                                v.idEmpleado,
+                                concat('[',m.nroRecibo,'] ',t.descEstadoRecibo) as recibo,
+                                (m.valorTotalVenta-m.valorLiquida) as valorDescuento,
+                                (SELECT lg.idRegistroDetalle 
+                                FROM log_venta_manual lg
+                                WHERE lg.idRegistroDetalle = v.idRegistroDetalle) as ajuste_manual,
+                                m.valorLiquida,
+                                concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido) as nombre_cliente,
+                                m.fechaPideCuenta
+                                FROM venta_detalle v
+                                JOIN venta_maestro m ON m.idVenta = v.idVenta
+                                JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
+                                LEFT JOIN productos p ON p.idProducto = v.idProducto
+                                WHERE
+                                t.idEstadoRecibo = 5
+                                AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                ORDER BY m.fechaPideCuenta");
         
         if ($query->num_rows() == 0) {
             

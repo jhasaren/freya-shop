@@ -163,12 +163,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <i class="glyphicon glyphicon-search glyphicon-white"></i> Consultar Otro
                                 </a>
                                 <!--Reimprime Ticket-->
-                                <form role="form" name="form_tick_sale" action="<?php echo base_url().'index.php/CReport/reimprimeticket'; ?>" method="post">
+                                <!--Ajuste 29/May/2022: Se omite reimpresion del ticket en el detalle de recibo debido que en la v Online no funciona ESCPOS
+                                <form role="form" name="form_tick_sale" action="<?php //echo base_url().'index.php/CReport/reimprimeticket'; ?>" method="post">
                                     <button type="submit" class="btn btn-success btn-lg">
                                         <i class="glyphicon glyphicon-check glyphicon-white"></i>
                                         Reimprimir Ticket
                                     </button>
                                 </form>
+                                -->
                                 <!--Fin: Reimprime Ticket-->
                             </center>
                             

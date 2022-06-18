@@ -135,11 +135,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         if ($list_user != FALSE) {
                                             foreach ($list_user as $row_list){
                                                 ?>
-                                                <tr>
-                                                    <td class="center"><?php echo $row_list['nombre_usuario']." [ID. ".$row_list['idUsuario']."]"; ?></td>
-                                                    <td class="center"><?php echo $row_list['numCelular']; ?></td>
+                                                <tr style="background-color: #2A3F54;">
+                                                    <td class="center green"><?php echo $row_list['nombre_usuario']." [ID. ".$row_list['idUsuario']."]"; ?></td>
+                                                    <td class="center blue"><?php echo $row_list['numCelular']; ?></td>
                                                     <td class="center"><?php echo $row_list['descTipoUsuario']; ?></td>
-                                                    <td class="center"><?php echo $row_list['descTipoProveedor']; ?></td>
+                                                    <td class="center"><?php echo $row_list['descTipoProveedor']."".$row_list['categoria']; ?></td>
                                                     <td class="center">
                                                         <?php if ($row_list['activo'] == 'S') { ?>
                                                         <span class="label label-success">Activo</span>
@@ -156,6 +156,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/calendarempleado/'.$row_list['idUsuario']; ?>">
                                                             <i class="glyphicon glyphicon-time"></i>
                                                             Horario
+                                                        </a>
+                                                        <?php } ?>
+                                                        <?php if (($this->config->item('mod_commision') == 1) && ($row_list['idTipoUsuario'] == 2) && ($this->session->userdata('perfil') == 'SUPERADMIN')) { ?>
+                                                        <a class="btn btn-default btn-sm" href="<?php echo base_url().'index.php/CUser/configcomisiondescuento/'.$row_list['idUsuario']; ?>">
+                                                            <i class="glyphicon glyphicon-cog"></i>
+                                                            Descuento/Comisión
                                                         </a>
                                                         <?php } ?>
                                                     </td>
@@ -225,6 +231,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php } else { ?>
                                 <input type="hidden" id="diacumple1" name="diacumple" value="31">
                                 <input type="hidden" id="mescumple" name="mescumple" value="12">
+                                <?php } ?>
+
+                                <?php if ($this->config->item('category_client') == 1) { ?>
+                                <select class="form-control" name="cat_client">
+                                     <option value="CLIENTE_FINAL">CLIENTE FINAL</option>
+                                     <option value="GIMNASIO_ENTRENADOR">GIMNASIO / ENTRENADOR</option>
+                                     <option value="MAYORISTA">MAYORISTA</option>
+                                     <option value="SUPERMAYORISTA">SUPERMAYORISTA</option>
+                                </select>
+                                <?php } else { ?>
+                                <input type="hidden" id="cat_client" name="cat_client" value="">
                                 <?php } ?>
                                 
                             </div>

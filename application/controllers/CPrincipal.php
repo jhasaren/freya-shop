@@ -158,6 +158,7 @@ class CPrincipal extends CI_Controller {
                             log_message("DEBUG", "Inicio de Sesion");
                             log_message("DEBUG", $this->session->userdata('validated'));
                             log_message("DEBUG", $this->session->userdata('userid'));
+                            log_message("DEBUG", $this->session->userdata('perfil'));
                             log_message("DEBUG", "=================================");
 
                             //$this->index();
@@ -293,6 +294,7 @@ class CPrincipal extends CI_Controller {
         $this->cache->memcached->delete('mListundmedida');
         $this->cache->memcached->delete('mListboards');
         $this->cache->memcached->delete('mListProductSale');
+        $this->cache->memcached->delete('mListProductSaleClient');
         $this->cache->memcached->delete('mListServiceSale');
         $this->cache->memcached->delete('mListproducts');
         $this->cache->memcached->delete('mListservices');

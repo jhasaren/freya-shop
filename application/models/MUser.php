@@ -15,12 +15,13 @@ class MUser extends CI_Model {
         /*instancia la clase de conexion a la BD para este modelo*/
         parent::__construct();
         $this->load->driver('cache'); /*Carga cache*/
+        $this->db->query("SET time_zone='-5:00'");
         
     }
     
     /**************************************************************************
      * Nombre del Metodo: list_users
-     * Descripcion: Obtiene todos los usuarios creados
+     * Descripcion: Obtiene todos los usuarios creados (administrador)
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/03/2017, Ultima modificacion: 
      **************************************************************************/
@@ -43,12 +44,64 @@ class MUser extends CI_Model {
                                     a.idTipoUsuario,
                                     a.numCelular,
                                     a.activo,
-                                    tpr.descTipoProveedor
+                                    tpr.descTipoProveedor,
+                                    a.categoria
                                     FROM
                                     app_usuarios a
                                     JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
                                     LEFT JOIN usuario_tipo_proveedor tp ON tp.idUsuario = a.idUsuario
                                     LEFT JOIN tipo_proveedor tpr ON tpr.idTipoProveedor = tp.idTipoProveedor");
+
+            $this->cache->memcached->save('mListusers', $query->result_array(), 28800); /*8 horas en Memoria*/
+            $this->cache->memcached->save('memcached5', 'real', 30);
+            
+            if ($query->num_rows() == 0) {
+
+                return false;
+
+            } else {
+
+                return $query->result_array();
+
+            }
+        }
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: list_users_empl
+     * Descripcion: Obtiene todos los usuarios creados (empleados), no lista usuarios administradores
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function list_users_empl() {
+        
+        $dataCache = $this->cache->memcached->get('mListusers');
+        
+        if ($dataCache){
+            
+            $this->cache->memcached->save('memcached5', 'cache', 30);
+            return $dataCache;
+            
+        } else {
+        
+            /*Recupera los usuarios creados*/
+            $query = $this->db->query("SELECT
+                                    a.idUsuario,
+                                    concat(a.nombre,' ',a.apellido) as nombre_usuario,
+                                    t.descTipoUsuario,
+                                    a.idTipoUsuario,
+                                    a.numCelular,
+                                    a.activo,
+                                    tpr.descTipoProveedor,
+                                    a.categoria
+                                    FROM
+                                    app_usuarios a
+                                    JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
+                                    LEFT JOIN usuario_tipo_proveedor tp ON tp.idUsuario = a.idUsuario
+                                    LEFT JOIN tipo_proveedor tpr ON tpr.idTipoProveedor = tp.idTipoProveedor
+                                    LEFT JOIN usuario_acceso us ON us.idUsuario = a.idUsuario
+                                    WHERE
+                                    us.idRol <> 1");
 
             $this->cache->memcached->save('mListusers', $query->result_array(), 28800); /*8 horas en Memoria*/
             $this->cache->memcached->save('memcached5', 'real', 30);
@@ -140,7 +193,8 @@ class MUser extends CI_Model {
                                 u.idRol,
                                 r.descRol,
                                 a.idSede,
-                                s.nombreSede
+                                s.nombreSede,
+                                a.categoria
                                 FROM app_usuarios a
                                 JOIN tipo_usuario t ON t.idTipoUsuario = a.idTipoUsuario
                                 JOIN fecha_cumple_usuario f ON f.idUsuario = a.idUsuario
@@ -324,7 +378,7 @@ class MUser extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function create_user($name,$lastname,$identificacion,$direccion,$celular,$email,$tipo,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,$tproveedor) {
+    public function create_user($name,$lastname,$identificacion,$direccion,$celular,$email,$tipo,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,$tproveedor,$categoria) {
             
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
@@ -340,7 +394,8 @@ class MUser extends CI_Model {
                                     idTipoUsuario,
                                     activo,
                                     fechaRegistro,
-                                    idSede
+                                    idSede,
+                                    categoria
                                     ) VALUES (
                                     1,
                                     ".$identificacion.",
@@ -352,7 +407,8 @@ class MUser extends CI_Model {
                                     ".$tipo.",
                                     'S',
                                     NOW(),
-                                    '".$sede."'
+                                    '".$sede."',
+                                    '".$categoria."'
                                     )");
 
         $query2 = $this->db->query("INSERT INTO
@@ -549,7 +605,7 @@ class MUser extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 26/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede) {
+    public function update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria) {
             
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
@@ -561,7 +617,8 @@ class MUser extends CI_Model {
                                     direccion = '".$direccion."',
                                     email = '".$email."',
                                     activo = '".$valueState."',
-                                    idSede = '".$sede."'
+                                    idSede = '".$sede."',
+                                    categoria = '".$categoria."'
                                     WHERE
                                     idUsuario = ".$identificacion."
                                     ");
@@ -626,6 +683,99 @@ class MUser extends CI_Model {
             
             return $query->result_array();
             
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: config_user_desc_comm
+     * Descripcion: Obtiene la configuracion de descuentos/comisiones para el cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function config_user_desc_comm($idUsuario) {
+        
+        /*Recupera los usuarios creados*/
+        $query = $this->db->query("SELECT 
+                                p.idProducto,
+                                p.descProducto,
+                                p.valorProducto,
+                                cv.idConfig,
+                                cv.idCliente,
+                                cv.valorDescProd,
+                                (cv.porcenComisionProd * 100) as porcenComisionProd,
+                                g.descGrupoServicio
+                                FROM productos p
+                                JOIN grupo_servicio g ON g.idGrupoServicio = p.idGrupoServicio
+                                LEFT JOIN config_venta_detalle cv ON cv.idProducto = p.idProducto and cv.idCliente = '".$idUsuario."'
+                                WHERE p.activo = 'S'
+                                AND p.idTipoProducto = 2");
+        
+        if ($query->num_rows() == 0) {
+            
+            return false;
+            
+        } else {
+            
+            return $query->result_array();
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: save_config_user
+     * Descripcion: Guarda registro de configuracion descuento/comision
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function save_config_user($idConfig,$idProducto,$idUsuario,$valorDescuento,$porcenComision) {
+        
+        $this->db->trans_strict(TRUE);
+        $this->db->trans_start();
+
+        if ($idConfig == ""){
+
+            $this->db->query("INSERT INTO config_venta_detalle(
+                                idCliente,
+                                idProducto,
+                                valorDescProd,
+                                porcenComisionProd,
+                                fechaAjuste,
+                                usuarioAjuste
+                            ) VALUES (
+                                '".$idUsuario."',
+                                ".$idProducto.",
+                                ".$valorDescuento.",
+                                ".($porcenComision/100).",
+                                NOW(),
+                                '".$this->session->userdata('userid')."')");
+
+        } else {
+
+            $this->db->query("UPDATE config_venta_detalle
+                                SET 
+                                valorDescProd = ".$valorDescuento.",
+                                porcenComisionProd = ".($porcenComision/100).",
+                                fechaAjuste = NOW(),
+                                usuarioAjuste = '".$this->session->userdata('userid')."'
+                                WHERE
+                                idConfig = ".$idConfig."
+                                ");
+
+        }
+
+        $this->db->trans_complete();
+        $this->db->trans_off();
+
+        if ($this->db->trans_status() === FALSE){
+
+            return false;
+
+        } else {
+
+            return true;
+
         }
         
     }

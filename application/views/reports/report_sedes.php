@@ -72,6 +72,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
                                 </span>
                             </div>
+                            <?php 
+                            if ($this->config->item('mod_commision') == 1){ //Manejo de Comisiones habilitado
+                            ?>
+                            <div class="input-group">
+                                <div></div>
+                                <span class="input-group-btn">
+                                    <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
+                                </span>
+                            </div>
+                            <?php 
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -180,7 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Consolidado</h2>
+                                                <h2>Consolidado General</h2>
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -248,9 +260,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <h2>Detalle de Recibos Pagados</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Liquidado:</B> valor con descuento a servicios |
-                                                <B>Ingreso en Caja:</B> Liquidado + Propina <br />
-                                                <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo
+                                                <B>Ingreso en Caja:</B> valor con descuento
+                                                <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
+                                                <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -266,7 +278,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Fecha Pago</th>
                                                             <th>Venta</th>
                                                             <th>Descto.</th>
-                                                            <th>Liquidado</th>
+                                                            <th>Ingreso Caja</th>
                                                             <th>Propina</th>
                                                             <th>Impuesto</th>
                                                             <th>Empleado</th>
@@ -305,7 +317,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <!-- /detalle pagos por sede--> 
-                                    
+
                                 <?php } ?>
                             </div>
                         </div>

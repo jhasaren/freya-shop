@@ -60,6 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             'sdescuento' => ($porcenInList->porcenDescuento*100),
                             'sservicio' => ($porcenInList->porcenServicio*100),
                             'sclient' => $clientInList->idUsuario,
+                            'sclientcategory' => $clientInList->categoria,
                             'sempleado' => $porcenInList->idEmpleadoAtiende
                         );
                         $this->session->set_userdata($datos_session);
@@ -224,6 +225,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                         </a>    
                                     </div>
+                                    
+                                    <?php if ($this->config->item('mod_commision') == 1) { ?>
+                                    <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                                        <a class="btn-saledescMan" href="#">
+                                            <div class="bs-glyphicons">
+                                                <ul class="bs-glyphicons-list">
+                                                    <li>
+                                                        <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                                                        <span class="glyphicon-class" style="font-size: 14px;">
+                                                            Descuento/comisión manual
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php } else { ?>
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saledesc" href="#">
                                             <div class="bs-glyphicons">
@@ -244,7 +262,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </ul>
                                             </div>
                                         </a>
-                                    </div>
+                                    </div>    
+                                    <?php } ?>
                                     <div class="animated flipInY col-lg-2 col-md-2 col-sm-2 col-xs-6">
                                         <a class="btn-saleempleado" href="#">
                                             <div class="bs-glyphicons">
@@ -271,7 +290,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="x_content" style="color: white;">
-                                                Nombre: <?php echo $clientInList->nombre_usuario; ?><br />
+                                                Nombre: <?php echo $clientInList->nombre_usuario; ?> | 
+                                                <?php if ($this->config->item('category_client') == 1) { ?>
+                                                Categoría: <?php echo $clientInList->categoria; ?><br />
+                                                <?php } ?>
                                                 Dirección: <?php echo $clientInList->direccion; ?> | 
                                                 Telefono: <?php echo $clientInList->numCelular; ?> |
                                                 Email: <?php echo $clientInList->email; ?>
@@ -345,7 +367,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <?php } ?>
                                     <?php if ($productInList != NULL){ ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-8 col-sm-8 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title" style="background-color: #5ec0ff; color: black;">
                                                 <h2>Productos</h2>
@@ -358,7 +380,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Id</th>
                                                             <th>Nombre</th>
                                                             <th>Cant</th>
-                                                            <th>Valor</th>
+                                                            <th>Precio Público</th>
+                                                            <th>Precio Cliente</th>
+                                                            <th>Comisión</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
@@ -370,7 +394,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <th scope="row"><?php echo $row_product_in['idRegistroDetalle']; ?></th>
                                                                 <td><?php echo $row_product_in['descProducto']; ?></td>
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
-                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.'); ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.')." (-".(number_format(100-(($row_product_in['valor']/$row_product_in['valorProducto'])*100),1,',','.'))."%)"; ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(number_format(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100,1,',','.'))."%)"; ?></td>
                                                                 <td>
                                                                 <?php 
                                                                 if ($porcenInList->idEstadoRecibo != 8) {
@@ -389,7 +415,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     </div>
                                     <?php } ?>
                                     <?php if ($adicionalInList != NULL){ ?>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title" style="background-color: #E8E792; color: black;">
                                                 <h2>Cargos Adicionales</h2>
@@ -734,6 +760,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <!--<option value="CAMBIO_DE_MESA">Cambio de Mesa</option>-->
                                     <!--<option value="CORTESIAS">Cortesias</option>-->
                                     <option value="ERROR_SISTEMA">Error Sistema</option>
+                                    <option value="CAMBIO_CLIENTE">Cambio de Cliente</option>
                                 </select>
                             </div>
                             <br />
@@ -771,7 +798,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <form role="form" name="form_descuento" action="<?php echo base_url() . 'index.php/CSale/addporcentdesc'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Servicio/Descuento</h3>
+                            <h3>Descuento manual</h3>
                         </div>
                         <div class="modal-body">
                             <?php 
@@ -824,6 +851,79 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </div>
+
+        <!--Modal - Descuento Manual - Comisiones-->
+        <div class="modal fade" id="myModal-descMan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-descMan" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <?php 
+                    /*12/08/2019: Se agrego parametro para permitir modificaciones al rol Empleado cuando recibo ya este liquidado*/
+                    if ($this->config->item('permiso_modif_recibo') == 0){
+                        if ($porcenInList->idEstadoRecibo == 2){ 
+                            $stateInput = "readonly";
+                        } else {
+                            $stateInput = "";
+                        }
+                    }
+                    ?>
+                    <form role="form" name="form_descuento_man" action="<?php echo base_url() . 'index.php/CSale/addporcentdescman'; ?>" method="post" onsubmit="document.getElementById('btn-click-desc').disabled=true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h3>Descuento manual</h3>
+                        </div>
+                        <div class="modal-body">
+                            <?php 
+                            /*Si el recibo esta liquidado y el perfil no es superadmin, no permite el cambio*/
+                            /*
+                             * 12/08/2019: Se agrego parametro para permitir modificaciones al rol Empleado cuando recibo ya este liquidado
+                             */
+                            if ($this->config->item('permiso_modif_recibo') == 0){
+                                if (($porcenInList->idEstadoRecibo == 2) && $this->session->userdata('perfil') != 'SUPERADMIN') { 
+                                    $stateInput = "readonly";
+                                    $stateButton = "disabled";
+                                    ?>
+                                    <div class="alert alert-info">
+                                        No se puede modificar. El recibo ya se encuentra liquidado.
+                                    </div>
+                                    <?php 
+                                } else { 
+                                    $stateInput = ""; 
+                                }
+                            }
+                            ?>
+                            <input type="hidden" id="subtotal_venta" name="subtotal_venta" value="<?php echo $subtotal; ?>" >
+                            
+                            <div class="controls">
+                                <select class="select2_single form-control" id="idproductoventa" name="idproductoventa" data-rel="chosen">
+                                    <?php
+                                    if ($productInList != NULL){
+                                        foreach ($productInList as $row_prod_inlist) {
+                                            ?>
+                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor'].'|'.$row_prod_inlist['valorEmpleado']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <br />
+                            <label class="control-label" for="Porcentaje">Descuento para el Cliente ($)</label>
+                            <input type="tel" class="form-control" id="value_desct" name="value_desct" placeholder="$ Valor" value="0" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
+                            <br />
+                            <label class="control-label" for="Porcentaje">Comisión Empleado (%)</label>
+                            <input type="tel" class="form-control" id="porcen_comm" name="porcen_comm" placeholder="% Porcentaje" value="0" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*" >
+                            <br />
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            <?php if ($productInList != NULL){ ?>
+                            <button type="submit" id="btn-click-desc" class="btn btn-primary" <?php echo $stateButton; ?>>Agregar</button>
+                            <?php } ?>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <!--Modal - Agregar Nuevo usuario Cliente -->
         <div class="modal fade" id="myModal-nc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-nc" aria-hidden="true">
@@ -870,6 +970,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="hidden" id="diacumple" name="diacumple" value="31">
                                 <input type="hidden" id="mescumple" name="mescumple" value="12">
                                 <?php } ?>
+
+                                <?php if ($this->config->item('category_client') == 1) { ?>
+                                <select class="form-control" name="cat_client">
+                                     <option value="CLIENTE_FINAL">CLIENTE FINAL</option>
+                                     <option value="GIMNASIO_ENTRENADOR">GIMNASIO / ENTRENADOR</option>
+                                     <option value="MAYORISTA">MAYORISTA</option>
+                                     <option value="SUPERMAYORISTA">SUPERMAYORISTA</option>
+                                </select>
+                                <?php } else { ?>
+                                <input type="hidden" id="cat_client" name="cat_client" value="">
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -915,13 +1026,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     var servicios = [
         <?php 
-        foreach ($list_service as $row_service) {
-            if ($row_service['agotado'] < 1){
-                ?>
-                { value: '<?php echo $row_service['idServicio']." | ".$row_service['valorServicio']." | ".$row_service['descGrupoServicio']." | ".$row_service['descServicio']; ?>' },
-                <?php 
-            }
-        } 
+        if ($list_service != NULL){
+            foreach ($list_service as $row_service) {
+                if ($row_service['agotado'] < 1){
+                    ?>
+                    { value: '<?php echo $row_service['idServicio']." | ".$row_service['valorServicio']." | ".$row_service['descGrupoServicio']." | ".$row_service['descServicio']; ?>' },
+                    <?php 
+                }
+            } 
+        }
         ?>
     ];
     $('#idservice').autocomplete({
@@ -930,7 +1043,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     var productos = [
         <?php foreach ($list_product as $row_product) { ?>
-            { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['codigoBarras']." | ".$row_product['descProducto']; ?>' },
+            { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['valorDescProd']." | ".$row_product['valorEmpleado']." | ".$row_product['descProducto']; ?>' },
         <?php } ?>
         <?PHP //echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['descGrupoServicio']." | ".$row_product['descProducto'] ?>
     ];

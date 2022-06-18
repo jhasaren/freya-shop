@@ -530,7 +530,7 @@ $config['proxy_ips'] = '';
 | Nombre del Restaurante
 |--------------------------------------------------------------------------
 */
-$config['namebussines'] = "FREYA SHOP";
+$config['namebussines'] = "BODY POWER";
 
 /*
 |--------------------------------------------------------------------------
@@ -550,7 +550,7 @@ $config['namebussines'] = "FREYA SHOP";
 | ya que esta se encuentra sujeta al contrato comercial adquirido.
 |
 */
-$config['empleados'] = 2;
+$config['empleados'] = 10;
 
 /*
 |--------------------------------------------------------------------------
@@ -575,7 +575,7 @@ $config['porcen_consumo'] = 0;
 | permiso_elim_item -> (0-no, 1-si)
 |--------------------------------------------------------------------------
 */
-$config['permiso_elim_item'] = 1;
+$config['permiso_elim_item'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -665,7 +665,27 @@ $config['bday_cliente'] = 0;
  * 1-habilitar, 0-deshabilitar
 |--------------------------------------------------------------------------
 */
-$config['sms_ccobro'] = 1;
+$config['sms_ccobro'] = 0;
+
+
+/*
+|--------------------------------------------------------------------------
+| Modo de Impresion de Ticket
+ * Permite controlar la funcionalidad
+ * 1-local, 0-online
+|--------------------------------------------------------------------------
+*/
+$config['print_mode_ticket'] = 0;
+
+
+/*
+|--------------------------------------------------------------------------
+| Reporte de Comisiones
+ * Permite controlar la funcionalidad
+ * 1-habilitar, 0-deshabilitar
+|--------------------------------------------------------------------------
+*/
+$config['mod_commision'] = 1;
 
 
 /*
@@ -686,6 +706,52 @@ $config['ws_cat_app'] = 0;
  *  pwd_client
 |--------------------------------------------------------------------------
 */
-$config['user_client'] = "00486983804";
-$config['pwd_client'] = "Jh4s4r3n2020";
-$config['key_client'] = "5c9eace3f9f526bcdb5dc0006df3ad2a214e5ca6";
+$config['user_client'] = "";
+$config['pwd_client'] = "";
+$config['key_client'] = "";
+
+
+/*
+|--------------------------------------------------------------------------
+| Categoria del Cliente
+ * Permite controlar la funcionalidad
+ * 1-habilitar, 0-deshabilitar
+|--------------------------------------------------------------------------
+*/
+$config['category_client'] = 1;
+
+
+/*
+|--------------------------------------------------------------------------
+| Configuracion % Descuentos Comision
+| * Solo aplica si $config['mod_commision'] = 1;
+|--------------------------------------------------------------------------
+*/
+/*CLIENTE_FINAL*/
+$config['final_wise_descuento'] = 0;
+$config['final_wise_comision'] = 0.05;
+$config['final_inside_descuento'] = 0;
+$config['final_inside_comision'] = 0.02;
+$config['final_otros_descuento'] = 0;
+$config['final_otros_comision'] = 0.02;
+/*GIMNASIO_ENTRENADOR*/
+$config['gim_wise_descuento'] = 0;
+$config['gim_wise_comision'] = 0.05;
+$config['gim_inside_descuento'] = 0.25;
+$config['gim_inside_comision'] = 0.02;
+$config['gim_otros_descuento'] = 0;
+$config['gim_otros_comision'] = 0.02;
+/*MAYORISTA*/
+$config['mayor_wise_descuento'] = 0;
+$config['mayor_wise_comision'] = 0.05;
+$config['mayor_inside_descuento'] = 0.33;
+$config['mayor_inside_comision'] = 0.02;
+$config['mayor_otros_descuento'] = 0;
+$config['mayor_otros_comision'] = 0.02;
+/*SUPERMAYORISTA*/
+$config['supmayor_wise_descuento'] = 0;
+$config['supmayor_wise_comision'] = 0.05;
+$config['supmayor_inside_descuento'] = 0.38;
+$config['supmayor_inside_comision'] = 0.02;
+$config['supmayor_otros_descuento'] = 0;
+$config['supmayor_otros_comision'] = 0.02;

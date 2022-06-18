@@ -150,6 +150,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <?php if ($this->config->item('bday_cliente') == 1) { ?>
                                             <strong>Fecha Cumpleaños</strong><input type="text" class="form-control" id="fechacumple" name="fechacumple" value="<?php echo $data_user->dia.' del Mes '.$data_user->mes; ?>" disabled="" >
                                             <?php } ?>
+                                            <?php 
+                                            /*Tiene habilitada funcionalidad de Categoria del Cliente, y el tipo de usuario es 2-cliente*/
+                                            if ($this->config->item('category_client') == 1 && $data_user->idTipoUsuario == 2) { 
+                                            ?> 
+                                            <strong>Categoría</strong>
+                                            <select class="form-control" name="cat_client">
+                                                <option value="CLIENTE_FINAL" <?php if($data_user->categoria == 'CLIENTE_FINAL') echo "selected"; ?> >CLIENTE FINAL</option>
+                                                <option value="GIMNASIO_ENTRENADOR" <?php if($data_user->categoria == 'GIMNASIO_ENTRENADOR') echo "selected"; ?> >GIMNASIO / ENTRENADOR</option>
+                                                <option value="MAYORISTA" <?php if($data_user->categoria == 'MAYORISTA') echo "selected"; ?> >MAYORISTA</option>
+                                                <option value="SUPERMAYORISTA" <?php if($data_user->categoria == 'SUPERMAYORISTA') echo "selected"; ?> >SUPERMAYORISTA</option>
+                                            </select>
+                                            <?php } ?>
                                         </div>
                                         <div class="form-group">
                                             <label for="tipousuario">Tipo</label>

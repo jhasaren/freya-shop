@@ -150,6 +150,13 @@ class CReport extends CI_Controller {
                     $this->load->view('reports/report_ganperd',$info);
 
                 }
+
+                if ($report == 'reportComm'){
+                    
+                    $info['dataRow'] = 0;
+                    $this->load->view('reports/report_comm',$info);
+
+                }
             
             } else {
                 
@@ -727,6 +734,66 @@ class CReport extends CI_Controller {
                     $info['dataRow'] = 2;
                     $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
                     $this->load->view('reports/report_sedes',$info);
+
+                }
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: paymentcomm
+     * Descripcion: genera reporte de comisiones (ventas por producto)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function paymentcomm() {
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(10)){
+                
+                /*Captura Variables*/
+                $dateRange = explode("|",$this->input->post('dateRangeInput'));
+                                
+                $date1 = new DateTime($dateRange[0]); 
+                $fechaini = $date1->format('Y-m-d H:i:s'); 
+                
+                $date2 = new DateTime($dateRange[1]); 
+                $fechafin = $date2->format('Y-m-d H:i:s');
+                
+                log_message("DEBUG", "----------------------------------");
+                log_message("DEBUG", "***Reporte Comisiones***");
+                log_message("DEBUG", $fechaini);
+                log_message("DEBUG", $fechafin);
+                log_message("DEBUG", "*********************************");
+                
+                /*Consulta Modelo detalle pagos por sede*/
+                $paymentDataSales = $this->MReport->payment_salesproduct($fechaini,$fechafin);
+
+                if ($paymentDataSales == TRUE){
+
+                    $info['fechaIni'] = $fechaini;
+                    $info['fechaFin'] = $fechafin;
+                    $info['dataRow'] = 1;
+                    $info['paymentDataSedes'] = $paymentDataSales;
+                    $this->load->view('reports/report_comm',$info);
+
+                } else {
+
+                    $info['dataRow'] = 2;
+                    $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
+                    $this->load->view('reports/report_comm',$info);
 
                 }
             

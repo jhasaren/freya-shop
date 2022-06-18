@@ -14,6 +14,7 @@ class MRecurso extends CI_Model {
         
         /*instancia la clase de conexion a la BD para este modelo*/
         parent::__construct();
+        $this->db->query("SET time_zone='-5:00'");
         
     }
         

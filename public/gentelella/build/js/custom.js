@@ -369,6 +369,23 @@ $(document).ready(function () {
         $("#typereg").val(type);
         $('#myModal-itemdel').modal('show');
     });
+    /*Modal - Configurar Item Descuento/Comision*/
+    $('.btn-itemconfig').click(function (e) {
+        e.preventDefault();
+        var idProducto = $(this).attr('data-rel');
+        var idUsuario = $(this).attr('data-rel2');
+        var idConfig = $(this).attr('data-rel3');
+        var valordesc = $(this).attr('data-rel4');
+        var commision = $(this).attr('data-rel5');
+        var descProducto = $(this).attr('data-rel6');
+        $("#idproducto").val(idProducto);
+        $("#idusuario").val(idUsuario);
+        $("#idconfig").val(idConfig);
+        $("#valordesc").val(valordesc);
+        $("#commision").val(commision);
+        $("#descProducto").val(descProducto);
+        $('#myModal-itemconfig').modal('show');
+    });
     /*Modal - Agregar Descuento Venta*/
     $('.btn-saledesc').click(function (e) {
         e.preventDefault();
@@ -379,6 +396,22 @@ $(document).ready(function () {
         });
         
         $('#myModal-desc').modal('show');
+        
+        if (e.keyCode === 13) {
+            // Trigger the button element with a click
+            document.getElementById("btn-click-desc").click();
+        }
+    });
+    /*Modal - Agregar Descuento Venta Manual - Comisiones*/
+    $('.btn-saledescMan').click(function (e) {
+        e.preventDefault();
+        
+        //to have your input focused every your modal open
+        $('#myModal-descMan').on("shown.bs.modal", function() {
+            $('#procentaje').focus();
+        });
+        
+        $('#myModal-descMan').modal('show');
         
         if (e.keyCode === 13) {
             // Trigger the button element with a click
@@ -2050,7 +2083,7 @@ function init_daterangepicker_single_call() {
     });
     $('#single_cal3').daterangepicker({
         singleDatePicker: true,
-        singleClasses: "picker_3"
+        singleClasses: "picker_1"
     }, function (start, end, label) {
         console.log(start.toISOString(), end.toISOString(), label);
     });

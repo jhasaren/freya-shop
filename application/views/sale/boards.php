@@ -104,6 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                 $color = "#F3BEB5"; /*mesa ocupada en proceso pago - rojo*/
                                                 $flag = $row_list['idVenta'];
+                                                $client = $row_list['idUsuarioCliente'];
                                                 $ocupation = "PENDIENTE PAGO";
                                                 
                                             } else {
@@ -112,12 +113,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                     $color = "#A8DFED"; /*mesa ocupada en pedido - azul*/
                                                     $flag = $row_list['idVenta'];
+                                                    $client = $row_list['idUsuarioCliente'];
                                                     $ocupation = "OCUPADA EN PEDIDO";
                                                     
                                                 } else {
                                                     
                                                     $color = "#CBEDA8"; /*mesa libre - verde*/
                                                     $flag = 0;
+                                                    $client = 0;
                                                     $ocupation = "LIBRE";
                                                     
                                                 }
@@ -128,7 +131,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <!--http://placehold.it/261x261-->
                                                     <img src="<?php echo base_url().'public/img/261x261S.jpg'; ?>" class="do-item do-circle">
                                                     <div class="do-info-wrap do-circle" style="background-color: <?php echo $color; ?>">
-                                                        <a href="<?php echo base_url().'index.php/CSale/createsale/'.$row_list['idMesa'].'/'.$flag; ?>">
+                                                        <a href="<?php echo base_url().'index.php/CSale/createsale/'.$row_list['idMesa'].'/'.$flag.'/'.$client; ?>">
                                                             <div class="do-info">
                                                                 <div class="do-info-front do-circle">
                                                                     <center>
@@ -164,6 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                 $color = "#F3BEB5"; /*mesa ocupada en proceso pago - rojo*/
                                                 $flag = $row_list_dom['idVenta'];
+                                                $client = $row_list['idUsuarioCliente'];
                                                 $ocupation = "PENDIENTE PAGO";
                                                 
                                             } else {
@@ -172,12 +176,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 
                                                     $color = "#A8DFED"; /*mesa ocupada en pedido - azul*/
                                                     $flag = $row_list_dom['idVenta'];
+                                                    $client = $row_list['idUsuarioCliente'];
                                                     $ocupation = "OCUPADA EN PEDIDO";
                                                     
                                                 } else {
                                                     
                                                     $color = "#CBEDA8"; /*mesa libre - verde*/
                                                     $flag = 0;
+                                                    $client = 0;
                                                     $ocupation = "LIBRE";
                                                     
                                                 }
@@ -188,7 +194,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <!--http://placehold.it/261x261-->
                                                     <img src="<?php echo base_url().'public/img/261x261D.jpg'; ?>" class="do-item do-circle">
                                                     <div class="do-info-wrap do-circle" style="background-color: <?php echo $color; ?>">
-                                                        <a href="<?php echo base_url().'index.php/CSale/createsale/'.$row_list_dom['idMesa'].'/'.$flag; ?>">
+                                                        <a href="<?php echo base_url().'index.php/CSale/createsale/'.$row_list_dom['idMesa'].'/'.$flag.'/'.$client; ?>">
                                                         <div class="do-info">
                                                             <div class="do-info-front do-circle">
                                                                 <center>

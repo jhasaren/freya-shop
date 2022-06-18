@@ -73,7 +73,7 @@ class CSale extends CI_Controller {
                 $listUserSale = $this->MSale->list_users_sale(); /*Consulta Modelo para obtener lista de usuarios*/
                 $listServiceSale = $this->MSale->list_service_sale(); /*Consulta Modelo para obtener lista de Servicios*/
                 $listEmpleadoSale = $this->MSale->list_empleado_sale(); /*Consulta Modelo para obtener lista de Empleados*/
-                $listProductSale = $this->MSale->list_product_sale(); /*Consulta Modelo para obtener lista de Productos*/
+                
                 //$listProductInterno = $this->MSale->list_product_int(); /*Consulta Modelo para obtener lista de Productos de Consumo Interno*/
                 $receiptSale = $this->MPrincipal->rango_recibos(1);  /*Consulta el Modelo Cantidad de recibos disponibles*/
                 
@@ -83,6 +83,22 @@ class CSale extends CI_Controller {
                 $adicionalInList = $this->MSale->adicional_in_list(); /*lista cargos adicionales agregados a la venta*/
                 $consumoInList = $this->MSale->consumo_in_list(); /*lista consumo interno agregados a la venta*/
                 $porcenInList = $this->MSale->porcen_in_list(); /*recupera descuento, servicio y idempleado que atiende que estan agregados en la venta*/
+
+                /*
+                Fecha: 29/05/2022 
+                Valida si modulo comisiones esta habilitado
+                Envia ID del Cliente en la Venta para obtener config de descuentos por producto
+                */
+                if ($this->config->item('mod_commision') == 0) { //Modulo Comisiones Deshabilitado
+                    $listProductSale = $this->MSale->list_product_sale(); /*Consulta Modelo para obtener lista de Productos*/
+                } else {
+                    if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
+                        /*Recalcula Descuento Comisión*/
+                        $this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+                        /*Lista de productos en Venta*/
+                        $listProductSale = $this->MSale->list_product_sale_client($this->session->userdata('sclient')); /*Consulta Modelo para obtener lista de Productos*/
+                    }
+                }
 
                 /*Retorna a la vista con los datos obtenidos*/
                 $info['list_user'] = $listUserSale;
@@ -119,7 +135,7 @@ class CSale extends CI_Controller {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 27/03/2017, Ultima modificacion: 
      **************************************************************************/
-    public function createsale($board,$flagBoard) {
+    public function createsale($board,$flagBoard,$client) {
         
         if ($this->session->userdata('validated')) {
             
@@ -129,8 +145,10 @@ class CSale extends CI_Controller {
                     
                     /*Consulta Modelo para crear el id de venta*/
                     $createSale = $this->MSale->create_sale($this->session->userdata('userid'),$board);
+
                     /*Envia datos al modelo para el registro del Cliente por Default*/
                     $this->MSale->add_user('999999',$this->session->userdata('idSale'));
+
                     /*Envia datos al modelo para el registro del Empleado por Default*/
                     if ($this->config->item('tipo_negocio') == 3) {
                         $this->MSale->add_empleado_sale($this->session->userdata('userid'),$this->session->userdata('idSale'));
@@ -152,39 +170,15 @@ class CSale extends CI_Controller {
                     
                     /*Registra el id de venta de la mesa como variable de sesion*/
                     $datos_session = array(
-                        'idSale' => $flagBoard
+                        'idSale' => $flagBoard,
+                        'sclient' => $client
                     );
                     $this->session->set_userdata($datos_session);
                     
                     $this->module($info);
                     
                 }
-                
-                /*Valida si ya existe un id de venta registrado en la sesion*/
-                //if ($this->session->userdata('idSale') == NULL){
-
-                    /*Consulta Modelo para crear el id de venta*/
-                    //$createSale = $this->MSale->create_sale($this->session->userdata('userid'));
-                    
-                    /*Envia datos al modelo para el registro del Cliente por Default*/
-                    //$this->MSale->add_user('999999',$this->session->userdata('idSale'));
-
-                    //if ($createSale == TRUE){
-
-                        //$this->module($info);
-
-                    //} else {
-
-                        //show_404();
-
-                    //}
-
-                //} else {
-
-                    //$this->module($info);
-
-                //}
-            
+                            
             } else {
                 
                 show_404();
@@ -883,19 +877,35 @@ class CSale extends CI_Controller {
 
                     if ($validateClient != FALSE){
 
-                        /*Envia datos al modelo para el registro*/
-                        $registerData = $this->MSale->add_user($idusuario,$idventa);
+                        /*Envia al modelo para validar si existen items en la venta*/
+                        $itemsale = $this->MSale->item_data_sale();
 
-                        if ($registerData == TRUE){
+                        if ($itemsale == TRUE){
 
-                            $info['idmessage'] = 1;
-                            $info['message'] = "Cliente Agregado Exitosamente";
-                            $this->module($info);
+                            /*Envia datos al modelo para el registro*/
+                            $registerData = $this->MSale->add_user($idusuario,$idventa);
 
+                            if ($registerData == TRUE){
+
+                                /*Recalcula Descuento Comisión*/
+                                //$this->MSale->descuento_comision_calc($this->session->userdata('sclient'),$this->session->userdata('sclientcategory'));
+
+                                $info['idmessage'] = 1;
+                                $info['message'] = "Cliente Agregado Exitosamente";
+                                $this->module($info);
+
+                            } else {
+
+                                $info['idmessage'] = 2;
+                                $info['message'] = "No fue posible agregar el cliente";
+                                $this->module($info);
+
+                            }
+                            
                         } else {
 
                             $info['idmessage'] = 2;
-                            $info['message'] = "No fue posible agregar el cliente";
+                            $info['message'] = "No se puede agregar el cliente. Por favor elimine primero todos los items de la venta.";
                             $this->module($info);
 
                         }
@@ -1101,9 +1111,9 @@ class CSale extends CI_Controller {
                     /*Captura Variables*/
                     $producto = $this->input->post('idproducto');
                     $varprod = explode('|', $producto);
-                    $idProducto = $varprod[0];
-                    $valueProducto = $varprod[1];
-                    $porcentEmpleado = 0;
+                    $idProducto = trim($varprod[0]);
+                    $valueProducto = trim($varprod[1]);
+                    $porcentEmpleado = trim($varprod[3]);
                     $cantidad = $this->input->post('cantidad');
                     $valueEmpleado = ($valueProducto*$cantidad)*$porcentEmpleado;
                     //$valueTotal = $valueProducto = $varprod[1]*$cantidad;
@@ -1115,7 +1125,7 @@ class CSale extends CI_Controller {
                         if ($valueProducto != NULL){
                         
                             /*Valida el producto y valor*/
-                            $validateProduct = $this->MSale->validate_select_sale($idProducto,$valueProducto,2);
+                            $validateProduct = $this->MSale->validate_select_sale($idProducto,$valueProducto,$porcentEmpleado,2);
 
                             if ($validateProduct){
 
@@ -1402,6 +1412,81 @@ class CSale extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: addporcentdescman
+     * Descripcion: Agregar Porcentaje de descuento (manual comisiones)
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function addporcentdescman(){
+        
+        if ($this->session->userdata('validated')) {
+        
+            /*valida que la peticion http sea POST*/
+            if (!$this->input->post()){
+
+                $this->module($info);
+
+            } else {
+
+                if ($this->MRecurso->validaRecurso(9)){
+                
+                    /*Captura Variables*/
+                    $descuentoValor = $this->input->post('value_desct');
+                    $porcenComm = ($this->input->post('porcen_comm'))/100;
+                    $data = explode('|', $this->input->post('idproductoventa'));
+                    $idDetalle = $data[0];
+                    $valorDetalle = $data[1];
+                    $valorEmpleadoAnt = $data[2];
+                    $totalValor = $valorDetalle - $descuentoValor;
+                    $valorEmpleado = $totalValor * $porcenComm;
+
+                    if ($this->jasr->validaTipoString($descuentoValor,11) ){
+
+                        /*Envia datos al modelo para el registro*/
+                        $registerData = $this->MSale->add_porcentaje_desc_man($totalValor,$valorEmpleado,$idDetalle);
+
+                        if ($registerData == TRUE){
+
+                            /*Envia datos al modelo para el registro - log venta manual*/
+                            $this->MSale->log_venta_manual($idDetalle, $valorDetalle, $totalValor, $valorEmpleadoAnt, $valorEmpleado);
+
+                            $info['idmessage'] = 1;
+                            $info['message'] = "Descuento/Comisión registrado exitosamente";
+                            $this->module($info);
+
+                        } else {
+
+                            $info['idmessage'] = 2;
+                            $info['message'] = "No fue posible registrar Descuento/Comisión";
+                            $this->module($info);
+
+                        }
+
+                    } else {
+
+                        $info['idmessage'] = 2;
+                        $info['message'] = "No fue posible registrar Descuento/Comisión. Valor incorrecto";
+                        $this->module($info); 
+
+                    }
+
+                } else {
+                    
+                    show_404();
+                    
+                }
+                
+            } 
+        
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: saleclean
@@ -1469,6 +1554,7 @@ class CSale extends CI_Controller {
                     $mescumple = $this->input->post('mescumple');
                     $contrasena = $this->input->post('contrasena');
                     $rol = $this->input->post('rol');
+                    $categoria = $this->input->post('cat_client');
 
                     /*Valida si el usuario ya existe y recupera el estado*/
                     $validateClient = $this->MUser->verify_user($identificacion);
@@ -1486,7 +1572,7 @@ class CSale extends CI_Controller {
                                         if ($tipo === 'cliente'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$this->session->userdata('sede'),0,NULL);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$this->session->userdata('sede'),0,NULL,$categoria);
                                             if ($registerData == TRUE){
 
                                                 /*aagrega usuario a la venta*/

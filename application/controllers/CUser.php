@@ -64,7 +64,16 @@ class CUser extends CI_Controller {
             if ($this->MRecurso->validaRecurso(7)){
             
                 /*Consulta Modelo para obtener listado de Usuarios creados*/
-                $listUsers = $this->MUser->list_users();
+                /*Lista para administradores del sistema*/
+                if ($this->session->userdata('perfil') == 'SUPERADMIN'){
+                    $listUsers = $this->MUser->list_users();
+                }
+
+                /*Lista para empleados del sistema*/
+                if ($this->session->userdata('perfil') == 'EMPLEADO'){
+                    $listUsers = $this->MUser->list_users_empl();
+                }
+                
                 /*Consulta Modelo para obtener listado de Roles creados*/
                 $listRoles = $this->MUser->list_roles();
                 /*Consulta Modelo para obtener listado de Sedes creadas*/
@@ -126,6 +135,7 @@ class CUser extends CI_Controller {
                     $sede = $dataSede[0];
                     $horario = $dataSede[1];
                     $tproveedor = $this->input->post('tproveedor');
+                    $categoria = $this->input->post('cat_client');
 
                     /*Valida si el usuario ya existe y recupera el estado*/
                     $validateClient = $this->MUser->verify_user($identificacion);
@@ -143,7 +153,7 @@ class CUser extends CI_Controller {
                                         if ($tipo === 'cliente'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$sede,$horario,null);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,2,$diacumple,$mescumple,'12345',3,$sede,$horario,null,$categoria);
                                             if ($registerData == TRUE){
 
                                                 $info['message'] = 'Usuario registrado Exitosamente';
@@ -163,7 +173,7 @@ class CUser extends CI_Controller {
                                         if ($tipo === 'proveedor'){
 
                                             /*Envia datos al modelo para el registro*/
-                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,3,$diacumple,$mescumple,'12345',4,$sede,$horario,$tproveedor);
+                                            $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,3,$diacumple,$mescumple,'12345',4,$sede,$horario,$tproveedor,null);
                                             if ($registerData == TRUE){
 
                                                 $info['message'] = 'Proveedor registrado Exitosamente';
@@ -204,7 +214,7 @@ class CUser extends CI_Controller {
                                                 if ($this->jasr->validaTipoString($contrasena,8)){
 
                                                     /*Envia datos al modelo para el registro*/
-                                                    $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,1,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,null);
+                                                    $registerData = $this->MUser->create_user($name,$lastname,$identificacion,$direccion,$celular,$email,1,$diacumple,$mescumple,$contrasena,$rol,$sede,$horario,null,null);
                                                     if ($registerData == TRUE){
 
                                                         $info['message'] = 'Usuario registrado Exitosamente';
@@ -442,6 +452,7 @@ class CUser extends CI_Controller {
                     if ($estado == 'on'){ $valueState = 'S'; } else $valueState = 'N';
                     $restorepass = $this->input->post('restorepass');
                     $sede = $this->input->post('sede');
+                    $categoria = $this->input->post('cat_client');
 
                     if ($this->jasr->validaTipoString($name,1) && $this->jasr->validaTipoString($lastname,1)){
 
@@ -453,7 +464,7 @@ class CUser extends CI_Controller {
                                 if ($this->jasr->validaTipoString($contrasena,8)){
 
                                     /*Envia datos al modelo para el registro*/
-                                    $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede);
+                                    $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria);
 
                                     if ($updateData == TRUE){
 
@@ -480,7 +491,7 @@ class CUser extends CI_Controller {
                             } else {
 
                                 /*Envia datos al modelo para el registro*/
-                                $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede);
+                                $updateData = $this->MUser->update_user($name,$lastname,$identificacion,$direccion,$celular,$email,$contrasena,$rol,$valueState,$restorepass,$sede,$categoria);
 
                                 if ($updateData == TRUE){
 
@@ -559,6 +570,92 @@ class CUser extends CI_Controller {
         } else {
             
             $this->module($info);
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: configcomisiondescuento
+     * Descripcion: Obtiene la configuracion de Descuento/Comisiones para el Cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function configcomisiondescuento($idUsuario){
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(7)){
+            
+                $dataUser = $this->MUser->get_user($idUsuario);
+                $configUser = $this->MUser->config_user_desc_comm($idUsuario);
+
+                $info['id'] = $idUsuario;
+                $info['data_user'] = $dataUser;
+                $info['config_user'] = $configUser;
+                $this->load->view('users/user_config_plan',$info);
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->module($info);
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: saveconfiguser
+     * Descripcion: Guarda la configuracion de descuento/comision del cliente
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 30/05/2022
+     **************************************************************************/
+    public function saveconfiguser() {
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(7)){
+                
+                /*Captura Variables*/
+                $idProducto = $this->input->post('idproducto');
+                $idUsuario = $this->input->post('idusuario');
+                $idConfig = $this->input->post('idconfig');
+                $valorDescuento = $this->input->post('valordesc');
+                $porcenComision = $this->input->post('commision');
+                                        
+                /*Consulta Modelo para guardar la configuracion*/
+                $configRegistro = $this->MUser->save_config_user($idConfig,$idProducto,$idUsuario,$valorDescuento,$porcenComision);
+                
+                if ($configRegistro == TRUE){
+
+                    $info['idmessage'] = 1;
+                    $info['message'] = "Configuración guardada correctamente.";
+                    //$this->module($info);
+                    $this->configcomisiondescuento($idUsuario);
+
+                } else {
+
+                    $info['idmessage'] = 2;
+                    $info['message'] = "No es posible guardar la configuración";
+                    //$this->module($info);
+                    $this->configcomisiondescuento($idUsuario);
+
+                }
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->index();
             
         }
         
