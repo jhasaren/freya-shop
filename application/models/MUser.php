@@ -504,6 +504,7 @@ class MUser extends CI_Model {
                  * Cuando la conexion a BD va con host:localhost aqui se debe configurar el valor 'localhost',
                  * cuando la conexion va con direccion ip remota se debe configurar el valor '%'
                  */
+                /*
                 $typeHost = 'localhost';
                 $this->db->trans_strict(TRUE);
                 $this->db->trans_start();
@@ -512,6 +513,7 @@ class MUser extends CI_Model {
                 $this->db->query("FLUSH PRIVILEGES");
                 $this->db->trans_complete();
                 $this->db->trans_off();
+                */
 
             }
             
