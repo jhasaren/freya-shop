@@ -48,13 +48,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <p>
                                                 <span style="font-weight: bold; font-size: 20px; color: #000000">Body Power Colombia</span> <br />
                                                 <!--<span style="font-weight: 400;">German Escobar</span> <br />-->
-                                                <span style="font-weight: 400;">Cra 42 #28a-82 Villas del Sur</span><br />
+                                                <span style="font-weight: 400;">Cra 36 #30-41</span><br />
                                                 <span style="font-weight: 400;">Cali - Valle del Cauca - Colombia</span>
                                             </p>
                                         </td>
                                         <td style="width: 25%;">
                                             <center>
-                                                <span style="font-weight: 400;">Nro. Cuenta de Cobro</span><br />
+                                                <span style="font-weight: 400;">Factura de Venta</span><br />
                                                 <span style="font-weight: bold; font-size: 24px"><?php echo $recibo; ?></span>
                                             </center>
                                         </td>
@@ -197,12 +197,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <br />
                             
                             <!--Firma-->
+                            <!--
                             <table style="border-collapse: collapse; width: 100%; height: 18px;" border="0">
                                 <tbody>
                                     <tr style="height: 18px;">
                                         <td style="width: 50%; height: 18px; padding-left: 10%;">
                                             <p>
-                                                <img src="<?php echo base_url() . 'public/img/firma_digital.jpg'; ?>" width="140" ><br />
+                                                <img src="<?php //echo base_url() . 'public/img/firma_digital.jpg'; ?>" width="140" ><br />
                                                 <span style="font-weight: bold;">German Escobar</span><br />
                                                 <span style="font-weight: 400;">1.112.462.813</span><br />
                                                 <span style="font-weight: 400;">Direcci&oacute;n: Cra 42 #28a-82 Villas del Sur</span><br />
@@ -211,11 +212,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </p>
                                         </td>
                                         <td style="width: 50%; height: 18px; text-align: center">
-                                            <img src="<?php echo base_url() . 'public/img/qr_clinktree.jpg'; ?>" width="140" ><br />
+                                            <img src="<?php //echo base_url() . 'public/img/qr_clinktree.jpg'; ?>" width="140" ><br />
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            -->
                             <!--/Firma-->
                         </div>
                     </div>
