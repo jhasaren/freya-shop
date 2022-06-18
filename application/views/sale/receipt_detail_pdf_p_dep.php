@@ -46,10 +46,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </td>
                                         <td style="width: 50%; padding-left: 5%">
                                             <p>
-                                                <span style="font-weight: bold; font-size: 20px; color: #000000">Body Power Colombia</span> <br />
-                                                <!--<span style="font-weight: 400;">German Escobar</span> <br />-->
-                                                <span style="font-weight: 400;">Cra 42 #28a-82 Villas del Sur</span><br />
-                                                <span style="font-weight: 400;">Cali - Valle del Cauca - Colombia</span>
+                                                <span style="font-weight: bold; font-size: 20px; color: #ff99cc">Carrusel Tienda Infantil</span> <br />
+                                                <span style="font-weight: 400;">Leidy Johana Mendoza Yara</span> <br />
+                                                <span style="font-weight: 400;">RUT 1112462813 Reg. Simp.</span><br />
+                                                <span style="font-weight: 400;">C.C Cacique Local 22 Jamundí</span>
                                             </p>
                                         </td>
                                         <td style="width: 25%;">
@@ -79,11 +79,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </td>
                                         <td style="width: 40%; padding-left: 5%; padding-top: 2%; padding-bottom: 2%;">
                                             <p>
-                                                <span style="font-weight: 400;">info@bodypowercol.com</span><br />
+                                                <span style="font-weight: 400;">infoclientes@tiendacarrusel.com</span><br />
                                                 <strong>Liquida</strong><span style="font-weight: 400;">: <?php echo $general->fechaLiquida; ?></span><br />
                                                 <strong>Pago</strong><span style="font-weight: 400;">: <?php echo date('Y-m-d'); ?></span><br />
                                                 <strong>Estado</strong><span style="font-weight: 400;">: <?php echo $general->descEstadoRecibo; ?></span><br />
-                                                <strong>Ciudad</strong><span style="font-weight: 400;">: CALI - VALLE</span>
+                                                <strong>Ciudad</strong><span style="font-weight: 400;">: JAMUNDÍ - VALLE</span>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -95,7 +95,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <!--Detalle Venta-->
                             <table style="border-collapse: collapse; width: 100%;" border="1">
                                 <tbody>
-                                    <tr style="background-color: #FFFFFF;">
+                                    <tr style="background-color: #ffcccc;">
                                         <td style="width: 55%;">Item</td>
                                         <td style="width: 15%;">Precio</td>
                                         <td style="width: 15%;">Cantidad</td>
@@ -210,11 +210,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <td style="width: 50%; height: 18px; padding-left: 10%;">
                                             <p>
                                                 <img src="<?php echo base_url() . 'public/img/firma_digital.jpg'; ?>" width="140" ><br />
-                                                <span style="font-weight: bold;">German Escobar</span><br />
+                                                <span style="font-weight: bold;">Leidy Johana Mendoza Yara</span><br />
                                                 <span style="font-weight: 400;">1.112.462.813</span><br />
-                                                <span style="font-weight: 400;">Direcci&oacute;n: Cra 42 #28a-82 Villas del Sur</span><br />
-                                                <span style="font-weight: 400;">Tel: (+57)3160435994</span><br />
-                                                <span style="font-weight: 400;">www.bodypowercol.com</span><br />
+                                                <span style="font-weight: 400;">Direcci&oacute;n: CC Cacique Local 22 Jamundí</span><br />
+                                                <span style="font-weight: 400;">Tel: (+57)3163309422</span><br />
+                                                <span style="font-weight: 400;">www.tiendacarrusel.com</span><br />
                                             </p>
                                         </td>
                                         <td style="width: 50%; height: 18px; text-align: center">
