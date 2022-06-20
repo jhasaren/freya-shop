@@ -395,7 +395,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row_product_in['descProducto']; ?></td>
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
-                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.')." (-".(number_format(100-(($row_product_in['valor']/$row_product_in['valorProducto'])*100),1,',','.'))."%)"; ?></td>
+                                                                <!-- 100-((($row_product_in['valor']/$row_product_in['cantidad'])/$row_product_in['valorProducto'])*100) -->
+                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.')." (-".(number_format(100-((($row_product_in['valor']/$row_product_in['cantidad'])/$row_product_in['valorProducto'])*100),1,',','.'))."%)"; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(number_format(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100,1,',','.'))."%)"; ?></td>
                                                                 <td>
                                                                 <?php 
