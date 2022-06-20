@@ -247,6 +247,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
-        
+    <script>
+        $("#datatable-buttons").DataTable({
+            "footerCallback": function (row, data, start, end, display) {                
+                        //Get data here 
+                        console.log(data);
+                        //Do whatever you want. Example:
+                        var totalAmount = 0;
+                        for (var i = 0; i < data.length; i++) {
+                            totalAmount += parseFloat(data[i][4]);
+                        }
+                        console.log(totalAmount);
+            }
+        })
+    </script>
+    
   </body>
 </html>
