@@ -408,7 +408,7 @@ $(document).ready(function () {
         
         //to have your input focused every your modal open
         $('#myModal-descMan').on("shown.bs.modal", function() {
-            $('#procentaje').focus();
+            $('#value_desct').focus();
         });
         
         $('#myModal-descMan').modal('show');
