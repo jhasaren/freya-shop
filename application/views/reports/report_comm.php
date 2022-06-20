@@ -193,8 +193,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         ?>
                                                     </tbody>
                                                 </table>
-                                                <?php echo "Total Comision: ".number_format($valueTotalComision,0,',','.'); ?>
                                             </div>
+                                            <?php echo "Total Comision: ".number_format($valueTotalComision,0,',','.'); ?>
                                         </div>
                                     </div>
                                     <!-- /detalle pagos por producto con comision-->    
