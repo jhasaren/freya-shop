@@ -247,29 +247,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
+
+    <script src="https://cdn.datatables.net/plug-ins/1.12.1/api/sum().js"></script>
     <script>
         $(document).ready(function() {
             $("#datatable-buttons").dataTable().fnDestroy();
-            //$('#datatable-buttons').dataTable();
-
             
-            $("#datatable-buttons").dataTable({
-                "footerCallback": function (row, data, start, end, display) {                
-                            //Get data here 
-                            console.log("LLLLLLLLL");
-                            console.log(data);
-                            //Do whatever you want. Example:
-                            var totalAmount = 0;
-                            for (var i = 0; i < data.length; i++) {
-                                console.log("PARPARPARP");
-                                console.log(data[i][6]);
-                                totalAmount += parseInt(data[i][6]);
-                            }
-                            console.log("TOTOTOTOTOTOTOT");
-                            console.log(totalAmount);
+            $('#datatable-buttons').dataTable( {
+                drawCallback: function () {
+                var api = this.api();
+                $( api.table().footer() ).html(
+                    api.column( 2, {page:'current'} ).data().sum()
+                );
                 }
-            });
-            
+            } );
 
         } );
         
