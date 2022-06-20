@@ -908,7 +908,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                             <br />
                             <label class="control-label" for="Porcentaje">Descuento para el Cliente ($)</label>
-                            <input type="tel" class="form-control" style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" id="value_desct" name="value_desct" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
+                            <input type="tel" class="form-control" style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" id="value_desct" name="value_desct" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> >
                             <br />
                             <label class="control-label" for="Porcentaje">Comisión del Empleado (%)</label>
                             <div class="controls">
