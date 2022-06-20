@@ -192,15 +192,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         }
                                                         ?>
                                                     </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th colspan="6" style="text-align:right">Total:</th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </tfoot>
                                                 </table>
                                             </div>
-                                            <?php echo "Total Comision: ".number_format($valueTotalComision,0,',','.'); ?>
+                                            <h2>
+                                            <?php echo "Total Comisión: ".number_format($valueTotalComision,0,',','.'); ?>
+                                            </h2>
                                         </div>
                                     </div>
                                     <!-- /detalle pagos por producto con comision-->    
@@ -253,43 +249,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
-
-    <script>
-        $(document).ready(function() {
-            $("#datatable-buttons").dataTable().fnDestroy();
-            
-            $('#datatable-buttons').DataTable({
-                footerCallback: function (row, data, start, end, display) {
-                    var api = this.api();
-        
-                    // Remove the formatting to get integer data for summation
-                    var intVal = function (i) {
-                        return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
-                    };
-        
-                    // Total over all pages
-                    total = api
-                        .column(6)
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-        
-                    // Total over this page
-                    pageTotal = api
-                        .column(6, { page: 'current' })
-                        .data()
-                        .reduce(function (a, b) {
-                            return intVal(a) + intVal(b);
-                        }, 0);
-        
-                    // Update footer
-                    $(api.column(6).footer()).html('$' + pageTotal + ' ( $' + total + ' total)');
-                },
-            });
-
-        } );
-    </script>
     
   </body>
 </html>
