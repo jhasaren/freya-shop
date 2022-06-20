@@ -138,7 +138,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Consolidado<br />
-                            Recibos Pagados</h2>
+                            Pagos Recibidos</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -176,7 +176,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Detalle <br />
-                            Recibos Pagados y Anulados</h2>
+                            Recibos Pagados, Cuenta x Cobrar, Anulados</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
