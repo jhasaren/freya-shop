@@ -63,7 +63,7 @@ class MReport extends CI_Model {
     
     /**************************************************************************
      * Nombre del Metodo: payment_recibos_form
-     * Descripcion: Recupera los recibos Pagados/anulados con formas de pago en un periodo 
+     * Descripcion: Recupera los recibos Pagados/anulados/cuentaxcobrar con formas de pago en un periodo 
      * de tiempo
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 20/09/2018, Ultima modificacion: 
@@ -102,7 +102,7 @@ class MReport extends CI_Model {
     /**************************************************************************
      * Nombre del Metodo: payment_consolida_form
      * Descripcion: Recupera consolidado de pagos por formas de pago en un periodo 
-     * de tiempo
+     * de tiempo (estado: pagados, cuentaxcobrar)
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/09/2018, Ultima modificacion: 
      **************************************************************************/
@@ -116,7 +116,7 @@ class MReport extends CI_Model {
                                 JOIN tipo_forma_pago t ON t.idTipoPago = f.idTipoPago
                                 JOIN venta_maestro v ON v.idVenta = f.idVenta
                                 WHERE
-                                v.idEstadoRecibo IN (5)
+                                v.idEstadoRecibo IN (5,8)
                                 AND v.idSede = ".$this->session->userdata('sede')."
                                 AND v.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 GROUP BY f.idTipoPago" );
