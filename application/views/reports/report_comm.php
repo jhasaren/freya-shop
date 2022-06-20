@@ -248,8 +248,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
     <script>
-        var table = $('#datatable-buttons').DataTable();
-        table.column( 3 ).data().sum();
+        //var table = $('#datatable-buttons').DataTable();
+        //table.column( 3 ).data().sum();
+
+        $('#datatable-buttons').DataTable( {
+            drawCallback: function () {
+            var api = this.api();
+            $( api.table().footer() ).html(
+                api.column( 3, {page:'current'} ).data().sum()
+            );
+            }
+        } );
     </script>
     
   </body>
