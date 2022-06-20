@@ -1434,7 +1434,7 @@ class CSale extends CI_Controller {
                 if ($this->MRecurso->validaRecurso(9)){
                 
                     /*Captura Variables*/
-                    $descuentoValor = $this->input->post('value_desct');
+                    $descuentoValor = str_replace(".", "", $this->input->post('value_desct'));
                     $porcenComm = ($this->input->post('porcen_comm'))/100;
                     $data = explode('|', $this->input->post('idproductoventa'));
                     $idDetalle = $data[0];
