@@ -248,20 +248,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
     <script>
-        $("#datatable-buttons").DataTable({
-            "paging": false,
-            "searching": false,
-            "footerCallback": function (row, data, start, end, display) {                
-                        //Get data here 
-                        console.log(data);
-                        //Do whatever you want. Example:
-                        var totalAmount = 0;
-                        for (var i = 0; i < data.length; i++) {
-                            totalAmount += parseFloat(data[i][4]);
-                        }
-                        console.log(totalAmount);
-            }
-        })
+        $(document).ready(function() {
+            $("#datatable-buttons").dataTable().fnDestroy();
+            //$('#datatable-buttons').dataTable();
+
+            $("#datatable-buttons").dataTable({
+                "footerCallback": function (row, data, start, end, display) {                
+                            //Get data here 
+                            console.log(data);
+                            //Do whatever you want. Example:
+                            var totalAmount = 0;
+                            for (var i = 0; i < data.length; i++) {
+                                totalAmount += parseFloat(data[i][4]);
+                            }
+                            console.log(totalAmount);
+                }
+            });
+
+        } );
+        
     </script>
     
   </body>
