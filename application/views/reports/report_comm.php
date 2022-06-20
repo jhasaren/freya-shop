@@ -255,12 +255,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $("#datatable-buttons").dataTable({
                 "footerCallback": function (row, data, start, end, display) {                
                             //Get data here 
+                            console.log("LLLLLLLLL");
                             console.log(data);
                             //Do whatever you want. Example:
                             var totalAmount = 0;
                             for (var i = 0; i < data.length; i++) {
                                 totalAmount += parseFloat(data[i][4]);
                             }
+                            console.log("TOTOTOTOTOTOTOT");
                             console.log(totalAmount);
                 }
             });
