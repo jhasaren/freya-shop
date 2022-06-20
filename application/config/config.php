@@ -749,7 +749,7 @@ $config['mayor_inside_comision'] = 0.02;
 $config['mayor_otros_descuento'] = 0;
 $config['mayor_otros_comision'] = 0.02;
 /*SUPERMAYORISTA*/
-$config['supmayor_wise_descuento'] = 0.468375;
+$config['supmayor_wise_descuento'] = 0.531625;
 $config['supmayor_wise_comision'] = 0.05;
 $config['supmayor_inside_descuento'] = 0.38;
 $config['supmayor_inside_comision'] = 0.02;
