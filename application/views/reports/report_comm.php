@@ -252,7 +252,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $("#datatable-buttons").dataTable().fnDestroy();
             //$('#datatable-buttons').dataTable();
 
-            /*
+            
             $("#datatable-buttons").dataTable({
                 "footerCallback": function (row, data, start, end, display) {                
                             //Get data here 
@@ -261,22 +261,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             //Do whatever you want. Example:
                             var totalAmount = 0;
                             for (var i = 0; i < data.length; i++) {
+                                console.log("PARPARPARP");
+                                console.log(parseFloat(data[i][4]);
                                 totalAmount += parseFloat(data[i][4]);
                             }
                             console.log("TOTOTOTOTOTOTOT");
                             console.log(totalAmount);
                 }
             });
-            */
-
-            $('#datatable-buttons').dataTable( {
-                drawCallback: function () {
-                var api = this.api();
-                $( api.table().footer() ).html(
-                    api.column( 4, {page:'current'} ).data().sum()
-                );
-                }
-            } );
+            
 
         } );
         
