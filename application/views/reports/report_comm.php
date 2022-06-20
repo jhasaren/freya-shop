@@ -167,6 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <?php
                                                         if ($paymentDataSedes != FALSE){
 
+                                                            $valueTotalComision = 0;
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
@@ -186,11 +187,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
+                                                                $valueTotalComision = $valueTotalComision + $row_sede['valorEmpleado'];
                                                             }
                                                         }
                                                         ?>
                                                     </tbody>
                                                 </table>
+                                                <?php echo "Total Comision: ".number_format($valueTotalComision,0,',','.'); ?>
                                             </div>
                                         </div>
                                     </div>
