@@ -194,7 +194,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <br />
                                 <?php echo $detalleRecibo['general']->resolucionExpide; ?><br />
                                 Gracias por Preferirnos!<br />
-                                Freya Software - Amadeus Soluciones<br />
+                                Freya Software - @jhasaren<br />
                                 <?php echo date("Y-m-d H:i:s"); ?>
                                 </center>
                             </div>
