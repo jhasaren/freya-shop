@@ -83,7 +83,7 @@ class MReport extends CI_Model {
                                 LEFT JOIN forma_de_pago f ON f.idVenta = m.idVenta
                                 LEFT JOIN tipo_forma_pago p ON p.idTipoPago = f.idTipoPago
                                 WHERE
-                                m.idEstadoRecibo IN (5,3)
+                                m.idEstadoRecibo IN (5,3,8)
                                 AND m.idSede = ".$this->session->userdata('sede')."
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'");
         
