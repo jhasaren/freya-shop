@@ -195,7 +195,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </table>
                                             </div>
                                             <h2>
-                                            <?php echo "Total Comisión: ".number_format($valueTotalComision,0,',','.'); ?>
+                                            <?php echo "Total Comisiones: $".number_format($valueTotalComision,0,',','.')." CO"; ?>
                                             </h2>
                                         </div>
                                     </div>
