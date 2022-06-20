@@ -253,14 +253,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $(document).ready(function() {
             $("#datatable-buttons").dataTable().fnDestroy();
             
-            $('#datatable-buttons').dataTable( {
-                drawCallback: function () {
-                var api = this.api();
-                $( api.table().footer() ).html(
-                    api.column( 2, {page:'current'} ).data().sum()
-                );
-                }
-            } );
+            var table = $('#datatable-buttons').dataTable();
+            table.column( 2 ).data().sum();
 
         } );
         
