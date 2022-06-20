@@ -178,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo (($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100)."%"; ?></td>
+                                                                    <td class="center red"><?php echo number_format((($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100),0,',','.')."%"; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
