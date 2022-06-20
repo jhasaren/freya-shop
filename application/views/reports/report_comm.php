@@ -249,6 +249,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
     <script>
         $("#datatable-buttons").DataTable({
+            "paging": false,
+            "searching": false,
             "footerCallback": function (row, data, start, end, display) {                
                         //Get data here 
                         console.log(data);
