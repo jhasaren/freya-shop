@@ -262,7 +262,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             var totalAmount = 0;
                             for (var i = 0; i < data.length; i++) {
                                 console.log("PARPARPARP");
-                                console.log(parseFloat(data[i][4]);
+                                console.log(parseFloat(data[i][4]));
                                 totalAmount += parseFloat(data[i][4]);
                             }
                             console.log("TOTOTOTOTOTOTOT");
