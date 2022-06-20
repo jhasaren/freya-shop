@@ -158,6 +158,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <th>Forma de Pago</th>
                                         <th>Impoconsumo</th>
                                         <th>Estado</th>
+                                        <th>Cliente</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
@@ -176,6 +177,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <td class="center green"><?php echo number_format($row_pay['forma_pago'],0,',','.'); ?></td>
                                             <td class="center red"><?php echo number_format($row_pay['impoconsumo'],0,',','.'); ?></td>
                                             <td class="center blue"><small><?php echo $row_pay['descEstadoRecibo']; ?></small></td>
+                                            <td class="center blue"><small><?php echo '['.$row_pay['idUsuarioCliente'].'] '.$row_pay['nombreCliente']; ?></small></td>
                                             <td class="center">
                                                 <a class="label label-primary btn-detail" href="<?php echo base_url().'index.php/CReport/detallerecibo/'.$row_pay['idVenta'].'/'.$row_pay['nroRecibo']; ?>">
                                                     Ver Detalle

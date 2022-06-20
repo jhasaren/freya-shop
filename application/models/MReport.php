@@ -38,9 +38,12 @@ class MReport extends CI_Model {
                                 (select sum(valorPago) from forma_de_pago where idVenta = m.idVenta) as forma_pago,
                                 t.descEstadoRecibo,
                                 /*(m.valorLiquida*m.impoconsumo) as impoconsumo*/
-                                ((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo
+                                ((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo,
+                                m.idUsuarioCliente,
+                                concat(a.nombre,' ',a.apellido) as nombreCliente
                                 FROM venta_maestro m
                                 JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                LEFT JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 WHERE
                                 m.idEstadoRecibo IN (5,3)
                                 AND m.idSede = ".$this->session->userdata('sede')."

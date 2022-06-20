@@ -783,6 +783,8 @@ class CReport extends CI_Controller {
 
                 if ($paymentDataSales == TRUE){
 
+                    //$paymentConsolidate = $this->MReport->payment_salesproduct_cons($fechaini,$fechafin);
+
                     $info['fechaIni'] = $fechaini;
                     $info['fechaFin'] = $fechafin;
                     $info['dataRow'] = 1;

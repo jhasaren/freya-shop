@@ -1434,13 +1434,16 @@ class CSale extends CI_Controller {
                 if ($this->MRecurso->validaRecurso(9)){
                 
                     /*Captura Variables*/
-                    $descuentoValor = $this->input->post('value_desct');
+                    $descuentoValor = str_replace(".", "", $this->input->post('value_desct'));
                     $porcenComm = ($this->input->post('porcen_comm'))/100;
                     $data = explode('|', $this->input->post('idproductoventa'));
                     $idDetalle = $data[0];
-                    $valorDetalle = $data[1];
-                    $valorEmpleadoAnt = $data[2];
-                    $totalValor = $valorDetalle - $descuentoValor;
+                    $valorDetalle = $data[1]; //ValorDetalleVenta
+                    $valorProducto = $data[2]; //ValorProducto
+                    $valorEmpleadoAnt = $data[3];
+                    $cantidad = $data[4];
+                    //$totalValor = $valorDetalle - $descuentoValor; //Si se utiliza este item acumula los descuentos
+                    $totalValor = ($valorProducto * $cantidad) - $descuentoValor;
                     $valorEmpleado = $totalValor * $porcenComm;
 
                     if ($this->jasr->validaTipoString($descuentoValor,11) ){

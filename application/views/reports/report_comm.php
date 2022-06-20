@@ -167,6 +167,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <?php
                                                         if ($paymentDataSedes != FALSE){
 
+                                                            $valueTotalComision = 0;
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
@@ -177,7 +178,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo (($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100)."%"; ?></td>
+                                                                    <td class="center red"><?php echo number_format((($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100),0,',','.')."%"; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
@@ -186,12 +187,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
+                                                                $valueTotalComision = $valueTotalComision + $row_sede['valorEmpleado'];
                                                             }
                                                         }
                                                         ?>
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <h2>
+                                            <?php echo "Total Comisiones: $".number_format($valueTotalComision,0,',','.')." CO"; ?>
+                                            </h2>
                                         </div>
                                     </div>
                                     <!-- /detalle pagos por producto con comision-->    
@@ -244,7 +249,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <!-- ECharts -->
     <!--<script src="<?php //echo base_url().'public/gentelella/vendors/echarts/dist/echarts.min.js'; ?>"></script>-->
-      
     
   </body>
 </html>

@@ -735,21 +735,21 @@ $config['final_inside_comision'] = 0.02;
 $config['final_otros_descuento'] = 0;
 $config['final_otros_comision'] = 0.02;
 /*GIMNASIO_ENTRENADOR*/
-$config['gim_wise_descuento'] = 0;
+$config['gim_wise_descuento'] = 0.285730;
 $config['gim_wise_comision'] = 0.05;
 $config['gim_inside_descuento'] = 0.25;
 $config['gim_inside_comision'] = 0.02;
 $config['gim_otros_descuento'] = 0;
 $config['gim_otros_comision'] = 0.02;
 /*MAYORISTA*/
-$config['mayor_wise_descuento'] = 0;
+$config['mayor_wise_descuento'] = 0.414520;
 $config['mayor_wise_comision'] = 0.05;
 $config['mayor_inside_descuento'] = 0.33;
 $config['mayor_inside_comision'] = 0.02;
 $config['mayor_otros_descuento'] = 0;
 $config['mayor_otros_comision'] = 0.02;
 /*SUPERMAYORISTA*/
-$config['supmayor_wise_descuento'] = 0;
+$config['supmayor_wise_descuento'] = 0.531625;
 $config['supmayor_wise_comision'] = 0.05;
 $config['supmayor_inside_descuento'] = 0.38;
 $config['supmayor_inside_comision'] = 0.02;

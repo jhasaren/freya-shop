@@ -395,7 +395,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <td><?php echo $row_product_in['descProducto']; ?></td>
                                                                 <td><?php echo $row_product_in['cantidad']; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorProducto'],0,',','.'); ?></td>
-                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.')." (-".(number_format(100-(($row_product_in['valor']/$row_product_in['valorProducto'])*100),1,',','.'))."%)"; ?></td>
+                                                                <td>$<?php echo number_format($row_product_in['valor'],0,',','.')." (-".(number_format(100-((($row_product_in['valor']/$row_product_in['cantidad'])/$row_product_in['valorProducto'])*100),1,',','.'))."%)"; ?></td>
                                                                 <td>$<?php echo number_format($row_product_in['valorEmpleado'],0,',','.')." (".(number_format(($row_product_in['valorEmpleado']/$row_product_in['valor'])*100,1,',','.'))."%)"; ?></td>
                                                                 <td>
                                                                 <?php 
@@ -899,7 +899,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     if ($productInList != NULL){
                                         foreach ($productInList as $row_prod_inlist) {
                                             ?>
-                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor'].'|'.$row_prod_inlist['valorEmpleado']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
+                                            <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="<?php echo $row_prod_inlist['idRegistroDetalle'].'|'.$row_prod_inlist['valor'].'|'.$row_prod_inlist['valorProducto'].'|'.$row_prod_inlist['valorEmpleado'].'|'.$row_prod_inlist['cantidad']; ?>" ><?php echo $row_prod_inlist['descProducto']; ?></option>
                                             <?php
                                         }
                                     }
@@ -908,10 +908,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                             <br />
                             <label class="control-label" for="Porcentaje">Descuento para el Cliente ($)</label>
-                            <input type="tel" class="form-control" id="value_desct" name="value_desct" placeholder="$ Valor" value="0" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*">
+                            <input type="tel" class="form-control" style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" id="value_desct" name="value_desct" placeholder="$ Valor" value="" required="" autocomplete="off" <?php echo $stateInput; ?> >
                             <br />
-                            <label class="control-label" for="Porcentaje">Comisión Empleado (%)</label>
-                            <input type="tel" class="form-control" id="porcen_comm" name="porcen_comm" placeholder="% Porcentaje" value="0" required="" autocomplete="off" <?php echo $stateInput; ?> pattern="\d*" >
+                            <label class="control-label" for="Porcentaje">Comisión del Empleado (%)</label>
+                            <div class="controls">
+                                <select class="select2_single form-control" id="porcen_comm" name="porcen_comm" data-rel="chosen" style="font-size: 16px" <?php echo $stateInput; ?> >
+                                    <option value="0">Ninguno</option>
+                                    <option value="1">1%</option>
+                                    <option value="2">2%</option>
+                                    <option value="5">5%</option>
+                                </select>
+                            </div>
+                            <!--<input type="tel" class="form-control" id="porcen_comm" name="porcen_comm" placeholder="% Porcentaje" value="" required="" autocomplete="off" <?php //echo $stateInput; ?> pattern="\d*" >-->
                             <br />
                         </div>
                         <div class="modal-footer">
@@ -1011,7 +1019,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url().'public/gentelella/vendors/nprogress/nprogress.js'; ?>"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url().'public/gentelella/build/js/custom.js'; ?>"></script><!--Minificar-->
-    
+    <!-- Jquery Autonumeric -->
+    <script src="https://cdn.jsdelivr.net/autonumeric/2.0.0/autoNumeric.min.js"></script>
     <!-- jQuery autocomplete -->
     <script src="<?php echo base_url().'public/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js'; ?>"></script>
     <script>
@@ -1071,6 +1080,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $( "#myModal-p" ).modal('show');
         }
+    });
+
+    /*AutoNumeric*/
+    $("#value_desct").autoNumeric('init',{
+        allowDecimalPadding : "false",
+        decimalCharacter : ',',
+        digitGroupSeparator : '.',
     });
     </script>
     
