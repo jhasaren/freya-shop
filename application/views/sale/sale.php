@@ -1019,7 +1019,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url().'public/gentelella/vendors/nprogress/nprogress.js'; ?>"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url().'public/gentelella/build/js/custom.js'; ?>"></script><!--Minificar-->
-    
+    <!-- Jquery Autonumeric -->
+    <script src="https://cdn.jsdelivr.net/autonumeric/2.0.0/autoNumeric.min.js"></script>
     <!-- jQuery autocomplete -->
     <script src="<?php echo base_url().'public/gentelella/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js'; ?>"></script>
     <script>
@@ -1079,6 +1080,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             $( "#myModal-p" ).modal('show');
         }
+    });
+
+    /*AutoNumeric*/
+    $("#value_desct").autoNumeric('init',{
+        allowDecimalPadding : "false",
+        decimalCharacter : ',',
+        digitGroupSeparator : '.',
     });
     </script>
     
