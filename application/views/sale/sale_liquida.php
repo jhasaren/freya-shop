@@ -316,13 +316,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </button>
                                             -->
                                             <!--Impresion por navegador-->
-                                            <!--<input id="btnprint" class="btn btn-success btn-lg" type="button" value="Imprimir Ticket" onclick="PrintElem('#ticketPrint')" />-->
+                                            <input id="btnprint" class="btn btn-success btn-lg" type="button" value="Imprimir Ticket" onclick="PrintElem('#ticketPrint')" />
                                             </center>
                                         </form>
                                     </div>
-                                    testestte
                                 </div>
-                                asdfasdf
                             </div>
                         </div>
                     </div>
