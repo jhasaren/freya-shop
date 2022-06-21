@@ -290,7 +290,8 @@ class MReport extends CI_Model {
 
         $query = $this->db->query("SELECT
                                 m.idVenta,
-                                m.fechaPideCuenta,
+                                m.fechaLiquida,
+                                f.fechaPago,
                                 m.nroRecibo,
                                 t.descEstadoRecibo,
                                 m.valorTotalVenta as valorVenta,
