@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h2>Detalle <br />
                             Recibos Pagados, Cuenta x Cobrar, Anulados<br />
                             <span style="font-size: 13px;">
-                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados.
+                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados. Se muestra el detalle del valor pagado en cada recibo segun las formas de pago.
                             </span>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
