@@ -138,6 +138,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>Detalle de Ventas por Producto</h2>
+                                                <br />
                                                 Este reporte solo tiene en cuenta los recibos pagados en su totalidad, es decir, no tiene en cuenta recibos que aun tienen saldo pendiente de pago.
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
