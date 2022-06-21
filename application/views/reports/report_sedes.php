@@ -259,7 +259,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <div class="x_title">
                                                 <h2>Detalle de Pagos Recibos</h2>
                                                 <br /><br />
-                                                <B>Venta:</B> valor antes de aplicar descuento y propina |
+                                                <B>Venta:</B> valor general de la venta |
                                                 <B>Ingreso en Caja:</B> valor pagado en formas de pago
                                                 <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
                                                 <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
