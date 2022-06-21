@@ -142,7 +142,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <br />
                                                     <span style="font-size: 12px">
                                                     Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del recibo (fecha liquida).<br />
-                                                    Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar.<br />
+                                                    Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar con o sin abono.<br />
                                                     El objetivo de este reporte es mostrar el detalle de ventas por producto y la comision correspondiente del empleado.
                                                     </span>
                                                 </h2>
