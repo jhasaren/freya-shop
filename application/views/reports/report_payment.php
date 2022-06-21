@@ -134,10 +134,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="x_title">
                             <h2>Detalle [Pagados & Anulados]</h2>
                             <br /><br />
-                            <B>Venta:</B> valor antes de aplicar descuento y propina |
-                            <B>Liquidado:</B> valor con descuento a servicios |
-                            <B>Ingreso en Caja:</B> Liquidado + Propina <br />
-                            <B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo
+                            <B>Venta:</B> valor general de la venta |
+                            <B>Liquidado:</B> valor a pagar <br />
+                            <B>Forma de Pago:</B> valor total pagado o abonado a la cuenta <br />
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -154,9 +153,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <th>Recibo</th>
                                         <th>Venta</th>
                                         <th>Liquidado</th>
-                                        <th>Propina</th>
                                         <th>Forma de Pago</th>
-                                        <th>Impoconsumo</th>
                                         <th>Estado</th>
                                         <th>Cliente</th>
                                         <th>Acción</th>
@@ -173,9 +170,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <td class="center red"><?php echo $row_pay['nroRecibo']; ?></td>
                                             <td class="center blue"><?php echo number_format($row_pay['valorVenta'],0,',','.'); ?></td>
                                             <td class="center red"><?php echo number_format($row_pay['valorLiquida'],0,',','.'); ?></td>
-                                            <td class="center red"><?php echo number_format($row_pay['popina_servicio'],0,',','.'); ?></td>
                                             <td class="center green"><?php echo number_format($row_pay['forma_pago'],0,',','.'); ?></td>
-                                            <td class="center red"><?php echo number_format($row_pay['impoconsumo'],0,',','.'); ?></td>
                                             <td class="center blue"><small><?php echo $row_pay['descEstadoRecibo']; ?></small></td>
                                             <td class="center blue"><small><?php echo '['.$row_pay['idUsuarioCliente'].'] '.$row_pay['nombreCliente']; ?></small></td>
                                             <td class="center">
