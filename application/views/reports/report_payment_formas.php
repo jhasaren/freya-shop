@@ -190,6 +190,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <th>idVenta</th>
                                         <th>Fecha</th>
                                         <th>Recibo</th>
+                                        <th>Fecha Forma Pago</th>
                                         <th>Forma de Pago</th>
                                         <th>Valor Pago</th>
                                         <th>Estado Recibo</th>
@@ -204,6 +205,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <td class="center green"><?php echo $row_pay['idVenta']; ?></td>
                                             <td class="center green"><small><?php echo $row_pay['fechaLiquida']; ?></small></td>
                                             <td class="center red"><?php echo $row_pay['nroRecibo']; ?></td>
+                                            <td class="center green"><small><?php echo $row_pay['fechaPago']; ?></small></td>
                                             <td class="center red"><?php echo $row_pay['descTipoPago']; ?></td>
                                             <td class="center red"><?php echo number_format($row_pay['valorPago'],0,',','.'); ?></td>
                                             <td class="center blue"><?php echo $row_pay['descEstadoRecibo']; ?></td>

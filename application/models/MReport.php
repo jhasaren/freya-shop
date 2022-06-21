@@ -82,6 +82,7 @@ class MReport extends CI_Model {
                                 m.nroRecibo,
                                 p.descTipoPago,
                                 f.valorPago,
+                                f.fechaPago,
                                 t.descEstadoRecibo,
                                 f.referenciaPago
                                 FROM venta_maestro m
