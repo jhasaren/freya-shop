@@ -78,6 +78,7 @@ class MReport extends CI_Model {
         
         $query = $this->db->query("SELECT
                                 m.idVenta,
+                                m.fechaLiquida,
                                 m.fechaPideCuenta,
                                 m.nroRecibo,
                                 p.descTipoPago,
@@ -92,7 +93,7 @@ class MReport extends CI_Model {
                                 WHERE
                                 m.idEstadoRecibo IN (5,3,8)
                                 AND m.idSede = ".$this->session->userdata('sede')."
-                                AND m.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'");
+                                AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'");
         
         if ($query->num_rows() == 0) {
             
