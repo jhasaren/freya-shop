@@ -161,7 +161,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Cargo Adicional</th>
                                                             <th>Cant</th>
                                                             <th>Precio Venta</th>
-                                                            <th>Ingreso Caja</th>
                                                             <th>Valor Comisión</th>
                                                             <th>% Comisión</th>
                                                             <th>Empleado</th>
@@ -185,7 +184,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
-                                                                    <td class="center green"><?php echo number_format($row_sede['formaPago'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo number_format((($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100),0,',','.')."%"; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
