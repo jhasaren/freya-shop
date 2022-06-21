@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h2>Consolidado<br />
                             Pagos Recibidos<br />
                             <span style="font-size: 13px;">
-                            Este reporte recupera los recibos por fecha de la venta en los estados Pagado y CuentaxCobrar.
+                            Este reporte recupera el valor pagado por fecha del pago en los estados Pagado y CuentaxCobrar.
                             </span>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h2>Detalle <br />
                             Recibos Pagados, Cuenta x Cobrar, Anulados<br />
                             <span style="font-size: 13px;">
-                            Este reporte recupera detalle de los recibos por fecha de la venta en los estados Pagado, CuentaxCobrar y Anulados.
+                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados.
                             </span>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
