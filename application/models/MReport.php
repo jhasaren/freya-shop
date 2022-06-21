@@ -258,6 +258,7 @@ class MReport extends CI_Model {
      **************************************************************************/
     public function payment_sedes($fechaIni,$fechaFin) {
         
+        /*
         $query = $this->db->query("SELECT
                                 m.idVenta,
                                 m.fechaPideCuenta,
@@ -285,6 +286,45 @@ class MReport extends CI_Model {
                                 WHERE
                                 m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
+        */
+
+        $query = $this->db->query("SELECT
+                                m.idVenta,
+                                m.fechaPideCuenta,
+                                m.nroRecibo,
+                                t.descEstadoRecibo,
+                                m.valorTotalVenta as valorVenta,
+                                m.valorLiquida,
+                                m.idSede,
+                                s.nombreSede,
+                                m.porcenServicio,
+                                (m.valorLiquida*m.porcenServicio) as popina_servicio,
+                                m.idEmpleadoAtiende,
+                                concat(u.nombre,' ',u.apellido) as empleado,
+                                m.impoconsumo,
+                                sum(f.valorPago) as formaPago
+                                FROM venta_maestro m
+                                JOIN sede s ON s.idSede = m.idSede
+                                LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
+                                LEFT JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                LEFT JOIN forma_de_pago f ON f.idVenta = m.idVenta
+                                WHERE
+                                m.idEstadoRecibo in (5,8)
+                                AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                GROUP BY
+                                m.idVenta,
+                                m.fechaPideCuenta,
+                                m.nroRecibo,
+                                t.descEstadoRecibo,
+                                m.valorTotalVenta,
+                                m.valorLiquida,
+                                m.idSede,
+                                s.nombreSede,
+                                m.porcenServicio,
+                                (m.valorLiquida*m.porcenServicio),
+                                m.idEmpleadoAtiende,
+                                concat(u.nombre,' ',u.apellido),
+                                m.impoconsumo");
         
         if ($query->num_rows() == 0) {
             
