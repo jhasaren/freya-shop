@@ -21,7 +21,7 @@ class MReport extends CI_Model {
         
     /**************************************************************************
      * Nombre del Metodo: payment_recibos
-     * Descripcion: Recupera los recibos Pagados en un periodo de tiempo
+     * Descripcion: Recupera los recibos Pagados/Anulados/CuentaxCobrar en un periodo de tiempo
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 05/04/2017, Ultima modificacion: 
      **************************************************************************/
@@ -45,7 +45,7 @@ class MReport extends CI_Model {
                                 JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
                                 LEFT JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 WHERE
-                                m.idEstadoRecibo IN (5,3)
+                                m.idEstadoRecibo IN (5,3,8)
                                 AND m.idSede = ".$this->session->userdata('sede')."
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
         
