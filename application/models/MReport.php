@@ -448,7 +448,6 @@ class MReport extends CI_Model {
                                 s.nombreSede,
                                 sum(m.valorTotalVenta) as valorVenta,
                                 sum(m.valorLiquida) as valorLiquida,
-                                /*sum(m.valorLiquida*m.impoconsumo) as impoconsumo,*/
                                 sum((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo,
                                 (sum(m.valorTotalVenta)-sum(m.valorLiquida)) as valorDesctoServ,
                                 (
@@ -457,7 +456,7 @@ class MReport extends CI_Model {
                                     FROM venta_detalle ve
                                     JOIN venta_maestro ma ON ma.idVenta = ve.idVenta
                                     WHERE
-                                    ma.idEstadoRecibo = 5
+                                    ma.idEstadoRecibo in (5,8)
                                     and ma.idSede = m.idSede
                                     AND ma.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 ) as valorEmpleado,
@@ -475,7 +474,7 @@ class MReport extends CI_Model {
                                 FROM venta_maestro m
                                 JOIN sede s ON s.idSede = m.idSede
                                 WHERE
-                                m.idEstadoRecibo = 5
+                                m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 GROUP BY m.idSede");
         
