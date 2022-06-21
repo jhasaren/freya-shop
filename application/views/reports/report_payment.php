@@ -139,7 +139,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <B>Forma de Pago:</B> valor total pagado o abonado a la cuenta <br />
                             <span style="font-size: 13px;">
                             Este reporte recupera los recibos por fecha del recibo (fecha liquida) en los estados Pagado, CuentaxCobrar o Anulado. 
-                            El valor forma de pago se presenta totalizado, es decir, se muestra el valor de lo que a hoy lleva pagado el recibo.<br />
+                            El valor forma de pago se presenta totalizado, es decir, se muestra el valor de lo que a hoy lleva pagado el recibo. 
                             El objetivo de este reporte es presentar el estado actual de los recibos y evidenciar el tiempo transcurrido entre la fecha de entrega y la fecha del pago.
                             </span>
                             <ul class="nav navbar-right panel_toolbox">
