@@ -303,7 +303,8 @@ class MReport extends CI_Model {
                                 m.idEmpleadoAtiende,
                                 concat(u.nombre,' ',u.apellido) as empleado,
                                 m.impoconsumo,
-                                sum(f.valorPago) as formaPago
+                                sum(f.valorPago) as formaPago,
+                                max(f.fechaPago) as fechaPago
                                 FROM venta_maestro m
                                 JOIN sede s ON s.idSede = m.idSede
                                 LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
