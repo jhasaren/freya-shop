@@ -295,7 +295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
                                                                     <!--<td class="center red"><?php //echo number_format(($row_sede['valorVenta']-$row_sede['valorLiquida']),0,',','.'); ?></td>-->
-                                                                    <td class="center green"><?php echo number_format($row_sede['forma_pago'],0,',','.'); ?></td>
+                                                                    <td class="center green"><?php echo number_format($row_sede['formaPago'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['empleado']; ?></small></td>
                                                                     <td class="center">
                                                                         <a class="label label-primary btn-detail" href="<?php echo base_url().'index.php/CReport/detallerecibo/'.$row_sede['idVenta'].'/'.$row_sede['nroRecibo']; ?>">
