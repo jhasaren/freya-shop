@@ -35,13 +35,13 @@ class MReport extends CI_Model {
                                 m.valorTotalVenta as valorVenta,
                                 m.valorLiquida,
                                 (m.valorLiquida*m.porcenServicio) as popina_servicio,
-                                /*(select sum(valorPago) from forma_de_pago where idVenta = m.idVenta) as forma_pago,*/
-                                (
+                                (select sum(valorPago) from forma_de_pago where idVenta = m.idVenta) as forma_pago,
+                                /*(
                                 select sum(valorPago) 
                                 from forma_de_pago 
                                 where idVenta = m.idVenta
                                 and fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
-                                ) as forma_pago,
+                                ) as forma_pago,*/
                                 t.descEstadoRecibo,
                                 /*(m.valorLiquida*m.impoconsumo) as impoconsumo*/
                                 ((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo,
