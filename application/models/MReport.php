@@ -379,6 +379,7 @@ class MReport extends CI_Model {
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 ORDER BY m.fechaPideCuenta");*/
         
+        /*
         $query = $this->db->query("SELECT
                                 v.idRegistroDetalle,
                                 v.idVenta,
@@ -426,7 +427,36 @@ class MReport extends CI_Model {
                                 concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido),
                                 m.fechaLiquida,
                                 m.fechaPideCuenta
-                                ORDER BY f.fechaPago");
+                                ORDER BY f.fechaPago");*/
+
+        $query = $this->db->query("SELECT
+                                v.idRegistroDetalle,
+                                v.idProducto,
+                                p.descProducto,
+                                p.valorProducto as valorActual,
+                                v.cargoEspecial,
+                                v.cantidad,
+                                v.valor as valorVenta,
+                                v.valorEmpleado,
+                                v.idEmpleado,
+                                concat('[',m.nroRecibo,'] ',t.descEstadoRecibo) as recibo,
+                                (m.valorTotalVenta-m.valorLiquida) as valorDescuento,
+                                (SELECT count(lg.idRegistroDetalle) 
+                                FROM log_venta_manual lg
+                                WHERE lg.idRegistroDetalle = v.idRegistroDetalle) as ajuste_manual,
+                                m.valorLiquida,
+                                concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido) as nombre_cliente,
+                                m.fechaPideCuenta,
+                                m.fechaLiquida
+                                FROM venta_detalle v
+                                JOIN venta_maestro m ON m.idVenta = v.idVenta
+                                JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
+                                LEFT JOIN productos p ON p.idProducto = v.idProducto
+                                WHERE
+                                t.idEstadoRecibo in (5,8)
+                                AND m.fechaLiquida BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                ORDER BY m.fechaPideCuenta");
         
         if ($query->num_rows() == 0) {
             
