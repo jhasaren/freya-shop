@@ -138,7 +138,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Consolidado<br />
-                            Recibos Pagados</h2>
+                            Pagos Recibidos<br />
+                            <span style="font-size: 13px;">
+                            Este reporte recupera el valor pagado por fecha del pago en los estados Pagado y CuentaxCobrar. <br />
+                            El objetivo de este reporte es presentar el valor que ha ingresado para cada forma de pago en un periodo de tiempo.
+                            </span>
+                            </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -176,7 +181,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Detalle <br />
-                            Recibos Pagados y Anulados</h2>
+                            Recibos Pagados, Cuenta x Cobrar, Anulados<br />
+                            <span style="font-size: 13px;">
+                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados.<br /> 
+                            Se muestra el detalle del valor pagado en cada recibo segun las formas de pago. El objetivo de este reporte 
+                            es mostrar por cada recibo como se recibio el pago.
+                            </span>
+                            </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -188,8 +199,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <thead>
                                     <tr>
                                         <th>idVenta</th>
-                                        <th>Fecha</th>
+                                        <th>Fecha Pedido</th>
                                         <th>Recibo</th>
+                                        <th>Fecha Forma Pago</th>
                                         <th>Forma de Pago</th>
                                         <th>Valor Pago</th>
                                         <th>Estado Recibo</th>
@@ -204,6 +216,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <td class="center green"><?php echo $row_pay['idVenta']; ?></td>
                                             <td class="center green"><small><?php echo $row_pay['fechaLiquida']; ?></small></td>
                                             <td class="center red"><?php echo $row_pay['nroRecibo']; ?></td>
+                                            <td class="center green"><small><?php echo $row_pay['fechaPago']; ?></small></td>
                                             <td class="center red"><?php echo $row_pay['descTipoPago']; ?></td>
                                             <td class="center red"><?php echo number_format($row_pay['valorPago'],0,',','.'); ?></td>
                                             <td class="center blue"><?php echo $row_pay['descEstadoRecibo']; ?></td>

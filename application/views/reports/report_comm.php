@@ -137,7 +137,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Detalle de Ventas por Producto</h2>
+                                                <h2>
+                                                    Detalle de Ventas por Producto
+                                                    <br />
+                                                    <span style="font-size: 12px">
+                                                    Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del recibo (fecha liquida).<br />
+                                                    Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar con o sin abono.<br />
+                                                    El objetivo de este reporte es mostrar el detalle de ventas por producto y la comision correspondiente del empleado.
+                                                    </span>
+                                                </h2>
+                                                
                                                 <ul class="nav navbar-right panel_toolbox">
                                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                                     </li>
@@ -148,7 +157,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>Fecha</th>
+                                                            <th>Fecha Recibo</th>
                                                             <th>Producto</th>
                                                             <th>Precio Público</th>
                                                             <th>Cargo Adicional</th>
@@ -171,7 +180,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
-                                                                    <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['fechaLiquida']; ?></small></td>
                                                                     <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>

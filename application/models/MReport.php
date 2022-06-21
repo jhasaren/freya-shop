@@ -21,7 +21,7 @@ class MReport extends CI_Model {
         
     /**************************************************************************
      * Nombre del Metodo: payment_recibos
-     * Descripcion: Recupera los recibos Pagados en un periodo de tiempo
+     * Descripcion: Recupera los recibos Pagados/Anulados/CuentaxCobrar en un periodo de tiempo
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 05/04/2017, Ultima modificacion: 
      **************************************************************************/
@@ -36,6 +36,12 @@ class MReport extends CI_Model {
                                 m.valorLiquida,
                                 (m.valorLiquida*m.porcenServicio) as popina_servicio,
                                 (select sum(valorPago) from forma_de_pago where idVenta = m.idVenta) as forma_pago,
+                                /*(
+                                select sum(valorPago) 
+                                from forma_de_pago 
+                                where idVenta = m.idVenta
+                                and fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                ) as forma_pago,*/
                                 t.descEstadoRecibo,
                                 /*(m.valorLiquida*m.impoconsumo) as impoconsumo*/
                                 ((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo,
@@ -45,9 +51,9 @@ class MReport extends CI_Model {
                                 JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
                                 LEFT JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 WHERE
-                                m.idEstadoRecibo IN (5,3)
+                                m.idEstadoRecibo IN (5,3,8)
                                 AND m.idSede = ".$this->session->userdata('sede')."
-                                AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
+                                AND m.fechaLiquida BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
         
         if ($query->num_rows() == 0) {
             
@@ -63,7 +69,7 @@ class MReport extends CI_Model {
     
     /**************************************************************************
      * Nombre del Metodo: payment_recibos_form
-     * Descripcion: Recupera los recibos Pagados/anulados con formas de pago en un periodo 
+     * Descripcion: Recupera los recibos Pagados/anulados/cuentaxcobrar con formas de pago en un periodo 
      * de tiempo
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 20/09/2018, Ultima modificacion: 
@@ -73,9 +79,11 @@ class MReport extends CI_Model {
         $query = $this->db->query("SELECT
                                 m.idVenta,
                                 m.fechaLiquida,
+                                m.fechaPideCuenta,
                                 m.nroRecibo,
                                 p.descTipoPago,
                                 f.valorPago,
+                                f.fechaPago,
                                 t.descEstadoRecibo,
                                 f.referenciaPago
                                 FROM venta_maestro m
@@ -83,9 +91,9 @@ class MReport extends CI_Model {
                                 LEFT JOIN forma_de_pago f ON f.idVenta = m.idVenta
                                 LEFT JOIN tipo_forma_pago p ON p.idTipoPago = f.idTipoPago
                                 WHERE
-                                m.idEstadoRecibo IN (5,3)
+                                m.idEstadoRecibo IN (5,3,8)
                                 AND m.idSede = ".$this->session->userdata('sede')."
-                                AND m.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'");
+                                AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'");
         
         if ($query->num_rows() == 0) {
             
@@ -102,7 +110,7 @@ class MReport extends CI_Model {
     /**************************************************************************
      * Nombre del Metodo: payment_consolida_form
      * Descripcion: Recupera consolidado de pagos por formas de pago en un periodo 
-     * de tiempo
+     * de tiempo (estado: pagados, cuentaxcobrar)
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 24/09/2018, Ultima modificacion: 
      **************************************************************************/
@@ -116,9 +124,9 @@ class MReport extends CI_Model {
                                 JOIN tipo_forma_pago t ON t.idTipoPago = f.idTipoPago
                                 JOIN venta_maestro v ON v.idVenta = f.idVenta
                                 WHERE
-                                v.idEstadoRecibo IN (5)
+                                v.idEstadoRecibo IN (5,8)
                                 AND v.idSede = ".$this->session->userdata('sede')."
-                                AND v.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
+                                AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 GROUP BY f.idTipoPago" );
         
         if ($query->num_rows() == 0) {
@@ -245,18 +253,26 @@ class MReport extends CI_Model {
     
     /**************************************************************************
      * Nombre del Metodo: payment_sedes
-     * Descripcion: Recupera los recibos Pagados en un periodo de tiempo por Sede
+     * Descripcion: Recupera los recibos Pagados/Cuentaxcobrar en un periodo de tiempo por Sede
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 20/04/2017, Ultima modificacion: 
      **************************************************************************/
     public function payment_sedes($fechaIni,$fechaFin) {
         
+        /*
         $query = $this->db->query("SELECT
                                 m.idVenta,
                                 m.fechaPideCuenta,
                                 m.nroRecibo,
+                                t.descEstadoRecibo,
                                 m.valorTotalVenta as valorVenta,
                                 m.valorLiquida,
+                                (
+                                select sum(valorPago) 
+                                from forma_de_pago 
+                                where idVenta = m.idVenta
+                                and fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                ) as forma_pago,
                                 m.idSede,
                                 s.nombreSede,
                                 m.porcenServicio,
@@ -267,9 +283,52 @@ class MReport extends CI_Model {
                                 FROM venta_maestro m
                                 JOIN sede s ON s.idSede = m.idSede
                                 LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
+                                LEFT JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
                                 WHERE
-                                m.idEstadoRecibo = 5
+                                m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
+        */
+
+        $query = $this->db->query("SELECT
+                                m.idVenta,
+                                m.fechaLiquida,
+                                m.fechaPideCuenta,
+                                m.nroRecibo,
+                                t.descEstadoRecibo,
+                                m.valorTotalVenta as valorVenta,
+                                m.valorLiquida,
+                                m.idSede,
+                                s.nombreSede,
+                                m.porcenServicio,
+                                (m.valorLiquida*m.porcenServicio) as popina_servicio,
+                                m.idEmpleadoAtiende,
+                                concat(u.nombre,' ',u.apellido) as empleado,
+                                m.impoconsumo,
+                                sum(f.valorPago) as formaPago,
+                                max(f.fechaPago) as fechaPago
+                                FROM venta_maestro m
+                                JOIN sede s ON s.idSede = m.idSede
+                                LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
+                                LEFT JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                LEFT JOIN forma_de_pago f ON f.idVenta = m.idVenta
+                                WHERE
+                                m.idEstadoRecibo in (5,8)
+                                AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                GROUP BY
+                                m.idVenta,
+                                m.fechaLiquida,
+                                m.fechaPideCuenta,
+                                m.nroRecibo,
+                                t.descEstadoRecibo,
+                                m.valorTotalVenta,
+                                m.valorLiquida,
+                                m.idSede,
+                                s.nombreSede,
+                                m.porcenServicio,
+                                (m.valorLiquida*m.porcenServicio),
+                                m.idEmpleadoAtiende,
+                                concat(u.nombre,' ',u.apellido),
+                                m.impoconsumo");
         
         if ($query->num_rows() == 0) {
             
@@ -291,6 +350,7 @@ class MReport extends CI_Model {
      **************************************************************************/
     public function payment_salesproduct($fechaIni,$fechaFin) {
         
+        /*
         $query = $this->db->query("SELECT
                                 v.idRegistroDetalle,
                                 v.idProducto,
@@ -315,8 +375,87 @@ class MReport extends CI_Model {
                                 JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 LEFT JOIN productos p ON p.idProducto = v.idProducto
                                 WHERE
-                                t.idEstadoRecibo = 5
+                                t.idEstadoRecibo in (5)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                ORDER BY m.fechaPideCuenta");*/
+        
+        /*
+        $query = $this->db->query("SELECT
+                                v.idRegistroDetalle,
+                                v.idVenta,
+                                v.idProducto,
+                                p.descProducto,
+                                p.valorProducto as valorActual,
+                                v.cargoEspecial,
+                                v.cantidad,
+                                v.valor as valorVenta,
+                                v.valorEmpleado,
+                                v.idEmpleado,
+                                concat('[',m.nroRecibo,'] ',t.descEstadoRecibo) as recibo,
+                                (m.valorTotalVenta-m.valorLiquida) as valorDescuento,
+                                (SELECT count(lg.idRegistroDetalle)
+                                FROM log_venta_manual lg
+                                WHERE lg.idRegistroDetalle = v.idRegistroDetalle) as ajuste_manual,
+                                m.valorLiquida,
+                                concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido) as nombre_cliente,
+                                m.fechaLiquida,
+                                m.fechaPideCuenta,
+                                sum(f.valorPago) as formaPago
+                                FROM venta_detalle v
+                                JOIN venta_maestro m ON m.idVenta = v.idVenta
+                                JOIN forma_de_pago f ON f.idVenta = m.idVenta
+                                JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
+                                LEFT JOIN productos p ON p.idProducto = v.idProducto
+                                WHERE
+                                t.idEstadoRecibo in (5,8)
+                                AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
+                                GROUP BY
+                                v.idRegistroDetalle,
+                                v.idVenta,
+                                v.idProducto,
+                                p.descProducto,
+                                p.valorProducto,
+                                v.cargoEspecial,
+                                v.cantidad,
+                                v.valor,
+                                v.valorEmpleado,
+                                v.idEmpleado,
+                                concat('[',m.nroRecibo,'] ',t.descEstadoRecibo),
+                                (m.valorTotalVenta-m.valorLiquida),
+                                m.valorLiquida,
+                                concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido),
+                                m.fechaLiquida,
+                                m.fechaPideCuenta
+                                ORDER BY f.fechaPago");*/
+
+        $query = $this->db->query("SELECT
+                                v.idRegistroDetalle,
+                                v.idProducto,
+                                p.descProducto,
+                                p.valorProducto as valorActual,
+                                v.cargoEspecial,
+                                v.cantidad,
+                                v.valor as valorVenta,
+                                v.valorEmpleado,
+                                v.idEmpleado,
+                                concat('[',m.nroRecibo,'] ',t.descEstadoRecibo) as recibo,
+                                (m.valorTotalVenta-m.valorLiquida) as valorDescuento,
+                                (SELECT count(lg.idRegistroDetalle) 
+                                FROM log_venta_manual lg
+                                WHERE lg.idRegistroDetalle = v.idRegistroDetalle) as ajuste_manual,
+                                m.valorLiquida,
+                                concat('[',m.idUsuarioCliente,'] ',a.nombre,' ',a.apellido) as nombre_cliente,
+                                m.fechaPideCuenta,
+                                m.fechaLiquida
+                                FROM venta_detalle v
+                                JOIN venta_maestro m ON m.idVenta = v.idVenta
+                                JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
+                                JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
+                                LEFT JOIN productos p ON p.idProducto = v.idProducto
+                                WHERE
+                                t.idEstadoRecibo in (5,8)
+                                AND m.fechaLiquida BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 ORDER BY m.fechaPideCuenta");
         
         if ($query->num_rows() == 0) {
@@ -433,7 +572,6 @@ class MReport extends CI_Model {
                                 s.nombreSede,
                                 sum(m.valorTotalVenta) as valorVenta,
                                 sum(m.valorLiquida) as valorLiquida,
-                                /*sum(m.valorLiquida*m.impoconsumo) as impoconsumo,*/
                                 sum((m.valorLiquida/(m.impoconsumo+1))*m.impoconsumo) as impoconsumo,
                                 (sum(m.valorTotalVenta)-sum(m.valorLiquida)) as valorDesctoServ,
                                 (
@@ -442,7 +580,7 @@ class MReport extends CI_Model {
                                     FROM venta_detalle ve
                                     JOIN venta_maestro ma ON ma.idVenta = ve.idVenta
                                     WHERE
-                                    ma.idEstadoRecibo = 5
+                                    ma.idEstadoRecibo in (5,8)
                                     and ma.idSede = m.idSede
                                     AND ma.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 ) as valorEmpleado,
@@ -460,7 +598,7 @@ class MReport extends CI_Model {
                                 FROM venta_maestro m
                                 JOIN sede s ON s.idSede = m.idSede
                                 WHERE
-                                m.idEstadoRecibo = 5
+                                m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 GROUP BY m.idSede");
         
