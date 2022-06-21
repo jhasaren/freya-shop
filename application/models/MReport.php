@@ -255,6 +255,7 @@ class MReport extends CI_Model {
                                 m.idVenta,
                                 m.fechaPideCuenta,
                                 m.nroRecibo,
+                                t.descEstadoRecibo,
                                 m.valorTotalVenta as valorVenta,
                                 m.valorLiquida,
                                 m.idSede,
@@ -267,6 +268,7 @@ class MReport extends CI_Model {
                                 FROM venta_maestro m
                                 JOIN sede s ON s.idSede = m.idSede
                                 LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
+                                LEFT JOIN tipo_estado_recibo t ON t.idEstadoRecibo = m.idEstadoRecibo
                                 WHERE
                                 m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
