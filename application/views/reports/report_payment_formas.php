@@ -138,7 +138,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Consolidado<br />
-                            Pagos Recibidos</h2>
+                            Pagos Recibidos<br />
+                            <span style="font-size: 13px;">
+                            Este reporte recupera los recibos por fecha de la venta en los estados Pagado y CuentaxCobrar.
+                            </span>
+                            </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -176,7 +180,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Detalle <br />
-                            Recibos Pagados, Cuenta x Cobrar, Anulados</h2>
+                            Recibos Pagados, Cuenta x Cobrar, Anulados<br />
+                            <span style="font-size: 13px;">
+                            Este reporte recupera detalle de los recibos por fecha de la venta en los estados Pagado, CuentaxCobrar y Anulados.
+                            </span>
+                            </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
