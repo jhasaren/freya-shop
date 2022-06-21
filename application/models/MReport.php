@@ -125,7 +125,7 @@ class MReport extends CI_Model {
                                 WHERE
                                 v.idEstadoRecibo IN (5,8)
                                 AND v.idSede = ".$this->session->userdata('sede')."
-                                AND v.fechaPideCuenta BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
+                                AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                 GROUP BY f.idTipoPago" );
         
         if ($query->num_rows() == 0) {
