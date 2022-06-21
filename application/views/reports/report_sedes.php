@@ -260,7 +260,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <h2>Detalle de Recibos Pagados</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
-                                                <B>Ingreso en Caja:</B> valor con descuento
+                                                <B>Ingreso en Caja:</B> valor pagado en formas de pago
                                                 <!--<B>Ingreso en Caja:</B> Liquidado + Propina <br />-->
                                                 <!--<B>Impoconsumo:</B> (Liquidado / %Impoconsumo+1)*%Impoconsumo-->
                                                 <ul class="nav navbar-right panel_toolbox">
@@ -277,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Nro. Recibo</th>
                                                             <th>Fecha Pago</th>
                                                             <th>Venta</th>
-                                                            <th>Descto.</th>
+                                                            <!--<th>Descto.</th>-->
                                                             <th>Ingreso Caja</th>
                                                             <th>Empleado</th>
                                                             <th>Acción</th>
@@ -294,8 +294,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center green"><?php echo $row_sede['nroRecibo']."<br />".$row_sede['descEstadoRecibo']; ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['fechaPideCuenta']; ?></small></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format(($row_sede['valorVenta']-$row_sede['valorLiquida']),0,',','.'); ?></td>
-                                                                    <td class="center green"><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></td>
+                                                                    <!--<td class="center red"><?php //echo number_format(($row_sede['valorVenta']-$row_sede['valorLiquida']),0,',','.'); ?></td>-->
+                                                                    <td class="center green"><?php echo number_format($row_sede['forma_pago'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['empleado']; ?></small></td>
                                                                     <td class="center">
                                                                         <a class="label label-primary btn-detail" href="<?php echo base_url().'index.php/CReport/detallerecibo/'.$row_sede['idVenta'].'/'.$row_sede['nroRecibo']; ?>">
