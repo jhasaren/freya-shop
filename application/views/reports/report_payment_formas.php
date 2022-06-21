@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h2>Consolidado<br />
                             Pagos Recibidos<br />
                             <span style="font-size: 13px;">
-                            Este reporte recupera el valor pagado por fecha del pago en los estados Pagado y CuentaxCobrar. 
+                            Este reporte recupera el valor pagado por fecha del pago en los estados Pagado y CuentaxCobrar. <br />
                             El objetivo de este reporte es presentar el valor que ha ingresado para cada forma de pago en un periodo de tiempo.
                             </span>
                             </h2>
@@ -183,7 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h2>Detalle <br />
                             Recibos Pagados, Cuenta x Cobrar, Anulados<br />
                             <span style="font-size: 13px;">
-                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados. 
+                            Este reporte recupera detalle de los recibos por fecha del pago en los estados Pagado, CuentaxCobrar y Anulados.<br /> 
                             Se muestra el detalle del valor pagado en cada recibo segun las formas de pago. El objetivo de este reporte 
                             es mostrar por cada recibo como se recibio el pago.
                             </span>
