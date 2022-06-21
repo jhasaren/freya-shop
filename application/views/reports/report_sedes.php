@@ -279,8 +279,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Venta</th>
                                                             <th>Descto.</th>
                                                             <th>Ingreso Caja</th>
-                                                            <th>Propina</th>
-                                                            <th>Impuesto</th>
                                                             <th>Empleado</th>
                                                             <th>Acción</th>
                                                         </tr>
@@ -298,8 +296,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
                                                                     <td class="center red"><?php echo number_format(($row_sede['valorVenta']-$row_sede['valorLiquida']),0,',','.'); ?></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></td>
-                                                                    <td class="center green"><?php echo number_format($row_sede['popina_servicio'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format((($row_sede['valorLiquida']/($row_sede['impoconsumo']+1))*$row_sede['impoconsumo']),0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['empleado']; ?></small></td>
                                                                     <td class="center">
                                                                         <a class="label label-primary btn-detail" href="<?php echo base_url().'index.php/CReport/detallerecibo/'.$row_sede['idVenta'].'/'.$row_sede['nroRecibo']; ?>">
