@@ -257,7 +257,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="x_panel">
                                             <div class="x_title">
-                                                <h2>Detalle de Recibos Pagados</h2>
+                                                <h2>Detalle de Pagos Recibos</h2>
                                                 <br /><br />
                                                 <B>Venta:</B> valor antes de aplicar descuento y propina |
                                                 <B>Ingreso en Caja:</B> valor pagado en formas de pago
