@@ -314,6 +314,7 @@ class MReport extends CI_Model {
                                 AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 GROUP BY
                                 m.idVenta,
+                                m.fechaLiquida,
                                 m.fechaPideCuenta,
                                 m.nroRecibo,
                                 t.descEstadoRecibo,
