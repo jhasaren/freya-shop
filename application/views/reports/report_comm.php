@@ -141,7 +141,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     Detalle de Ventas por Producto
                                                     <br />
                                                     <span style="font-size: 12px">
-                                                    Este reporte solo tiene en cuenta los recibos pagados en su totalidad, es decir, no tiene en cuenta recibos que aún tienen saldo pendiente de pago.
+                                                    Descripcion
                                                     </span>
                                                 </h2>
                                                 
