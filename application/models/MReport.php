@@ -245,7 +245,7 @@ class MReport extends CI_Model {
     
     /**************************************************************************
      * Nombre del Metodo: payment_sedes
-     * Descripcion: Recupera los recibos Pagados en un periodo de tiempo por Sede
+     * Descripcion: Recupera los recibos Pagados/Cuentaxcobrar en un periodo de tiempo por Sede
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 20/04/2017, Ultima modificacion: 
      **************************************************************************/
@@ -268,7 +268,7 @@ class MReport extends CI_Model {
                                 JOIN sede s ON s.idSede = m.idSede
                                 LEFT JOIN app_usuarios u ON u.idUsuario = m.idEmpleadoAtiende
                                 WHERE
-                                m.idEstadoRecibo = 5
+                                m.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'");
         
         if ($query->num_rows() == 0) {
