@@ -407,7 +407,7 @@ class MReport extends CI_Model {
                                 LEFT JOIN productos p ON p.idProducto = v.idProducto
                                 WHERE
                                 t.idEstadoRecibo in (5,8)
-                                AND f.fechaPago '".$fechaIni."' AND '".$fechaFin."'
+                                AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 GROUP BY
                                 v.idRegistroDetalle,
                                 v.idVenta,
