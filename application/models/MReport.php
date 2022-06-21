@@ -373,7 +373,7 @@ class MReport extends CI_Model {
                                 JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 LEFT JOIN productos p ON p.idProducto = v.idProducto
                                 WHERE
-                                t.idEstadoRecibo = 5
+                                t.idEstadoRecibo in (5,8)
                                 AND m.fechaPideCuenta BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 ORDER BY m.fechaPideCuenta");
         
