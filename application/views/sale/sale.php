@@ -518,7 +518,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php } ?>
                             <label class="control-label" for="select">Escriba parte del nombre y seleccione de la lista</label>
                             <div class="controls">
-                                <input class="select2_single form-control" type="text" name="idcliente" id="idcliente" required="" />
+                                <input class="select2_single form-control" type="text" name="idcliente" id="idcliente" required="" autocomplete="off" />
                             </div>
                             <br />
                         </div>
@@ -652,7 +652,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="controls">
                                 <label class="control-label" for="select">Escriba parte del nombre y seleccione de la lista</label>
                                 <div class="controls">
-                                    <input class="select2_single form-control" type="text" name="idproducto" id="idproducto" required="" />
+                                    <input class="select2_single form-control" type="text" name="idproducto" id="idproducto" required="" autocomplete="off" />
                                 </div>
                                 <br />
                             </div>

@@ -103,11 +103,11 @@ class Jasr {
         }
 
         if ($type == 11){
-            /* Valor >= 0 y solo numeros de 1 a 5 digitos (99.000) */
+            /* Valor >= 0 y solo numeros de 1 a 6 digitos (999.000) */
             if ($dato < 0){
                 return FALSE;
             } else {
-                $reg = "/^[0-9]{1,5}+$/";
+                $reg = "/^[0-9]{1,6}+$/";
                 return preg_match($reg, $dato);
             }
         }
