@@ -158,7 +158,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Empleado</th>
                                                             <th>Cliente</th>
                                                             <th>Recibo</th>
-                                                            <th>Ajuste Manual</th>
                                                             <th>Total Factura</th>
                                                         </tr>
                                                     </thead>
@@ -180,7 +179,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
-                                                                    <td class="center red"><small><?php echo $row_sede['ajuste_manual']; ?></small></td>
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
