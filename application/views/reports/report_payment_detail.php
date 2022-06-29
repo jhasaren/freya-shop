@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form role="form" name="form_report" action="<?php echo base_url().'index.php/CReport/paymentcomm'; ?>" method="post">
+                                <form role="form" name="form_report" action="<?php echo base_url().'index.php/CReport/paymentdetail'; ?>" method="post">
                                     <div class="modal-body">
                                         <fieldset>
                                             <div class="col-md-3 xdisplay_inputx form-group has-feedback"></div>
@@ -129,10 +129,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>
-                                                    Detalle de Ventas por Producto
+                                                    Detalle de Ingresos por Producto
                                                     <br />
                                                     <span style="font-size: 12px">
-                                                    Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del recibo (fecha liquida).<br />
+                                                    Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del pago.<br />
                                                     Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar con o sin abono.<br />
                                                     El objetivo de este reporte es mostrar el detalle de ventas por producto y la comision correspondiente del empleado.
                                                     </span>
