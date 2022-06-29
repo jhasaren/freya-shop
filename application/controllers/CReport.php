@@ -157,6 +157,13 @@ class CReport extends CI_Controller {
                     $this->load->view('reports/report_comm',$info);
 
                 }
+
+                if ($report == 'reportPaymentDetail'){
+                    
+                    $info['dataRow'] = 0;
+                    $this->load->view('reports/report_payment_detail',$info);
+
+                }
             
             } else {
                 
