@@ -59,6 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="page-title">
                     <div class="title_left">
                         <h3>Reportes</h3>
+                        <span class="input-group-btn">
+                            <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
+                        </span>
                     </div>
 
                     <div class="title_right">
@@ -70,8 +73,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </span>
                                 <span class="input-group-btn">
                                     <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
-                                    <br />
-                                    <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
                                 </span>
                             </div>
                             <?php 
