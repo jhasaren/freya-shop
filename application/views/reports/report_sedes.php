@@ -60,6 +60,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="title_left">
                         <h3>Reportes</h3>
                         <span class="input-group-btn">
+                            <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Ingresos detallado</a>
+                        </span>
+                        <span class="input-group-btn">
                             <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
                         </span>
                         <span class="input-group-btn">
