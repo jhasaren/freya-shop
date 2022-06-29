@@ -864,7 +864,7 @@ class CReport extends CI_Controller {
 
                     $info['dataRow'] = 2;
                     $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
-                    $this->load->view('reports/report_comm',$info);
+                    $this->load->view('reports/report_payment_detail',$info);
 
                 }
             
