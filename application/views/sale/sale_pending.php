@@ -188,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <h3>Observación CuentaxCobrar<br /><span style='color: gray'>Recibo <div id='recibo'></div></span></h3>
                         </div>
                         <div class="modal-body">
-                            <label class="control-label" for="Interno">Producto</label>
+                            <label class="control-label" for="Interno">Observación</label>
                             <input type="text" id="observCuenta" name="observCuenta" required="" class="form-control" placeholder="Observación de la Cuenta x Cobrar" autocomplete="off" style="height: 80px;" maxlength="90" >
                             <br />
                             <input type="hidden" class="form-control" id="idventa" name="idventa">
