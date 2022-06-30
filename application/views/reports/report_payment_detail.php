@@ -115,6 +115,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <input type="text" name="dateRangeInput" required="" class="form-control has-feedback-left" id="single_cal_all" value="" placeholder="Fecha Inicio" aria-describedby="inputSuccess2Status" readonly="">
                                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                                 <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                                <br />
+                                                Estado de la Factura:
+                                                <br />
                                                 <select class="select2_single form-control" id="estado_factura" name="estado_factura" data-rel="chosen">
                                                     <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="5" >Pagados</option>
                                                     <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="8" >CuentaxCobrar</option>
