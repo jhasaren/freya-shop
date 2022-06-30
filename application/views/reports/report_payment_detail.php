@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 Estado de la Factura:
                                                 <br />
                                                 <select class="select2_single form-control" id="estado_factura" name="estado_factura" data-rel="chosen">
-                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="5" >Pagados</option>
+                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="5" >Pagada</option>
                                                     <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="8" >CuentaxCobrar</option>
                                                 </select>
                                             </div>
