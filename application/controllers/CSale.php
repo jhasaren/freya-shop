@@ -1959,15 +1959,15 @@ class CSale extends CI_Controller {
 
                     if ($registerData == TRUE){
 
-                        $info['idmessage'] = 1;
+                        $info['alert'] = 1;
                         $info['message'] = "Observación guardada exitosamente";
-                        $this->load->view('sale/sale_pending',$info);
+                        $this->pendientespago();
 
                     } else {
 
-                        $info['idmessage'] = 2;
+                        $info['alert'] = 2;
                         $info['message'] = "No fue posible guardar la Observación";
-                        $this->load->view('sale/sale_pending',$info);
+                        $this->pendientespago();
 
                     }
 
