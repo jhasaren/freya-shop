@@ -476,7 +476,7 @@ class MReport extends CI_Model {
      * Autor: jhonalexander90@gmail.com
      * Fecha Creacion: 29/06/2022, Ultima modificacion: 
      **************************************************************************/
-    public function payment_ingresosdetail($fechaIni,$fechaFin) {
+    public function payment_ingresosdetail($fechaIni,$fechaFin,$estadoFactura) {
                 
         $query = $this->db->query("SELECT
                                 v.idRegistroDetalle,
@@ -506,7 +506,7 @@ class MReport extends CI_Model {
                                 JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 LEFT JOIN productos p ON p.idProducto = v.idProducto
                                 WHERE
-                                t.idEstadoRecibo in (5,8)
+                                t.idEstadoRecibo in (".$estadoFactura.")
                                 AND f.fechaPago BETWEEN '".$fechaIni."' AND '".$fechaFin."'
                                 GROUP BY
                                 v.idRegistroDetalle,

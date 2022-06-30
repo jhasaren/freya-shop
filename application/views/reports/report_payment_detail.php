@@ -197,7 +197,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </table>
                                             </div>
                                             <h2>
-                                            <?php echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; ?>
+                                            <?php 
+                                            if ($estadoFact == 5){ //Pagados
+                                                echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; 
+                                            }
+
+                                            if ($estadoFact == 8){ //CuentaxCobrar
+                                                //echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; 
+                                            }
+                                            ?>
                                             </h2>
                                         </div>
                                     </div>

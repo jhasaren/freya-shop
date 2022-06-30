@@ -833,6 +833,7 @@ class CReport extends CI_Controller {
             if ($this->MRecurso->validaRecurso(10)){
                 
                 /*Captura Variables*/
+                $estadoFactura = $this->input->post('estado_factura');
                 $dateRange = explode("|",$this->input->post('dateRangeInput'));
                                 
                 $date1 = new DateTime($dateRange[0]); 
@@ -848,7 +849,7 @@ class CReport extends CI_Controller {
                 log_message("DEBUG", "*********************************");
                 
                 /*Consulta Modelo detalle ingresos*/
-                $paymentDataDet = $this->MReport->payment_ingresosdetail($fechaini,$fechafin);
+                $paymentDataDet = $this->MReport->payment_ingresosdetail($fechaini,$fechafin,$estadoFactura);
 
                 if ($paymentDataDet == TRUE){
 
@@ -857,6 +858,7 @@ class CReport extends CI_Controller {
                     $info['fechaIni'] = $fechaini;
                     $info['fechaFin'] = $fechafin;
                     $info['dataRow'] = 1;
+                    $info['estadoFact'] = $estadoFactura;
                     $info['paymentDataSedes'] = $paymentDataDet;
                     $this->load->view('reports/report_payment_detail',$info);
 
