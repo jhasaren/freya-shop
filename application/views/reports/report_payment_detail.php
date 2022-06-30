@@ -139,9 +139,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     Detalle de Ingresos
                                                     <br />
                                                     <span style="font-size: 12px">
-                                                    Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del pago.<br />
-                                                    Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar con o sin abono.<br />
-                                                    El objetivo de este reporte es mostrar el detalle de ventas por producto y la comision correspondiente del empleado.
+                                                    Este reporte recupera las ventas detallando el producto, se tiene en cuenta la fecha del pago.
                                                     </span>
                                                 </h2>
                                                 
