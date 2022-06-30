@@ -135,10 +135,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             Recuperar
                                                         </a>
                                                         <br />
-                                                        <a class="btn btn-warning btn-sm" href="<?php echo base_url().'index.php/CSale/restoresale/'.$row_liquidado['idVenta'].'/'.$row_liquidado['idUsuarioCliente'].'/'.$row_liquidado['porcenDescuento'].'/'.$row_liquidado['porcenServicio'].'/'.$row_liquidado['idEmpleadoAtiende']; ?>">
-                                                            <i class="glyphicon glyphicon-cog"></i>
-                                                            Observación
-                                                        </a>
+                                                        <?php 
+                                                        echo "<a class='btn-itemobs btn btn-warning btn-sm' data-rel='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['nroRecibo']."' href='#'>Observación</a>";
+                                                        ?>
                                                         
                                                         <!--Descargar PDF-->
                                                         <?php
@@ -178,6 +177,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <!-- /page content -->
+
+        <!--Modal - Observacion CuentaxCobrar-->
+        <div class="modal fade" id="myModal-itemobs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-itemobs" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CUser/saveconfiguser'; ?>" method="post">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h3>Observación CuentaxCobrar | Recibo [<div id='recibo'></div>]</h3>
+                        </div>
+                        <div class="modal-body">
+                            <label class="control-label" for="Interno">Producto</label>
+                            <input type="text" id="observCuenta" name="observCuenta" required="" class="form-control" placeholder="Observación de la Cuenta x Cobrar" autocomplete="off" style="height: 80px;" maxlength="90" >
+                            <br />
+                            <input type="hidden" class="form-control" id="idventa" name="idventa">
+                            <input type="hidden" class="form-control" id="recibo" name="recibo">
+                        </div>
+                        <div class="modal-footer">
+                            <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <!-- footer content -->
         <?php 
