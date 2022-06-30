@@ -59,31 +59,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="page-title">
                     <div class="title_left">
                         <h3>Reportes</h3>
+                        <span class="input-group-btn">
+                            <a class="btn btn-success" href="<?php echo base_url().'index.php/CReport/module/reportPaymentDetail'; ?>"><i class="glyphicon glyphicon-usd"></i> Ingresos detallado</a>
+                        </span>
+                        <?php 
+                        if ($this->config->item('mod_commision') == 1){ //Manejo de Comisiones habilitado
+                        ?>
+                        <span class="input-group-btn">
+                            <a class="btn btn-warning" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
+                        </span>
+                        <?php 
+                        }
+                        ?>
+                        <span class="input-group-btn">
+                            <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGYP'; ?>"><i class="glyphicon glyphicon-signal"></i> Estado G&P</a>
+                        </span>
+                        <span class="input-group-btn">
+                            <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
+                        </span>
+                        <br /><br />
                     </div>
 
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <!--
                             <div class="input-group">
                                 <div></div>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGYP'; ?>"><i class="glyphicon glyphicon-signal"></i> Estado G&P</a>
+                                    <a class="btn btn-info" href="<?php //echo base_url().'index.php/CReport/module/reportGYP'; ?>"><i class="glyphicon glyphicon-signal"></i> Estado G&P</a>
                                 </span>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
+                                    <a class="btn btn-info" href="<?php //echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
                                 </span>
                             </div>
-                            <?php 
-                            if ($this->config->item('mod_commision') == 1){ //Manejo de Comisiones habilitado
-                            ?>
-                            <div class="input-group">
-                                <div></div>
-                                <span class="input-group-btn">
-                                    <a class="btn btn-danger" href="<?php echo base_url().'index.php/CReport/module/reportComm'; ?>"><i class="glyphicon glyphicon-usd"></i> Comisiones</a>
-                                </span>
-                            </div>
-                            <?php 
-                            }
-                            ?>
+                            -->
                         </div>
                     </div>
                 </div>

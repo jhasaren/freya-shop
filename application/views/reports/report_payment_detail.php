@@ -66,15 +66,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="input-group">
                                 <div></div>
                                 <span class="input-group-btn">
-                                    <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGYP'; ?>"><i class="glyphicon glyphicon-signal"></i> Estado G&P</a>
-                                </span>
-                                <span class="input-group-btn">
-                                    <a class="btn btn-info" href="<?php echo base_url().'index.php/CReport/module/reportGastos'; ?>"><i class="glyphicon glyphicon-arrow-up"></i> Gastos</a>
-                                </span>
-                            </div>
-                            <div class="input-group">
-                                <div></div>
-                                <span class="input-group-btn">
                                     <a class="btn btn-success" href="<?php echo base_url().'index.php/CReport/module/reportSedes'; ?>"><i class="glyphicon glyphicon-align-justify"></i> Ingresos General</a>
                                 </span>
                             </div>
@@ -98,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                         <div class="x_panel">
                             <div class="x_title">
-                                <h2>Reporte de Comisiones</h2>
+                                <h2>Reporte de Ingresos detallado</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                     </li>
@@ -106,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <form role="form" name="form_report" action="<?php echo base_url().'index.php/CReport/paymentcomm'; ?>" method="post">
+                                <form role="form" name="form_report" action="<?php echo base_url().'index.php/CReport/paymentdetail'; ?>" method="post">
                                     <div class="modal-body">
                                         <fieldset>
                                             <div class="col-md-3 xdisplay_inputx form-group has-feedback"></div>
@@ -124,6 +115,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <input type="text" name="dateRangeInput" required="" class="form-control has-feedback-left" id="single_cal_all" value="" placeholder="Fecha Inicio" aria-describedby="inputSuccess2Status" readonly="">
                                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                                 <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                                <br />
+                                                Estado de la Factura:
+                                                <br />
+                                                <select class="select2_single form-control" id="estado_factura" name="estado_factura" data-rel="chosen">
+                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="5" >Pagada</option>
+                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="8" >CuentaxCobrar</option>
+                                                </select>
                                             </div>
                                         </fieldset>
                                         <center>
@@ -138,12 +136,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>
-                                                    Detalle de Ventas por Producto
+                                                    Detalle de Ingresos
                                                     <br />
                                                     <span style="font-size: 12px">
-                                                    Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del recibo (fecha liquida).<br />
-                                                    Se tienen en cuenta los recibos que han sido pagados en su totalidad como tambien los que se encuentran en CuentaxCobrar con o sin abono.<br />
-                                                    El objetivo de este reporte es mostrar el detalle de ventas por producto y la comision correspondiente del empleado.
+                                                    Este reporte recupera las ventas detallando el producto, se tiene en cuenta la fecha del pago.
                                                     </span>
                                                 </h2>
                                                 
@@ -163,20 +159,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             <th>Cargo Adicional</th>
                                                             <th>Cant</th>
                                                             <th>Precio Venta</th>
-                                                            <th>Valor Comisión</th>
-                                                            <th>% Comisión</th>
+                                                            <th>Valor Pagado</th>
                                                             <th>Empleado</th>
-                                                            <th>Cliente</th>
                                                             <th>Recibo</th>
-                                                            <th>Ajuste Manual</th>
-                                                            <th>Total Factura</th>
+                                                            <th>Cliente</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
                                                         if ($paymentDataSedes != FALSE){
 
-                                                            $valueTotalComision = 0;
+                                                            $valueTotalVenta = 0;
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
@@ -186,16 +179,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
                                                                     <td class="center green"><?php echo number_format($row_sede['valorVenta'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format($row_sede['valorEmpleado'],0,',','.'); ?></td>
-                                                                    <td class="center red"><?php echo number_format((($row_sede['valorEmpleado']/$row_sede['valorVenta'])*100),0,',','.')."%"; ?></td>
+                                                                    <td class="center red"><?php echo number_format($row_sede['formaPago'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['idEmpleado']; ?></small></td>
-                                                                    <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                     <td class="center green"><?php echo $row_sede['recibo']; ?></td>
-                                                                    <td class="center red"><small><?php echo $row_sede['ajuste_manual']; ?></small></td>
-                                                                    <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
+                                                                    <td class="center"><small><?php echo $row_sede['nombre_cliente']; ?></small></td>
                                                                 </tr>
                                                                 <?php
-                                                                $valueTotalComision = $valueTotalComision + $row_sede['valorEmpleado'];
+                                                                $valueTotalVenta = $valueTotalVenta + $row_sede['valorVenta'];
                                                             }
                                                         }
                                                         ?>
@@ -203,11 +193,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </table>
                                             </div>
                                             <h2>
-                                            <?php echo "Total Comisiones: $".number_format($valueTotalComision,0,',','.')." CO"; ?>
+                                            <?php 
+                                            if ($estadoFact == 5){ //Pagados
+                                                echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO (No incluye los abonos recibidos para CuentasxCobrar)"; 
+                                            }
+
+                                            if ($estadoFact == 8){ //CuentaxCobrar
+                                                //echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; 
+                                            }
+                                            ?>
                                             </h2>
                                         </div>
                                     </div>
-                                    <!-- /detalle pagos por producto con comision-->    
+                                    <!-- /detalle pagos por producto-->    
 
                                 <?php } ?>
                             </div>

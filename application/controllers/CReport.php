@@ -157,6 +157,13 @@ class CReport extends CI_Controller {
                     $this->load->view('reports/report_comm',$info);
 
                 }
+
+                if ($report == 'reportPaymentDetail'){
+                    
+                    $info['dataRow'] = 0;
+                    $this->load->view('reports/report_payment_detail',$info);
+
+                }
             
             } else {
                 
@@ -796,6 +803,70 @@ class CReport extends CI_Controller {
                     $info['dataRow'] = 2;
                     $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
                     $this->load->view('reports/report_comm',$info);
+
+                }
+            
+            } else {
+                
+                show_404();
+                
+            }
+            
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
+
+    /**************************************************************************
+     * Nombre del Metodo: payment_detail
+     * Descripcion: genera reporte detallado de ingresos por fecha de pago
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/06/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function paymentdetail() {
+        
+        if ($this->session->userdata('validated')) {
+            
+            if ($this->MRecurso->validaRecurso(10)){
+                
+                /*Captura Variables*/
+                $estadoFactura = $this->input->post('estado_factura');
+                $dateRange = explode("|",$this->input->post('dateRangeInput'));
+                                
+                $date1 = new DateTime($dateRange[0]); 
+                $fechaini = $date1->format('Y-m-d H:i:s'); 
+                
+                $date2 = new DateTime($dateRange[1]); 
+                $fechafin = $date2->format('Y-m-d H:i:s');
+                
+                log_message("DEBUG", "----------------------------------");
+                log_message("DEBUG", "***Reporte Ingresos Detallado***");
+                log_message("DEBUG", $fechaini);
+                log_message("DEBUG", $fechafin);
+                log_message("DEBUG", "*********************************");
+                
+                /*Consulta Modelo detalle ingresos*/
+                $paymentDataDet = $this->MReport->payment_ingresosdetail($fechaini,$fechafin,$estadoFactura);
+
+                if ($paymentDataDet == TRUE){
+
+                    //$paymentConsolidate = $this->MReport->payment_salesproduct_cons($fechaini,$fechafin);
+
+                    $info['fechaIni'] = $fechaini;
+                    $info['fechaFin'] = $fechafin;
+                    $info['dataRow'] = 1;
+                    $info['estadoFact'] = $estadoFactura;
+                    $info['paymentDataSedes'] = $paymentDataDet;
+                    $this->load->view('reports/report_payment_detail',$info);
+
+                } else {
+
+                    $info['dataRow'] = 2;
+                    $info['message'] = "No existen recibos pagados en el periodo seleccionado.";
+                    $this->load->view('reports/report_payment_detail',$info);
 
                 }
             
