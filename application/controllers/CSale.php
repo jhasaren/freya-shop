@@ -1929,5 +1929,62 @@ class CSale extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: saveobservacioncuenta
+     * Descripcion: Guarda observacion de la cuentaxcobrar
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/06/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function saveobservacioncuenta(){
+        
+        if ($this->session->userdata('validated')) {
+        
+            /*valida que la peticion http sea POST*/
+            if (!$this->input->post()){
+
+                $this->module($info);
+
+            } else {
+
+                if ($this->MRecurso->validaRecurso(9)){
+                
+                    /*Captura Variables*/
+                    $idVenta = $this->input->post('idventa');
+                    $recibo = $this->input->post('recibo');
+                    $observacion = strtoupper($this->input->post('observCuenta'));
+
+                    /*Envia datos al modelo para el registro*/
+                    $registerData = $this->MSale->add_observ_cuenta($idVenta,$recibo,$observacion);
+
+                    if ($registerData == TRUE){
+
+                        $info['idmessage'] = 1;
+                        $info['message'] = "Observación guardada exitosamente";
+                        $this->load->view('sale/sale_pending',$info);
+
+                    } else {
+
+                        $info['idmessage'] = 2;
+                        $info['message'] = "No fue posible guardar la Observación";
+                        $this->load->view('sale/sale_pending',$info);
+
+                    }
+
+                } else {
+                    
+                    show_404();
+                    
+                }
+                
+            } 
+        
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
     
 }

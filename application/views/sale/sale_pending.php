@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </a>
                                                         <br />
                                                         <?php 
-                                                        echo "<a class='btn-itemobs btn btn-warning btn-sm' data-rel='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['idVenta']."' data-rel3='".$row_liquidado['nroRecibo']."' href='#'>Observación</a>";
+                                                        echo "<a class='btn-itemobs btn btn-warning btn-sm' data-rel='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['idVenta']."' data-rel3='".$row_liquidado['observacionCuenta']."' href='#'>Observación</a>";
                                                         ?>
                                                         
                                                         <!--Descargar PDF-->
@@ -182,7 +182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="modal fade" id="myModal-itemobs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-itemobs" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CUser/saveconfiguser'; ?>" method="post">
+                    <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CSale/saveobservacioncuenta'; ?>" method="post">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
                             <h3>Observación CuentaxCobrar<br /><span style='color: gray'>Recibo <div id='recibo'></div></span></h3>
