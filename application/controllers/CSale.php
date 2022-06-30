@@ -1951,7 +1951,7 @@ class CSale extends CI_Controller {
                 
                     /*Captura Variables*/
                     $idVenta = $this->input->post('idventa');
-                    $recibo = $this->input->post('recibo');
+                    $recibo = $this->input->post('nroRecibo');
                     $observacion = strtoupper($this->input->post('observCuenta'));
 
                     log_message("debug", "*****************************");

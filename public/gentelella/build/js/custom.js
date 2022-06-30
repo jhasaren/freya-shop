@@ -394,6 +394,7 @@ $(document).ready(function () {
         var observ = $(this).attr('data-rel3');
         $("#idventa").val(idVenta);
         $("#recibo").html(recibo);
+        $("#nroRecibo").val(recibo);
         $("#observCuenta").val(observ);
         $('#myModal-itemobs').modal('show');
     });
