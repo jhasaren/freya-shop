@@ -135,6 +135,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                             Recuperar
                                                         </a>
                                                         <br />
+                                                        <a class="btn btn-info btn-sm" href="<?php echo base_url().'index.php/CSale/restoresale/'.$row_liquidado['idVenta'].'/'.$row_liquidado['idUsuarioCliente'].'/'.$row_liquidado['porcenDescuento'].'/'.$row_liquidado['porcenServicio'].'/'.$row_liquidado['idEmpleadoAtiende']; ?>">
+                                                            <i class="glyphicon glyphicon-cog"></i>
+                                                            Observación
+                                                        </a>
                                                         
                                                         <!--Descargar PDF-->
                                                         <?php
