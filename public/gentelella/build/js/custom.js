@@ -394,7 +394,7 @@ $(document).ready(function () {
         var recibo = $(this).attr('data-rel3');
         $("#idventa").val(idVenta);
         $("#observCuenta").val(observ);
-        $("#recibo").val(recibo);
+        $("#recibo").html(recibo);
         $('#myModal-itemobs').modal('show');
     });
     /*Modal - Agregar Descuento Venta*/
