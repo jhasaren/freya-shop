@@ -115,6 +115,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <input type="text" name="dateRangeInput" required="" class="form-control has-feedback-left" id="single_cal_all" value="" placeholder="Fecha Inicio" aria-describedby="inputSuccess2Status" readonly="">
                                                 <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                                                 <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                                <select class="select2_single form-control" id="estado_factura" name="estado_factura" data-rel="chosen">
+                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="5" >Pagados</option>
+                                                    <option style="font-family: Arial; font-size: 16pt; background-color: #E0DD70; color: #000" value="8" >CuentaxCobrar</option>
+                                                </select>
                                             </div>
                                         </fieldset>
                                         <center>
@@ -129,7 +133,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="x_panel">
                                             <div class="x_title">
                                                 <h2>
-                                                    Detalle de Ingresos por Producto
+                                                    Detalle de Ingresos
                                                     <br />
                                                     <span style="font-size: 12px">
                                                     Este reporte recupera las ventas y comisiones por producto teniendo en cuenta la fecha del pago.<br />
@@ -165,7 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <?php
                                                         if ($paymentDataSedes != FALSE){
 
-                                                            $valueTotalComision = 0;
+                                                            $valueTotalVenta = 0;
                                                             foreach ($paymentDataSedes as $row_sede){
                                                                 ?>
                                                                 <tr style="background-color: #2A3F54;">
@@ -182,7 +186,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                     <td class="center"><small><?php echo number_format($row_sede['valorLiquida'],0,',','.'); ?></small></td>
                                                                 </tr>
                                                                 <?php
-                                                                $valueTotalComision = $valueTotalComision + $row_sede['valorEmpleado'];
+                                                                $valueTotalVenta = $valueTotalVenta + $row_sede['valorVenta'];
                                                             }
                                                         }
                                                         ?>
@@ -190,11 +194,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 </table>
                                             </div>
                                             <h2>
-                                            <?php echo "Total Comisiones: $".number_format($valueTotalComision,0,',','.')." CO"; ?>
+                                            <?php echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; ?>
                                             </h2>
                                         </div>
                                     </div>
-                                    <!-- /detalle pagos por producto con comision-->    
+                                    <!-- /detalle pagos por producto-->    
 
                                 <?php } ?>
                             </div>
