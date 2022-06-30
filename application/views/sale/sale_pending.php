@@ -136,7 +136,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </a>
                                                         <br />
                                                         <?php 
-                                                        echo "<a class='btn-itemobs btn btn-warning btn-sm' data-rel='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['idVenta']."' data-rel3='".$row_liquidado['observacionCuenta']."' href='#'>Observación</a>";
+                                                        echo "<a class='btn-itemobs btn btn-warning btn-sm' data-rel='".$row_liquidado['idVenta']."' data-rel2='".$row_liquidado['nroRecibo']."' data-rel3='".$row_liquidado['observacionCuenta']."' href='#'>Observación</a>";
                                                         ?>
                                                         
                                                         <!--Descargar PDF-->
