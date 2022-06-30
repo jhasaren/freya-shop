@@ -185,7 +185,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <form role="form" name="form_product_int" action="<?php echo base_url() . 'index.php/CUser/saveconfiguser'; ?>" method="post">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <h3>Observación CuentaxCobrar<br />Recibo [<div id='recibo'></div>]</h3>
+                            <h3>Observación CuentaxCobrar<br /><span style='color: gray'>Recibo <div id='recibo'></div></span></h3>
                         </div>
                         <div class="modal-body">
                             <label class="control-label" for="Interno">Producto</label>
