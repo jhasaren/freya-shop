@@ -1954,6 +1954,12 @@ class CSale extends CI_Controller {
                     $recibo = $this->input->post('recibo');
                     $observacion = strtoupper($this->input->post('observCuenta'));
 
+                    log_message("debug", "*****************************");
+                    log_message("debug", $idVenta);
+                    log_message("debug", $recibo);
+                    log_message("debug", $observacion);
+                    log_message("debug", "*****************************");
+
                     /*Envia datos al modelo para el registro*/
                     $registerData = $this->MSale->add_observ_cuenta($idVenta,$recibo,$observacion);
 
