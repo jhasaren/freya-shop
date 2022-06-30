@@ -197,7 +197,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <h2>
                                             <?php 
                                             if ($estadoFact == 5){ //Pagados
-                                                echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO"; 
+                                                echo "Total Ingresos: $".number_format($valueTotalVenta,0,',','.')." CO (No incluye los abonos recibidos para CuentasxCobrar)"; 
                                             }
 
                                             if ($estadoFact == 8){ //CuentaxCobrar
