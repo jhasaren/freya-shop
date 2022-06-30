@@ -386,6 +386,18 @@ $(document).ready(function () {
         $("#descProducto").val(descProducto);
         $('#myModal-itemconfig').modal('show');
     });
+    /*Modal - Observacion CuentaxCobrar*/
+    $('.btn-itemobs').click(function (e) {
+        e.preventDefault();
+        var idVenta = $(this).attr('data-rel');
+        var recibo = $(this).attr('data-rel2');
+        var observ = $(this).attr('data-rel3');
+        $("#idventa").val(idVenta);
+        $("#recibo").html(recibo);
+        $("#nroRecibo").val(recibo);
+        $("#observCuenta").val(observ);
+        $('#myModal-itemobs').modal('show');
+    });
     /*Modal - Agregar Descuento Venta*/
     $('.btn-saledesc').click(function (e) {
         e.preventDefault();

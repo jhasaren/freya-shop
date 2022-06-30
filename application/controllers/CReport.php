@@ -865,7 +865,7 @@ class CReport extends CI_Controller {
                 } else {
 
                     $info['dataRow'] = 2;
-                    $info['message'] = "No existen pagos registrados en el periodo seleccionado.";
+                    $info['message'] = "No se encontraron registros en el periodo seleccionado.";
                     $this->load->view('reports/report_payment_detail',$info);
 
                 }

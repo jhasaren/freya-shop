@@ -485,7 +485,8 @@ class MPrincipal extends CI_Model {
                                 m.idEmpleadoAtiende,
                                 (SELECT sum(f.valorPago) 
                                  FROM forma_de_pago f 
-                                 WHERE f.idVenta = m.idVenta) as pagoAbono
+                                 WHERE f.idVenta = m.idVenta) as pagoAbono,
+                                m.observacionCuenta
                                 FROM venta_maestro m
                                 JOIN app_usuarios a ON a.idUsuario = m.idUsuarioCliente
                                 WHERE

@@ -1605,6 +1605,31 @@ class MSale extends CI_Model {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: add_observ_cuenta
+     * Descripcion: Registra observacion en la venta
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/06/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function add_observ_cuenta($idVenta,$recibo,$observacion) {
+        
+        $this->db->trans_start();
+        $this->db->query("UPDATE venta_maestro SET observacionCuenta = '".$observacion."' WHERE idVenta = '".$idVenta."' AND nroRecibo = '".$recibo."'");
+        $this->db->trans_complete();
+        $this->db->trans_off();
+        
+        if ($this->db->trans_status() === FALSE){
+
+            return false;
+
+        } else {
+            
+            return true;
+            
+        }
+        
+    }
     
     /**************************************************************************
      * Nombre del Metodo: update_sale_master

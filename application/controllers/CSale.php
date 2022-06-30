@@ -1929,5 +1929,68 @@ class CSale extends CI_Controller {
         }
         
     }
+
+    /**************************************************************************
+     * Nombre del Metodo: saveobservacioncuenta
+     * Descripcion: Guarda observacion de la cuentaxcobrar
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 29/06/2022, Ultima modificacion: 
+     **************************************************************************/
+    public function saveobservacioncuenta(){
+        
+        if ($this->session->userdata('validated')) {
+        
+            /*valida que la peticion http sea POST*/
+            if (!$this->input->post()){
+
+                $this->module($info);
+
+            } else {
+
+                if ($this->MRecurso->validaRecurso(9)){
+                
+                    /*Captura Variables*/
+                    $idVenta = $this->input->post('idventa');
+                    $recibo = $this->input->post('nroRecibo');
+                    $observacion = strtoupper($this->input->post('observCuenta'));
+
+                    log_message("debug", "*****************************");
+                    log_message("debug", $idVenta);
+                    log_message("debug", $recibo);
+                    log_message("debug", $observacion);
+                    log_message("debug", "*****************************");
+
+                    /*Envia datos al modelo para el registro*/
+                    $registerData = $this->MSale->add_observ_cuenta($idVenta,$recibo,$observacion);
+
+                    if ($registerData == TRUE){
+
+                        $info['alert'] = 1;
+                        $info['message'] = "Observación guardada exitosamente";
+                        $this->pendientespago();
+
+                    } else {
+
+                        $info['alert'] = 2;
+                        $info['message'] = "No fue posible guardar la Observación";
+                        $this->pendientespago();
+
+                    }
+
+                } else {
+                    
+                    show_404();
+                    
+                }
+                
+            } 
+        
+        } else {
+            
+            $this->index();
+            
+        }
+        
+    }
     
 }
