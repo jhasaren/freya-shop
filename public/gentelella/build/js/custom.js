@@ -390,8 +390,8 @@ $(document).ready(function () {
     $('.btn-itemobs').click(function (e) {
         e.preventDefault();
         var idVenta = $(this).attr('data-rel');
-        var observ = $(this).attr('data-rel2');
-        var recibo = $(this).attr('data-rel3');
+        var observ = $(this).attr('data-rel3');
+        var recibo = $(this).attr('data-rel2');
         $("#idventa").val(idVenta);
         $("#observCuenta").val(observ);
         $("#recibo").html(recibo);
