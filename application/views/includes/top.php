@@ -89,10 +89,17 @@
                         <br />
                         <div class="form-group">
                             <label for="contrasenaNuevaConfirma">Valor</label>
-                            <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 14px">
-                                <option value="1">Habilitado</option>
-                                <option value="0">Deshabilitado</option>
-                            </select>
+                            <?php if ($this->session->userdata('param_pay_yesterday') == 1){ ?>
+                                <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 14px">
+                                    <option value="1">Habilitado</option>
+                                    <option value="0">Deshabilitado</option>
+                                </select>
+                            <?php } else { ?>
+                                <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 14px">
+                                    <option value="0">Deshabilitado</option>
+                                    <option value="1">Habilitado</option>
+                                </select>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="modal-footer">
