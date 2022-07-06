@@ -728,7 +728,7 @@ $config['category_client'] = 1;
  * 1-habilitar, 0-deshabilitar
 |--------------------------------------------------------------------------
 */
-$config['sale_yesterday'] = 1;
+$config['sale_yesterday'] = 0;
 
 
 /*
