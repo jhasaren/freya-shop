@@ -433,6 +433,7 @@ class MReport extends CI_Model {
                                 v.idRegistroDetalle,
                                 v.idProducto,
                                 p.descProducto,
+                                p.costoProducto,
                                 p.valorProducto as valorActual,
                                 v.cargoEspecial,
                                 v.cantidad,

@@ -723,6 +723,16 @@ $config['category_client'] = 1;
 
 /*
 |--------------------------------------------------------------------------
+| Fecha del dia anterior (Ventas y Pago Parcial)
+ * Permite controlar la funcionalidad
+ * 1-habilitar, 0-deshabilitar
+|--------------------------------------------------------------------------
+*/
+$config['sale_yesterday'] = 0;
+
+
+/*
+|--------------------------------------------------------------------------
 | Configuracion % Descuentos Comision
 | * Solo aplica si $config['mod_commision'] = 1;
 |--------------------------------------------------------------------------
