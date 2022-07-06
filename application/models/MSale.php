@@ -1767,7 +1767,7 @@ class MSale extends CI_Model {
             
             /*Inserta el registro en forma de pago*/
             $this->db->trans_start();  
-            if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior       
+            if ($this->config->item('sale_yesterday') == 1 && $this->session->userdata('param_pay_yesterday') == 1){ //Registra con fecha del dia anterior       
                 $this->db->query("INSERT INTO
                                 forma_de_pago (
                                     idVenta,
