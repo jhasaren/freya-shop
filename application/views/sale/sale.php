@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php } ?>
                         <!--/Alerta Add Concepto-->
                         <!--Alerta Fecha Dia Anterior-->
-                        <?php if ($this->config->item('sale_yesterday') == 1){ ?>
+                        <?php if ($this->config->item('sale_yesterday') == 999){ ?><!--Deshabilitado-->
                         <div class="alert alert-warning alert-dismissible fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
