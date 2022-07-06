@@ -18,12 +18,10 @@
                     <li>
                         <a class="btn-changepass"  href="#">Cambiar Contraseña</a>
                     </li>
-                    <!--
                     <li>
-                        <a class="btn-backup"  href="#">Generar Backup</a>
+                        <a class="btn-backup"  href="#">Parámetros</a>
                     </li>
-                    -->
-<!--                    <li>
+                    <!--<li>
                         <a href="<?php // echo base_url().'index.php/CPrincipal/optimize'; ?>"><i class="fa fa-sign-out pull-right"></i> Optimizar BD</a>
                     </li>-->
                     <li>
@@ -72,36 +70,40 @@
     </div>
     <!--/Modal - Cambiar Clave-->
     
-    <!--Modal - Generar Backup-->
+    <!--Modal - Generar Parametros-->
     <div class="modal fade" id="myModal-cback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-cback" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form role="form" name="form_backup" action="<?php echo base_url().'index.php/CPrincipal/backup'; ?>" method="post" autocomplete="off">
+                <form role="form" name="form_backup" action="<?php echo base_url().'index.php/CPrincipal/params'; ?>" method="post" autocomplete="off">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h3>Generar Backup de Datos</h3>
+                        <h3>Configuración de Parámetros</h3>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="tipoBaseDatos">Elija la Base de Datos</label><br />
-                            <input type="radio" class="radio-inline" id="db_backup1" name="db_backup" value="1" checked="">Aplicacion
-                            <input type="radio" class="radio-inline" id="db_backup2" name="db_backup" value="2" >Auditoria
+                            <label for="tipoBaseDatos">Elija Parámetro</label><br />
+                            <select class="select2_single form-control" id="parametro" name="parametro" data-rel="chosen" style="font-size: 12px">
+                                <option value="sale_yesterday">Pagos con Fecha de Ayer</option>
+                            </select>
                         </div>
                         <br />
                         <div class="form-group">
-                            <label for="contrasenaNuevaConfirma">Contraseña</label>
-                            <input type="password" class="form-control" id="pass" name="pass" placeholder="Digite su contraseña" required="">
+                            <label for="contrasenaNuevaConfirma">Valor</label>
+                            <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 12px">
+                                <option value="1">Habilitado</option>
+                                <option value="0">Deshabilitado</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <a href="#" class="btn btn-default" data-dismiss="modal">Cerrar</a>
-                        <button type="submit" class="btn btn-success">Generar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <!--/Modal - Generar Backup-->
+    <!--/Modal - Generar Parametros-->
     
     <!--Modal - Ayuda-->
     <div class="modal fade" id="myModal-help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-help" aria-hidden="true">
