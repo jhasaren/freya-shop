@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label for="tipoBaseDatos">Elija Parámetro</label><br />
                             <select class="select2_single form-control" id="parametro" name="parametro" data-rel="chosen" style="font-size: 14px">
-                                <option value="sale_yesterday">Pagos con Fecha de Ayer</option>
+                                <option value="sale_yesterday">9901-Pagos con Fecha de Ayer</option>
                             </select>
                         </div>
                         <br />
