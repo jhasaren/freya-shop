@@ -82,14 +82,14 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="tipoBaseDatos">Elija Parámetro</label><br />
-                            <select class="select2_single form-control" id="parametro" name="parametro" data-rel="chosen" style="font-size: 12px">
+                            <select class="select2_single form-control" id="parametro" name="parametro" data-rel="chosen" style="font-size: 14px">
                                 <option value="sale_yesterday">Pagos con Fecha de Ayer</option>
                             </select>
                         </div>
                         <br />
                         <div class="form-group">
                             <label for="contrasenaNuevaConfirma">Valor</label>
-                            <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 12px">
+                            <select class="select2_single form-control" id="valor_param" name="valor_param" data-rel="chosen" style="font-size: 14px">
                                 <option value="1">Habilitado</option>
                                 <option value="0">Deshabilitado</option>
                             </select>
