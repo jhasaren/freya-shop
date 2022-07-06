@@ -159,6 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         <tr>
                                                             <th>Fecha Recibo</th>
                                                             <th>Producto</th>
+                                                            <th>Precio Costo</th>
                                                             <th>Precio Público</th>
                                                             <th>Cargo Adicional</th>
                                                             <th>Cant</th>
@@ -182,6 +183,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                                 <tr style="background-color: #2A3F54;">
                                                                     <td class="center"><small><?php echo $row_sede['fechaLiquida']; ?></small></td>
                                                                     <td class="center"><small><?php echo '['.$row_sede['idRegistroDetalle'].'-'.$row_sede['idProducto'].'] '.$row_sede['descProducto']; ?></small></td>
+                                                                    <td class="center blue"><?php echo number_format($row_sede['costoProducto'],0,',','.'); ?></td>
                                                                     <td class="center blue"><?php echo number_format($row_sede['valorActual'],0,',','.'); ?></td>
                                                                     <td class="center"><small><?php echo $row_sede['cargoEspecial']; ?></small></td>
                                                                     <td class="center"><small><?php echo $row_sede['cantidad']; ?></small></td>
