@@ -1134,8 +1134,8 @@ class MReport extends CI_Model {
                                     FROM forma_de_pago f
                                     JOIN tipo_forma_pago t ON t.idTipoPago = f.idTipoPago
                                     JOIN venta_maestro v ON v.idVenta = f.idVenta
-                                    WHERE /*v.idEstadoRecibo = 5
-                                    AND*/ f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
+                                    WHERE v.idEstadoRecibo in (5,8)
+                                    AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                     GROUP BY f.idTipoPago");
         
         if ($querySede->num_rows() == 0) {
@@ -1177,7 +1177,8 @@ class MReport extends CI_Model {
                                     sum(f.valorPago) as sumPago
                                     FROM forma_de_pago f
                                     JOIN venta_maestro v ON v.idVenta = f.idVenta
-                                    WHERE f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
+                                    WHERE v.idEstadoRecibo in (5,8)
+                                    AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                     GROUP BY DATE_FORMAT(f.fechaPago,'%d-%b-%y')
                                     ORDER BY 1 ASC");
         
