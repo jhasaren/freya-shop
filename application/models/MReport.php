@@ -698,8 +698,8 @@ class MReport extends CI_Model {
                                     sum(f.valorPago) as valorPagoAbono
                                     FROM forma_de_pago f
                                     JOIN venta_maestro v ON v.idVenta = f.idVenta
-                                    WHERE /*v.idEstadoRecibo = 8
-                                    AND*/ f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
+                                    WHERE v.idEstadoRecibo in (5,8)
+                                    AND f.fechaPago BETWEEN '".$fechaIni." 00:00:00' AND '".$fechaFin." 23:59:59'
                                     GROUP BY v.idSede");
         
         if ($query->num_rows() == 0) {
