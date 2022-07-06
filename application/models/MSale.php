@@ -30,7 +30,7 @@ class MSale extends CI_Model {
         
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
-        if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior
+        if ($this->config->item('sale_yesterday') == 999){ //Registra con fecha del dia anterior (disabled)
             $query = $this->db->query("INSERT INTO
                                         venta_maestro (
                                         fechaLiquida,
@@ -1673,7 +1673,7 @@ class MSale extends CI_Model {
                         nroRecibo = ".$nrorecibo."
                         ");
         
-        if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior
+        if ($this->config->item('sale_yesterday') == 999){ //Registra con fecha del dia anterior (disabled)
             $this->db->query("UPDATE
                             venta_maestro SET
                             valorTotalVenta = ".$total.",
