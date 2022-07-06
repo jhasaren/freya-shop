@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php } ?>
                         <!--/Alerta-->
                         <!--Alerta Fecha Dia Anterior-->
-                        <?php if ($this->config->item('sale_yesterday') == 1){ ?>
+                        <?php if ($this->config->item('sale_yesterday') == 1 && $this->session->userdata('param_pay_yesterday') == 1){ ?>
                         <div class="alert alert-warning alert-dismissible fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
