@@ -295,7 +295,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-md-10 col-sm-10 col-xs-10">
                                         <div class="x_panel" style="background-color: #81a4ba;">
                                             <div class="x_title" style="color: white;">
-                                                <h2>Info. Cliente</h2>
+                                                <h2>Info. Cliente | <?php echo $this->session->userdata('param_pay_yesterday'); ?></h2>
                                                 <div class="clearfix"></div>
                                             </div>
                                             <div class="x_content" style="color: white;">
