@@ -545,7 +545,12 @@ class CPrincipal extends CI_Controller {
 
                 $this->session->set_userdata($datos_session);
 
-                $info['message'] = 'Se actualizo correctamente el parámetro para pagos con fecha de ayer.';
+                if ($valueParam == 1){
+                    $info['message'] = 'Se HABILITO correctamente el parámetro para pagos con fecha de ayer.';
+                } else {
+                    $info['message'] = 'Se DESHABILITO correctamente el parámetro para pagos con fecha de ayer.';
+                }
+                
                 $info['alert'] = 1;
                 $this->module($info);
 

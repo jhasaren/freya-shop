@@ -1736,7 +1736,7 @@ class MSale extends CI_Model {
             
             /*Actualiza el registro de forma de pago*/
             $this->db->trans_start();     
-            if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior   
+            if ($this->config->item('sale_yesterday') == 1 && $this->session->userdata('param_pay_yesterday') == 1){ //Registra con fecha del dia anterior   
                 $this->db->query("UPDATE
                                 forma_de_pago SET
                                 valorPago = ".$pagavalor.",
