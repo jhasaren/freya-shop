@@ -30,29 +30,54 @@ class MSale extends CI_Model {
         
         $this->db->trans_strict(TRUE);
         $this->db->trans_start();
-        $query = $this->db->query("INSERT INTO
-                                    venta_maestro (
-                                    fechaLiquida,
-                                    nroRecibo,
-                                    idEstadoRecibo,
-                                    idUsuarioLiquida,
-                                    porcenDescuento,
-                                    porcenServicio,
-                                    idSede,
-                                    impoconsumo,
-                                    idMesa
-                                    ) VALUES (
-                                    NOW(),
-                                    0,
-                                    4,
-                                    ".$idusuario.",
-                                    0,
-                                    0,
-                                    ".$this->session->userdata('sede').",
-                                    ".($this->config->item('porcen_consumo')/100).",
-                                    ".$board."
-                                    )");
-        
+        if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior
+            $query = $this->db->query("INSERT INTO
+                                        venta_maestro (
+                                        fechaLiquida,
+                                        nroRecibo,
+                                        idEstadoRecibo,
+                                        idUsuarioLiquida,
+                                        porcenDescuento,
+                                        porcenServicio,
+                                        idSede,
+                                        impoconsumo,
+                                        idMesa
+                                        ) VALUES (
+                                        DATE_SUB(NOW(), INTERVAL 1 DAY),
+                                        0,
+                                        4,
+                                        ".$idusuario.",
+                                        0,
+                                        0,
+                                        ".$this->session->userdata('sede').",
+                                        ".($this->config->item('porcen_consumo')/100).",
+                                        ".$board."
+                                        )");
+
+        } else { //Registra con fecha actual
+            $query = $this->db->query("INSERT INTO
+                                        venta_maestro (
+                                        fechaLiquida,
+                                        nroRecibo,
+                                        idEstadoRecibo,
+                                        idUsuarioLiquida,
+                                        porcenDescuento,
+                                        porcenServicio,
+                                        idSede,
+                                        impoconsumo,
+                                        idMesa
+                                        ) VALUES (
+                                        NOW(),
+                                        0,
+                                        4,
+                                        ".$idusuario.",
+                                        0,
+                                        0,
+                                        ".$this->session->userdata('sede').",
+                                        ".($this->config->item('porcen_consumo')/100).",
+                                        ".$board."
+                                        )");
+        }
         $idSale = $this->db->insert_id();
         
         $query2 = $this->db->query("UPDATE
@@ -1648,16 +1673,30 @@ class MSale extends CI_Model {
                         nroRecibo = ".$nrorecibo."
                         ");
         
-        $this->db->query("UPDATE
-                        venta_maestro SET
-                        valorTotalVenta = ".$total.",
-                        valorLiquida = ".$liquidado.",
-                        idEstadoRecibo = ".$estadoActualiza.",
-                        nroRecibo = '".$nrorecibo."',
-                        fechaPideCuenta = NOW()
-                        WHERE
-                        idVenta = ".$this->session->userdata('idSale')."
-                        ");
+        if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior
+            $this->db->query("UPDATE
+                            venta_maestro SET
+                            valorTotalVenta = ".$total.",
+                            valorLiquida = ".$liquidado.",
+                            idEstadoRecibo = ".$estadoActualiza.",
+                            nroRecibo = '".$nrorecibo."',
+                            fechaPideCuenta = DATE_SUB(NOW(), INTERVAL 1 DAY)
+                            WHERE
+                            idVenta = ".$this->session->userdata('idSale')."
+                            ");
+
+        } else { //Registra con fecha actual
+            $this->db->query("UPDATE
+                            venta_maestro SET
+                            valorTotalVenta = ".$total.",
+                            valorLiquida = ".$liquidado.",
+                            idEstadoRecibo = ".$estadoActualiza.",
+                            nroRecibo = '".$nrorecibo."',
+                            fechaPideCuenta = NOW()
+                            WHERE
+                            idVenta = ".$this->session->userdata('idSale')."
+                            ");
+        }
 
         $this->db->trans_complete();
         $this->db->trans_off();
@@ -1696,16 +1735,29 @@ class MSale extends CI_Model {
         if ($dataFormaPago->num_rows() > 0){ /*si ya tiene registro con la misma referencia*/
             
             /*Actualiza el registro de forma de pago*/
-            $this->db->trans_start();        
-            $this->db->query("UPDATE
-                            forma_de_pago SET
-                            valorPago = ".$pagavalor.",
-                            fechaPago = NOW()
-                            WHERE
-                            idVenta = ".$this->session->userdata('idSale')."
-                            AND idTipoPago = ".$formaPago."
-                            AND referenciaPago = '".$refPago."'
-                            ");
+            $this->db->trans_start();     
+            if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior   
+                $this->db->query("UPDATE
+                                forma_de_pago SET
+                                valorPago = ".$pagavalor.",
+                                fechaPago = DATE_SUB(NOW(), INTERVAL 1 DAY)
+                                WHERE
+                                idVenta = ".$this->session->userdata('idSale')."
+                                AND idTipoPago = ".$formaPago."
+                                AND referenciaPago = '".$refPago."'
+                                ");
+
+            } else { //Registra con fecha actual
+                $this->db->query("UPDATE
+                                forma_de_pago SET
+                                valorPago = ".$pagavalor.",
+                                fechaPago = NOW()
+                                WHERE
+                                idVenta = ".$this->session->userdata('idSale')."
+                                AND idTipoPago = ".$formaPago."
+                                AND referenciaPago = '".$refPago."'
+                                ");
+            }
             $this->db->trans_complete();
             $this->db->trans_off();
             
@@ -1714,21 +1766,39 @@ class MSale extends CI_Model {
             if ($refPago == ""){ $refPago = time(); }
             
             /*Inserta el registro en forma de pago*/
-            $this->db->trans_start();        
-            $this->db->query("INSERT INTO
-                            forma_de_pago (
-                                idVenta,
-                                idTipoPago,
-                                valorPago,
-                                referenciaPago,
-                                fechaPago
-                            ) VALUES (
-                                ".$this->session->userdata('idSale').",
-                                ".$formaPago.",
-                                ".$pagavalor.",
-                                '".$refPago."',
-                                NOW()
-                            )");
+            $this->db->trans_start();  
+            if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior       
+                $this->db->query("INSERT INTO
+                                forma_de_pago (
+                                    idVenta,
+                                    idTipoPago,
+                                    valorPago,
+                                    referenciaPago,
+                                    fechaPago
+                                ) VALUES (
+                                    ".$this->session->userdata('idSale').",
+                                    ".$formaPago.",
+                                    ".$pagavalor.",
+                                    '".$refPago."',
+                                    DATE_SUB(NOW(), INTERVAL 1 DAY)
+                                )");
+
+            } else { //Registra con Fecha Actual
+                $this->db->query("INSERT INTO
+                                forma_de_pago (
+                                    idVenta,
+                                    idTipoPago,
+                                    valorPago,
+                                    referenciaPago,
+                                    fechaPago
+                                ) VALUES (
+                                    ".$this->session->userdata('idSale').",
+                                    ".$formaPago.",
+                                    ".$pagavalor.",
+                                    '".$refPago."',
+                                    NOW()
+                                )");
+            }
             $this->db->trans_complete();
             $this->db->trans_off();
             
@@ -1998,25 +2068,48 @@ class MSale extends CI_Model {
         
         if ($this->config->item('tipo_negocio') == 3 && $this->config->item('mod_commision') == 1) {
 
-            $this->db->query("INSERT INTO 
-                            log_venta_manual (
-                                idRegistroDetalle, 
-                                valorDescuentoAnt, 
-                                valorDescuentoNue, 
-                                valorEmpleadoAnt, 
-                                valorEmpleadoNue, 
-                                fechaRegistro, 
-                                idEmpleado)
-                            VALUES (
-                                ".$idDetalle.", 
-                                ".$descAnt.", 
-                                ".$descNew.", 
-                                ".$emplAnt.", 
-                                ".$emplNew.",
-                                NOW(),
-                                '".$this->session->userdata('userid')."'
-                                )
-                            ");
+            if ($this->config->item('sale_yesterday') == 1){ //Registra con fecha del dia anterior 
+                $this->db->query("INSERT INTO 
+                                log_venta_manual (
+                                    idRegistroDetalle, 
+                                    valorDescuentoAnt, 
+                                    valorDescuentoNue, 
+                                    valorEmpleadoAnt, 
+                                    valorEmpleadoNue, 
+                                    fechaRegistro, 
+                                    idEmpleado)
+                                VALUES (
+                                    ".$idDetalle.", 
+                                    ".$descAnt.", 
+                                    ".$descNew.", 
+                                    ".$emplAnt.", 
+                                    ".$emplNew.",
+                                    DATE_SUB(NOW(), INTERVAL 1 DAY),
+                                    '".$this->session->userdata('userid')."'
+                                    )
+                                ");
+
+            } else { //Registra con fecha actual
+                $this->db->query("INSERT INTO 
+                                log_venta_manual (
+                                    idRegistroDetalle, 
+                                    valorDescuentoAnt, 
+                                    valorDescuentoNue, 
+                                    valorEmpleadoAnt, 
+                                    valorEmpleadoNue, 
+                                    fechaRegistro, 
+                                    idEmpleado)
+                                VALUES (
+                                    ".$idDetalle.", 
+                                    ".$descAnt.", 
+                                    ".$descNew.", 
+                                    ".$emplAnt.", 
+                                    ".$emplNew.",
+                                    NOW(),
+                                    '".$this->session->userdata('userid')."'
+                                    )
+                                ");
+            }
 
         } else {
 
