@@ -511,6 +511,55 @@ class CPrincipal extends CI_Controller {
         }
         
     }
+
+
+    /**************************************************************************
+     * Nombre del Metodo: params
+     * Descripcion: configuración de parametros
+     * Autor: jhonalexander90@gmail.com
+     * Fecha Creacion: 21/03/2017, Ultima modificacion: 
+     **************************************************************************/
+    public function params(){
+
+        /*valida que la peticion http sea POST*/
+        if (!$this->input->post()){
+            
+            $this->index();
+            
+        } else {
+            
+            /*valida que los datos no esten vacios*/
+            if ($this->input->post('parametro') == NULL || $this->input->post('valor_param') == NULL) { 
+
+                $this->index();
+
+            } else {
+
+                /*Captura Variables*/
+                $descParam = $this->input->post('parametro');
+                $valueParam = $this->input->post('valor_param');
+            
+                $datos_session = array(
+                    'param_pay_yesterday' => $valueParam
+                );
+
+                $this->session->set_userdata($datos_session);
+
+                if ($valueParam == 1){
+                    $info['message'] = 'Se HABILITO correctamente el parámetro para pagos con fecha de ayer.';
+                } else {
+                    $info['message'] = 'Se DESHABILITO correctamente el parámetro para pagos con fecha de ayer.';
+                }
+                
+                $info['alert'] = 1;
+                $this->module($info);
+
+            }
+            
+        }
+        
+    }
+
     
     /**************************************************************************
      * Nombre del Metodo: optimize

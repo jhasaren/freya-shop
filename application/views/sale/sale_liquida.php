@@ -96,11 +96,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php } ?>
                         <!--/Alerta-->
                         <!--Alerta Fecha Dia Anterior-->
-                        <?php if ($this->config->item('sale_yesterday') == 1){ ?>
+                        <?php if ($this->config->item('sale_yesterday') == 1 && $this->session->userdata('param_pay_yesterday') == 1){ ?>
                         <div class="alert alert-warning alert-dismissible fade in">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                             </button>
-                            El registro de la venta y sus pagos parciales quedarán registrados con fecha del día de ayer.
+                            El registro de la venta y sus pagos parciales quedarán registrados con fecha del día de ayer. Si desea registrar pagos con la fecha actual debe deshabilitar el parámetro 9901.
                         </div>
                         <?php } ?>
                         <!--/Alerta Fecha Dia Anterior-->
