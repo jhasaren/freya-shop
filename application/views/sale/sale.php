@@ -923,9 +923,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="controls">
                                 <select class="select2_single form-control" id="porcen_comm" name="porcen_comm" data-rel="chosen" style="font-size: 16px" <?php echo $stateInput; ?> >
                                     <option value="0">Ninguno</option>
-                                    <option value="1">1%</option>
-                                    <option value="2">2%</option>
-                                    <option value="5">5%</option>
+                                    <option value="1.6">1.6%</option>
+                                    <!--<option value="2">2%</option>-->
+                                    <!--<option value="5">5%</option>-->
                                 </select>
                             </div>
                             <!--<input type="tel" class="form-control" id="porcen_comm" name="porcen_comm" placeholder="% Porcentaje" value="" required="" autocomplete="off" <?php //echo $stateInput; ?> pattern="\d*" >-->
