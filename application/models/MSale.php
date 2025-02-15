@@ -376,20 +376,32 @@ class MSale extends CI_Model {
 
         } else {
 
-            $result = $query->row();
-
-            $a = $result->comision;
-            $b = $porcenComision;
-
-            if (strval($a) == strval($b)){ //Valida que el valor de comision sea el configurado
+            if ($this->config->item('mod_commision') == 0) { //Modulo Comisiones Deshabilitado
 
                 return true;
 
             } else {
 
-                return false;
+                if ($this->config->item('mod_commision') == 1) { //Modulo Comisiones Habilitado
 
-            }
+                    $result = $query->row();
+                    
+                    $a = $result->comision;
+                    $b = $porcenComision;
+
+                    if (strval($a) == strval($b)){ //Valida que el valor de comision sea el configurado
+
+                        return true;
+
+                    } else {
+
+                        return false;
+
+                    }
+
+                }
+
+            }           
 
         }
         

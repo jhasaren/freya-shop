@@ -1060,10 +1060,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
     
     var productos = [
-        <?php foreach ($list_product as $row_product) { ?>
-            { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['valorDescProd']." | ".$row_product['valorEmpleado']." | ".$row_product['descProducto']; ?>' },
-        <?php } ?>
-        <?PHP //echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['descGrupoServicio']." | ".$row_product['descProducto'] ?>
+        <?php 
+        //Modulo de comision habilitado
+        if ($this->config->item('mod_commision') == 1) {
+        ?>
+            <?php foreach ($list_product as $row_product) { ?>
+                { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['valorDescProd']." | ".$row_product['valorEmpleado']." | ".$row_product['descProducto']; ?>' },
+            <?php } ?>
+            <?php //echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['descGrupoServicio']." | ".$row_product['descProducto'] ?>
+        <?php 
+        }
+        ?>
+        <?php 
+        //Modulo de comision deshabilitado
+        if ($this->config->item('mod_commision') == 0) {
+        ?>
+            <?php foreach ($list_product as $row_product) { ?>
+                { value: '<?php echo $row_product['idProducto']." | ".$row_product['valorProducto']." | ".$row_product['descProducto']." | ".$row_product['descGrupoServicio']; ?>' },
+            <?php } ?>
+        <?php 
+        }
+        ?>
     ];
     $('#idproducto').autocomplete({
         lookup: productos
